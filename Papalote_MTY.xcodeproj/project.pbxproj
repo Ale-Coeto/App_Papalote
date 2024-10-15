@@ -15,6 +15,11 @@
 		2CD2B3462CBE01A4004BBE01 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3452CBE01A4004BBE01 /* HomeViewModel.swift */; };
 		2CD2B3492CBE0B16004BBE01 /* HomeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3482CBE0B16004BBE01 /* HomeLayoutView.swift */; };
 		2CD2B34B2CBE0F48004BBE01 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B34A2CBE0F48004BBE01 /* NavigationView.swift */; };
+		2CD2B34E2CBECCD6004BBE01 /* Zona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B34D2CBECCD6004BBE01 /* Zona.swift */; };
+		2CD2B3512CBECE48004BBE01 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3502CBECE48004BBE01 /* ColorExtension.swift */; };
+		2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3522CBED0FC004BBE01 /* Evento.swift */; };
+		2CD2B3552CBED232004BBE01 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3542CBED232004BBE01 /* Card.swift */; };
+		2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3562CBED59A004BBE01 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 		2CD2B3452CBE01A4004BBE01 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2CD2B3482CBE0B16004BBE01 /* HomeLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLayoutView.swift; sourceTree = "<group>"; };
 		2CD2B34A2CBE0F48004BBE01 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		2CD2B34D2CBECCD6004BBE01 /* Zona.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zona.swift; sourceTree = "<group>"; };
+		2CD2B3502CBECE48004BBE01 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		2CD2B3522CBED0FC004BBE01 /* Evento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evento.swift; sourceTree = "<group>"; };
+		2CD2B3542CBED232004BBE01 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		2CD2B3562CBED59A004BBE01 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +69,8 @@
 		2C5D299C2CBDD6E800EB3DB2 /* Papalote_MTY */ = {
 			isa = PBXGroup;
 			children = (
+				2CD2B34F2CBECE3C004BBE01 /* Utils */,
+				2CD2B34C2CBECCC4004BBE01 /* Classes */,
 				2CD2B3442CBE0191004BBE01 /* Components */,
 				2CD2B3402CBE00F9004BBE01 /* ViewModels */,
 				2CD2B33F2CBE00CA004BBE01 /* Views */,
@@ -107,6 +119,7 @@
 		2CD2B3442CBE0191004BBE01 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2CD2B3542CBED232004BBE01 /* Card.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -117,6 +130,24 @@
 				2CD2B3482CBE0B16004BBE01 /* HomeLayoutView.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		2CD2B34C2CBECCC4004BBE01 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2B34D2CBECCD6004BBE01 /* Zona.swift */,
+				2CD2B3522CBED0FC004BBE01 /* Evento.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2CD2B34F2CBECE3C004BBE01 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2B3502CBECE48004BBE01 /* ColorExtension.swift */,
+				2CD2B3562CBED59A004BBE01 /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,10 +220,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD2B34E2CBECCD6004BBE01 /* Zona.swift in Sources */,
+				2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */,
 				2CD2B3432CBE017E004BBE01 /* HomeView.swift in Sources */,
 				2C5D29A02CBDD6E800EB3DB2 /* MainView.swift in Sources */,
+				2CD2B3512CBECE48004BBE01 /* ColorExtension.swift in Sources */,
 				2CD2B3492CBE0B16004BBE01 /* HomeLayoutView.swift in Sources */,
 				2C5D299E2CBDD6E800EB3DB2 /* Papalote_MTYApp.swift in Sources */,
+				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
+				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
 				2CD2B34B2CBE0F48004BBE01 /* NavigationView.swift in Sources */,
 				2CD2B3462CBE01A4004BBE01 /* HomeViewModel.swift in Sources */,
 			);

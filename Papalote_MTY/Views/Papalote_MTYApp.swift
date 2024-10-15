@@ -11,7 +11,7 @@ import SwiftUI
 struct Papalote_MTYApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }

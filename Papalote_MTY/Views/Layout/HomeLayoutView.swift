@@ -22,7 +22,7 @@ struct HomeLayoutView: View {
                         .fill(
                         LinearGradient(gradient: Gradient(colors: [Color("LightGreen"), Color("DarkGreen")]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/))
                         .ignoresSafeArea()
-                        .frame(height: 80)
+                        .frame(height: Constants.HEADER_HEIGHT)
                     Text(title)
                         .foregroundStyle(.white)
                         .font(.title)

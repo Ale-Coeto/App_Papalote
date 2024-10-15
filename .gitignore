@@ -5,7 +5,8 @@ xcuserdata/
 *.xccheckout
 *.moved-aside
 *.xcuserstate
-
+*.xcworkspace/xcuserdata/
+*.xcworkspace/contents.xcworkspacedata
 
 # Swift Package Manager
 .build/

@@ -31,9 +31,34 @@ struct HomeView: View {
                                             .fill(Color(hex: zona.color))
                                             .shadow(radius: 5)
                                             .frame(minHeight: 50)
-                                        
-                                        Text(zona.nombre)
-                                            .foregroundStyle(.white)
+                                        HStack {
+                                                
+                                            Text(zona.nombre)
+                                                .foregroundStyle(.white)
+                                                .padding(.leading)
+                                            Spacer()
+                                            
+                                            ZStack (alignment: .trailing) {
+                                                HStack (spacing: 0) {
+
+                                                    RightTriangle(width: 25, color: .white)
+                                                        
+                                                    ZStack {
+                                                        
+                                                        CustomRoundedRectangle(topLeftRadius: 0, topRightRadius: 10, bottomLeftRadius: 0, bottomRightRadius: 10)
+                                                            .fill(.white)
+                                                            .frame(width: 80)
+                                                        
+                                                        Image(zona.logo)
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .padding(10)
+                                                        
+                                                        
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }

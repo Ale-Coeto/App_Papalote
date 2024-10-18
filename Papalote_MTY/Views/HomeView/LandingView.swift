@@ -29,18 +29,27 @@ struct LandingView: View {
             .ignoresSafeArea()
             
             VStack {
-                Text("Bienvenido a Papalote Museo Del Niño")
-                    .font(Font.custom("VagRounded-Light", size: 50))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                    .shadow(radius: 20)
-                    .padding()
+                Spacer()
                 
-                Text("Bienvenido a Papalote Museo Del Niño")
-                    .font(Font.custom("VagRoundedBold", size: 50))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                    .shadow(radius: 20)
+                
+                Image(uiImage: UIImage(named: "PapaloteMTYBlanco") ?? UIImage())
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 300, height: 300)
+                Spacer()
+                Button{
+                    
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 220, height: 58)
+                            .foregroundStyle(Color.white)
+                        Text("Comenzar")
+                            .font(Font.custom("VagRoundedBold", size: 24))
+                            .foregroundStyle(Color.init(hex: "#8DE049"))
+                    }
+                }
+                .padding(.bottom, 90)
             }
             .onAppear{
                 viewFonts()

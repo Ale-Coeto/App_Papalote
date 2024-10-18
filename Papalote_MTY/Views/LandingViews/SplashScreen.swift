@@ -10,9 +10,12 @@ import SwiftUI
 struct SplashScreen: View {
     
     @State private var scale: CGFloat = 1.0
-    
+    @State var isActive: Bool = false
     var body: some View {
         ZStack {
+            if self.isActive{
+                LandingView()
+            } else{
             LinearGradient(
                     gradient: Gradient(colors: [Color(hex: "#8DE049"), Color(hex: "#12D354")]),
                     startPoint: .leading,
@@ -32,7 +35,17 @@ struct SplashScreen: View {
                         scale = 1.1
                     }
                 }
+            }
         }
+        .onAppear{
+            //Harcoded load time
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation {
+                    self.isActive = true
+                }
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

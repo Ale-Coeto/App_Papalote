@@ -13,6 +13,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
+            
             HomeLayoutView(title: "Zonas")
                 .overlay(
                     VStack {
@@ -70,6 +71,7 @@ struct HomeView: View {
                     
                 )
         }
+        .navigationBarBackButtonHidden(true)
     }
     
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LandingView: View {
     var body: some View {
+        NavigationStack{
         ZStack {
-            
             ZStack {
                 LoopingPlayerView(fileName: "PapaloteBackground")
                 
@@ -26,10 +26,8 @@ struct LandingView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 300, height: 300)
                 Spacer()
-                Button{
-                    
-                } label: {
-                    ZStack{
+                NavigationLink(destination: HomeView()) {
+                    ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 220, height: 58)
                             .foregroundStyle(Color.white)
@@ -41,6 +39,7 @@ struct LandingView: View {
                 .padding(.bottom, 90)
             }
         }
+    }
     }
 }
 

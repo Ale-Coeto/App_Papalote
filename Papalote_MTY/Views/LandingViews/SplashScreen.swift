@@ -13,7 +13,12 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack {
-            Color(hex: "#8DE049")
+            LinearGradient(
+                    gradient: Gradient(colors: [Color(hex: "#8DE049"), Color(hex: "#12D354")]),
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+                .ignoresSafeArea()
             
             Image(uiImage: UIImage(named: "PapaloteMTYBlanco") ?? UIImage())
                 .resizable()
@@ -28,7 +33,6 @@ struct SplashScreen: View {
                     }
                 }
         }
-        .ignoresSafeArea()
     }
 }
 

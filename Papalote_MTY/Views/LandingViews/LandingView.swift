@@ -21,8 +21,6 @@ struct LandingView: View {
             
             VStack {
                 Spacer()
-                
-                
                 Image(uiImage: UIImage(named: "PapaloteMTYBlanco") ?? UIImage())
                     .resizable()
                     .aspectRatio(contentMode: .fit)

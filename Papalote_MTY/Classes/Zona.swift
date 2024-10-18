@@ -11,11 +11,13 @@ class Zona: Codable, Identifiable {
     var nombre: String
     var descripcion: String
     var color: String
+    var logo: String
     
-    init(id: Int, nombre: String, descripcion: String, color: String) {
+    init(id: Int, nombre: String, descripcion: String, color: String, logo: String) {
         self.id = id
         self.nombre = nombre
         self.descripcion = descripcion
         self.color = color
+        self.logo = logo
     }
 }

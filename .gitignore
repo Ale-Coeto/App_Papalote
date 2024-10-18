@@ -7,7 +7,7 @@ xcuserdata/
 *.xcuserstate
 *.xcworkspace/xcuserdata/
 *.xcworkspace/contents.xcworkspacedata
-*.pbxproj
+# *.pbxproj
 
 # Swift Package Manager
 .build/

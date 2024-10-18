@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-func viewFonts() {
-        for family in UIFont.familyNames {
-            print(family)
-            for name in UIFont.fontNames(forFamilyName: family) {
-                print(name)
-            }
-        }
-    }
-
 struct LandingView: View {
     var body: some View {
         ZStack {
@@ -50,9 +41,6 @@ struct LandingView: View {
                     }
                 }
                 .padding(.bottom, 90)
-            }
-            .onAppear{
-                viewFonts()
             }
         }
     }

@@ -20,7 +20,6 @@
 		2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3522CBED0FC004BBE01 /* Evento.swift */; };
 		2CD2B3552CBED232004BBE01 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3542CBED232004BBE01 /* Card.swift */; };
 		2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3562CBED59A004BBE01 /* Constants.swift */; };
-		9105D3EC2CBF84DD00B7CFD5 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,13 +38,13 @@
 		2CD2B3522CBED0FC004BBE01 /* Evento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evento.swift; sourceTree = "<group>"; };
 		2CD2B3542CBED232004BBE01 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2CD2B3562CBED59A004BBE01 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
 		9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Papalote-MTY-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
+		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +101,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				2CD2B3472CBE0AF5004BBE01 /* Layout */,
 				2CD2B3412CBE0169004BBE01 /* HomeView */,
 				2C5D299D2CBDD6E800EB3DB2 /* Papalote_MTYApp.swift */,
@@ -123,7 +123,6 @@
 			children = (
 				2CD2B3422CBE017E004BBE01 /* HomeView.swift */,
 				2CD2B34A2CBE0F48004BBE01 /* NavigationView.swift */,
-				9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -180,6 +179,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
+				911D02B92CC2FE4C00A820CF /* LandingViews */,
 			);
 			name = Papalote_MTY;
 			productName = Papalote_MTY;
@@ -237,7 +237,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */,
-				9105D3EC2CBF84DD00B7CFD5 /* LandingView.swift in Sources */,
 				2CD2B34E2CBECCD6004BBE01 /* Zona.swift in Sources */,
 				2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */,
 				2CD2B3432CBE017E004BBE01 /* HomeView.swift in Sources */,

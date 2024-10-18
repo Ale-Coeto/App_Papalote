@@ -30,7 +30,14 @@ struct LandingView: View {
             
             VStack {
                 Text("Bienvenido a Papalote Museo Del Niño")
-                    .font(.system(size: 48, weight: .bold, design: .rounded))
+                    .font(Font.custom("VagRounded-Light", size: 50))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+                    .shadow(radius: 20)
+                    .padding()
+                
+                Text("Bienvenido a Papalote Museo Del Niño")
+                    .font(Font.custom("VagRoundedBold", size: 50))
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
                     .shadow(radius: 20)

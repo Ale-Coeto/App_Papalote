@@ -24,7 +24,7 @@ struct HomeView: View {
                             ForEach(viewModel.zonas) {
                                 zona in
                                 NavigationLink {
-                                    
+                                    ZoneView()
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)

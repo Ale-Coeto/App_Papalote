@@ -50,6 +50,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -107,6 +108,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				55056A702CC3306700469742 /* ZoneView */,
 				2CD2B3472CBE0AF5004BBE01 /* Layout */,
 				2CD2B3412CBE0169004BBE01 /* HomeView */,
 				2C5D299D2CBDD6E800EB3DB2 /* Papalote_MTYApp.swift */,
@@ -186,6 +188,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
 			);
 			name = Papalote_MTY;

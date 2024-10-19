@@ -22,5 +22,5 @@ struct MainView: View {
 
 #Preview {
     MainView()
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self], inMemory: true)
 }

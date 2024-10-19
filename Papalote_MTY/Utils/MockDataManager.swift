@@ -5,14 +5,6 @@
 //  Created by Rodrigo Garcia on 18/10/24.
 //
 
-
-//
-//  MockDataManager.swift
-//  Papalote_MTY
-//
-//  Created by Rodrigo Garcia on 18/10/24.
-//
-
 import Foundation
 import SwiftData
 
@@ -52,7 +44,7 @@ struct MockDataManager {
        ]
 
        let visitas = [
-           Visita(id: 1, date: Date(), orden: [])
+           Visita(id: 1, date: Date(), orden: "")
        ]
 
        let insigniasObtenidas = [

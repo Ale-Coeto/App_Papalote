@@ -12,14 +12,14 @@ import SwiftData
 class Visita: Identifiable {
     var id: Int
     var date: Date
-    var orden: [String]
+    var orden: String
     
     // Variable Calculada
     var expired: Bool {
         return Date().timeIntervalSince(date) > 24 * 60 * 60
     }
     
-    init(id: Int, date: Date, orden: [String]) {
+    init(id: Int, date: Date, orden: String) {
         self.id = id
         self.date = date
         self.orden = orden

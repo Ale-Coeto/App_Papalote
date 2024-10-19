@@ -6,7 +6,10 @@
 //
 
 import Foundation
-class Zona: Codable, Identifiable {
+import SwiftData
+
+@Model
+class Zona: Identifiable {
     var id: Int
     var nombre: String
     var descripcion: String

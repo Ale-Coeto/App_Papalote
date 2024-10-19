@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftData
 
-class Evento: Identifiable, Codable {
+@Model
+class Evento: Identifiable{
     var id: Int
     var fechaInicio: Date
     var fechaFin: Date

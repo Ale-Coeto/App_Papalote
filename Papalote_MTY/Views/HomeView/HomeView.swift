@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
-    
     var body: some View {
         NavigationStack {
             HomeLayoutView(title: "Zonas")
@@ -76,4 +74,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
 }

@@ -14,7 +14,7 @@ struct BadgesView: View {
             VStack {
                 ForEach(zonas, id: \.self.id) { zona in
                     // Filter insignias based on the zonaId matching the current zona
-                    let filteredInsignias = insignias.filter { $0.zonaId == zona.id }
+                    let filteredInsignias = insignias.filter { $0.idZona == zona.id }
                     
                     BadgeScrollView(sectionName: zona.nombre, insignias: filteredInsignias, showSheet: $showSheet)
                 }
@@ -30,5 +30,5 @@ struct BadgesView: View {
 
 #Preview {
     BadgesView()
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

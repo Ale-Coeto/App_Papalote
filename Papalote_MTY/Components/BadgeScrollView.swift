@@ -27,7 +27,7 @@ struct BadgeScrollView: View {
                                 showSheet = true
                             }) {
                                 // Async image para url
-                                AsyncImage(url: URL(string: insignia.fotoUrl)) { phase in
+                                AsyncImage(url: URL(string: insignia.imagen)) { phase in
                                     if let image = phase.image {
                                         image
                                             .resizable()
@@ -71,10 +71,10 @@ struct BadgeScrollView: View {
     BadgeScrollView(
         sectionName: "Sample Section",
         insignias: [
-            Insignia(id: 1, nombre: "Eco Guerrero", fotoUrl: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", zonaId: 1, eventoId: 1, descripcion: "Insignia por promover acciones ecológicas", nfcId: 1),
-            Insignia(id: 2, nombre: "Protector del Bosque", fotoUrl: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", zonaId: 1, eventoId: 1, descripcion: "Insignia por proteger los recursos naturales", nfcId: 1),
-            Insignia(id: 3, nombre: "Amigo de la Tierra", fotoUrl: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", zonaId: 1, eventoId: 1, descripcion: "Insignia por cuidar la biodiversidad", nfcId: 1),
-            Insignia(id: 4, nombre: "Héroe Sustentable", fotoUrl: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", zonaId: 1, eventoId: 1, descripcion: "Insignia por promover la sustentabilidad", nfcId: 1)
+            Insignia(id: 1, idZona: 1, idEvento: 1, nombre: "Eco Guerrero", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por promover acciones ecológicas", idNFC: 1),
+            Insignia(id: 2, idZona: 1, idEvento: 1, nombre: "Protector del Bosque", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por proteger los recursos naturales", idNFC: 1),
+            Insignia(id: 3, idZona: 1, idEvento: 1, nombre: "Amigo de la Tierra", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por cuidar la biodiversidad", idNFC: 1),
+            Insignia(id: 4, idZona: 1, idEvento: 1, nombre: "Héroe Sustentable", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por promover la sustentabilidad", idNFC: 1)
         ],
         showSheet: .constant(false)
     )

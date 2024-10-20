@@ -9,7 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
-    @Query private var zona: [Zona]
+    @Environment(\.modelContext) private var context
+    @Query private var zonas: [Zona]
+    @Query private var exhibiciones: [Exhibicion]
+    @Query private var insignias: [Insignia]
+    @Query private var fotos: [Foto]
+    
     @StateObject var viewModel = HomeViewModel()
     var body: some View {
         NavigationStack {
@@ -21,10 +26,12 @@ struct HomeView: View {
                             .frame(height: 200)
                         
                         VStack (spacing: 20) {
-                            ForEach(viewModel.zonas) {
-                                zona in
+                            ForEach(zonas, id: \.self.id) { zona in
+                                let filteredExhibicion = exhibiciones.filter { $0.idZona == zona.id }
+                                let filteredInsignias = insignias.filter { $0.idZona == zona.id }
+                                let filteredFotos = fotos.filter { $0.idZona == zona.id }
                                 NavigationLink {
-                                    ZoneView(zona: zona)
+                                    ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos)
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
@@ -70,10 +77,14 @@ struct HomeView: View {
                     
                 )
         }
+        .onAppear {
+            MockDataManager.addMockData(to: context)
+        }
     }
     
 }
 
 #Preview {
     HomeView()
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

@@ -103,21 +103,74 @@ struct MockDataManager {
             Insignia(id: 32, idZona: -1, idEvento: -1, nombre: "Conservacionista del Futuro", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por esfuerzos en la conservación de la naturaleza", idNFC: 1)
         ]
         
+        
         let fotos = [
+            // Zona 1
             Foto(id: 1, idZona: 1, idVisita: 1, imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg"),
-            Foto(id: 2, idZona: 1, idVisita: 1, imagen: "https://i.pinimg.com/236x/90/a9/b9/90a9b9f5e07f6e1b890f7f433ded38bb.jpg"),
-            Foto(id: 3, idZona: 2, idVisita: 1, imagen: "https://i.pinimg.com/474x/6a/08/7b/6a087ba1d220918fccdcb2f7c29c9814.jpg")
+            Foto(id: 2, idZona: 1, idVisita: 1, imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg"),
+            Foto(id: 3, idZona: 1, idVisita: 1, imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg"),
+
+            // Zona 2
+            Foto(id: 4, idZona: 2, idVisita: 1, imagen: "https://i.pinimg.com/236x/90/a9/b9/90a9b9f5e07f6e1b890f7f433ded38bb.jpg"),
+            Foto(id: 5, idZona: 2, idVisita: 1, imagen: "https://i.pinimg.com/236x/90/a9/b9/90a9b9f5e07f6e1b890f7f433ded38bb.jpg"),
+            Foto(id: 6, idZona: 2, idVisita: 1, imagen: "https://i.pinimg.com/236x/90/a9/b9/90a9b9f5e07f6e1b890f7f433ded38bb.jpg"),
+
+            // Zona 3
+            Foto(id: 7, idZona: 3, idVisita: 1, imagen: "https://i.pinimg.com/474x/6a/08/7b/6a087ba1d220918fccdcb2f7c29c9814.jpg"),
+            Foto(id: 8, idZona: 3, idVisita: 1, imagen: "https://i.pinimg.com/474x/6a/08/7b/6a087ba1d220918fccdcb2f7c29c9814.jpg"),
+            Foto(id: 9, idZona: 3, idVisita: 1, imagen: "https://i.pinimg.com/474x/6a/08/7b/6a087ba1d220918fccdcb2f7c29c9814.jpg"),
+
+            // Zona 4
+            Foto(id: 10, idZona: 4, idVisita: 1, imagen: "https://i.pinimg.com/474x/14/3c/19/143c19d4bb713cc56671199245259b79.jpg"),
+            Foto(id: 11, idZona: 4, idVisita: 1, imagen: "https://i.pinimg.com/474x/14/3c/19/143c19d4bb713cc56671199245259b79.jpg"),
+            Foto(id: 12, idZona: 4, idVisita: 1, imagen: "https://i.pinimg.com/474x/14/3c/19/143c19d4bb713cc56671199245259b79.jpg"),
+
+            // Zona 5
+            Foto(id: 13, idZona: 5, idVisita: 1, imagen: "https://i.pinimg.com/550x/bd/a9/44/bda944b838ecbf867917c445a69347d7.jpg"),
+            Foto(id: 14, idZona: 5, idVisita: 1, imagen: "https://i.pinimg.com/550x/bd/a9/44/bda944b838ecbf867917c445a69347d7.jpg"),
+            Foto(id: 15, idZona: 5, idVisita: 1, imagen: "https://i.pinimg.com/550x/bd/a9/44/bda944b838ecbf867917c445a69347d7.jpg"),
+
+            // Zona 6
+            Foto(id: 16, idZona: 6, idVisita: 1, imagen: "https://i.pinimg.com/236x/6e/49/1b/6e491b12a21ca77d2ac85b5dd83fb827.jpg"),
+            Foto(id: 17, idZona: 6, idVisita: 1, imagen: "https://i.pinimg.com/236x/6e/49/1b/6e491b12a21ca77d2ac85b5dd83fb827.jpg"),
+            Foto(id: 18, idZona: 6, idVisita: 1, imagen: "https://i.pinimg.com/236x/6e/49/1b/6e491b12a21ca77d2ac85b5dd83fb827.jpg")
         ]
         
+        
         let exhibiciones = [
+            // Zona 1
             Exhibicion(id: 1, idZona: 1, nombre: "Exhibición de Arte Moderno", descripcion: "Una colección de obras de arte moderno de varios artistas.", imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png", isOpen: true, location: "Sala de Arte"),
-            Exhibicion(id: 2, idZona: 1, nombre: "Exhibición de Historia Natural", descripcion: "Explora la historia natural del planeta a través de diversas exposiciones.", imagen: "https://www.biodiversidad.gob.mx/media/1/biodiversidad/curiosos/1Martin-de-la-Cruz.png", isOpen: true, location: "Sala de Ciencias"),
-            Exhibicion(id: 3, idZona: 1, nombre: "Exhibición de Fotografía", descripcion: "Una exhibición de fotografía contemporánea de diversos fotógrafos.", imagen: "https://static.vecteezy.com/system/resources/previews/013/266/682/non_2x/art-gallery-on-museum-of-exhibition-visitors-viewing-modern-abstract-paintings-at-contemporary-and-photo-in-flat-cartoon-hand-template-illustration-vector.jpg", isOpen: true, location: "Sala de Fotografía")
+            Exhibicion(id: 2, idZona: 1, nombre: "Exhibición de Arte Moderno", descripcion: "Una colección de obras de arte moderno de varios artistas.", imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png", isOpen: true, location: "Sala de Arte"),
+            Exhibicion(id: 3, idZona: 1, nombre: "Exhibición de Arte Moderno", descripcion: "Una colección de obras de arte moderno de varios artistas.", imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png", isOpen: true, location: "Sala de Arte"),
+
+            // Zona 2
+            Exhibicion(id: 4, idZona: 2, nombre: "Exhibición de Historia Natural", descripcion: "Explora la historia natural del planeta a través de diversas exposiciones.", imagen: "https://www.biodiversidad.gob.mx/media/1/biodiversidad/curiosos/1Martin-de-la-Cruz.png", isOpen: true, location: "Sala de Ciencias"),
+            Exhibicion(id: 5, idZona: 2, nombre: "Exhibición de Historia Natural", descripcion: "Explora la historia natural del planeta a través de diversas exposiciones.", imagen: "https://www.biodiversidad.gob.mx/media/1/biodiversidad/curiosos/1Martin-de-la-Cruz.png", isOpen: true, location: "Sala de Ciencias"),
+            Exhibicion(id: 6, idZona: 2, nombre: "Exhibición de Historia Natural", descripcion: "Explora la historia natural del planeta a través de diversas exposiciones.", imagen: "https://www.biodiversidad.gob.mx/media/1/biodiversidad/curiosos/1Martin-de-la-Cruz.png", isOpen: true, location: "Sala de Ciencias"),
+
+            // Zona 3
+            Exhibicion(id: 7, idZona: 3, nombre: "Exhibición de Fotografía", descripcion: "Una exhibición de fotografía contemporánea de diversos fotógrafos.", imagen: "https://static.vecteezy.com/system/resources/previews/013/266/682/non_2x/art-gallery-on-museum-of-exhibition-visitors-viewing-modern-abstract-paintings-at-contemporary-and-photo-in-flat-cartoon-hand-template-illustration-vector.jpg", isOpen: true, location: "Sala de Fotografía"),
+            Exhibicion(id: 8, idZona: 3, nombre: "Exhibición de Fotografía", descripcion: "Una exhibición de fotografía contemporánea de diversos fotógrafos.", imagen: "https://static.vecteezy.com/system/resources/previews/013/266/682/non_2x/art-gallery-on-museum-of-exhibition-visitors-viewing-modern-abstract-paintings-at-contemporary-and-photo-in-flat-cartoon-hand-template-illustration-vector.jpg", isOpen: true, location: "Sala de Fotografía"),
+            Exhibicion(id: 9, idZona: 3, nombre: "Exhibición de Fotografía", descripcion: "Una exhibición de fotografía contemporánea de diversos fotógrafos.", imagen: "https://static.vecteezy.com/system/resources/previews/013/266/682/non_2x/art-gallery-on-museum-of-exhibition-visitors-viewing-modern-abstract-paintings-at-contemporary-and-photo-in-flat-cartoon-hand-template-illustration-vector.jpg", isOpen: true, location: "Sala de Fotografía"),
+
+            // Zona 4
+            Exhibicion(id: 10, idZona: 4, nombre: "Exhibición de Esculturas", descripcion: "Una exhibición de esculturas de diversos escultores.", imagen: "https://www.shutterstock.com/image-vector/art-gallery-museum-interior-cartoon-260nw-2180685197.jpg", isOpen: true, location: "Sala de Escultura"),
+            Exhibicion(id: 11, idZona: 4, nombre: "Exhibición de Esculturas", descripcion: "Una exhibición de esculturas de diversos escultores.", imagen: "https://www.shutterstock.com/image-vector/art-gallery-museum-interior-cartoon-260nw-2180685197.jpg", isOpen: true, location: "Sala de Escultura"),
+            Exhibicion(id: 12, idZona: 4, nombre: "Exhibición de Esculturas", descripcion: "Una exhibición de esculturas de diversos escultores.", imagen: "https://www.shutterstock.com/image-vector/art-gallery-museum-interior-cartoon-260nw-2180685197.jpg", isOpen: true, location: "Sala de Escultura"),
+
+            // Zona 5
+            Exhibicion(id: 13, idZona: 5, nombre: "Exhibición de Seda", descripcion: "Una exhibición de seda de diversos artistas.", imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-gPkkIiIzpqPdj8jAOgBswo79bLiPASxQNA&s", isOpen: true, location: "Sala de Seda"),
+            Exhibicion(id: 14, idZona: 5, nombre: "Exhibición de Seda", descripcion: "Una exhibición de seda de diversos artistas.", imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-gPkkIiIzpqPdj8jAOgBswo79bLiPASxQNA&s", isOpen: true, location: "Sala de Seda"),
+            Exhibicion(id: 15, idZona: 5, nombre: "Exhibición de Seda", descripcion: "Una exhibición de seda de diversos artistas.", imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-gPkkIiIzpqPdj8jAOgBswo79bLiPASxQNA&s", isOpen: true, location: "Sala de Seda"),
+
+            // Zona 6
+            Exhibicion(id: 16, idZona: 6, nombre: "Exhibición de Antropología", descripcion: "Una exhibición de antropología de diversos antropologos.", imagen: "https://sic.gob.mx/imagenes_cache/museo_807_g_74070.png", isOpen: true, location: "Sala de Antropología"),
+            Exhibicion(id: 17, idZona: 6, nombre: "Exhibición de Antropología", descripcion: "Una exhibición de antropología de diversos antropologos.", imagen: "https://sic.gob.mx/imagenes_cache/museo_807_g_74070.png", isOpen: true, location: "Sala de Antropología"),
+            Exhibicion(id: 18, idZona: 6, nombre: "Exhibición de Antropología", descripcion: "Una exhibición de antropología de diversos antropologos.", imagen: "https://sic.gob.mx/imagenes_cache/museo_807_g_74070.png", isOpen: true, location: "Sala de Antropología")
         ]
         
         
         // Add Zonas
-
         for zona in zonas {
             context.insert(zona)
         }

@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-
+import SwiftData
 
 struct HomeView: View {
+    @Query private var zona: [Zona]
     @StateObject var viewModel = HomeViewModel()
-    
     var body: some View {
         NavigationStack {
             HomeLayoutView(title: "Zonas")
@@ -24,7 +24,7 @@ struct HomeView: View {
                             ForEach(viewModel.zonas) {
                                 zona in
                                 NavigationLink {
-                                    ZoneView()
+                                    ZoneView(zona: zona)
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
@@ -76,4 +76,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
 }

@@ -8,27 +8,24 @@
 import SwiftUI
 
 struct BadgeView: View {
-    @State var nombre = "Insignia"
-    @State var descripcion = """
-    Para conseguir esta insigina tendras que ir a la zona donde esta el arenero y encontrar una caja donde se encontrara una pieza que destaca, esa pieza será de forma de un  contenedor y dentro de ella estará el tesoro a encontrar.
- """
+    let insignia: Insignia
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text(nombre)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 20)
+        VStack(spacing: 20) {            
+            AsyncImage(url: URL(string: insignia.imagen)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                    .padding()
+            } placeholder: {
+                ProgressView()
+                    .frame(width: 200, height: 200)
+            }
             
-            Image(systemName: "mic.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 200)
-                .padding()
-            
-            Text(descripcion)
+            Text(insignia.descripcion)
                 .font(.body)
-                .multilineTextAlignment(.center) // Centra el texto
+                .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .padding(.vertical, 10)
                 .cornerRadius(12)
@@ -54,5 +51,14 @@ struct BadgeView: View {
 }
 
 #Preview {
-    BadgeView()
+    let sampleInsignia = Insignia(
+        id: 1,
+        idZona: 1,
+        idEvento: -1,
+        nombre: "SuperPoderosa",
+        imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png",
+        descripcion: "no_descripcion",
+        idNFC: 1
+    )
+    BadgeView(insignia: sampleInsignia)
 }

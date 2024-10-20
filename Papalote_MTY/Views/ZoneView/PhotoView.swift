@@ -8,30 +8,21 @@
 import SwiftUI
 
 struct PhotoView: View {
-    @State var nombre = "Fotos"
-    @State var descripcion = """
-    Si deseas agregar o cambiar tu foto.
-    """
+    let foto: Foto
     
     var body: some View {
         VStack(spacing: 20) {
-            Text(nombre)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 20)
+            AsyncImage(url: URL(string: foto.imagen)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                    .padding()
+            } placeholder: {
+                ProgressView()
+                    .frame(width: 200, height: 200)
+            }
             
-            Image(systemName: "camera.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 200)
-                .padding()
-            
-            Text(descripcion)
-                .font(.body)
-                .multilineTextAlignment(.center) // Centra el texto
-                .padding(.horizontal, 30)
-                .padding(.vertical, 10)
-                .cornerRadius(12)
             
             Button {
                 // Acción para tomar foto
@@ -54,6 +45,12 @@ struct PhotoView: View {
 }
 
 #Preview {
-    PhotoView()
+    let samplePhoto = Foto(
+        id: 1,
+        idZona: 1,
+        idVisita: 1,
+        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg"
+    )
+    PhotoView(foto: samplePhoto)
 }
 

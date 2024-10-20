@@ -5,14 +5,6 @@
 //  Created by Rodrigo Garcia on 18/10/24.
 //
 
-
-//
-//  MockDataManager.swift
-//  Papalote_MTY
-//
-//  Created by Rodrigo Garcia on 18/10/24.
-//
-
 import Foundation
 import SwiftData
 
@@ -34,6 +26,7 @@ struct MockDataManager {
         let existingInsignias = try? context.fetch(FetchDescriptor<Insignia>())
         existingInsignias?.forEach { context.delete($0) }
         
+
         // Fetch and delete all existing Fotos objects
         let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
         existingFotos?.forEach { context.delete($0) }
@@ -61,7 +54,7 @@ struct MockDataManager {
         ]
         
         let visitas = [
-            Visita(id: 1, date: Date(), orden: [])
+            Visita(id: 1, date: Date(), orden: "")
         ]
         
         let insigniasObtenidas = [
@@ -69,6 +62,7 @@ struct MockDataManager {
         ]
         
         let insignias = [
+
             Insignia(id: 1, idZona: 1, idEvento: -1, nombre: "Eco Guerrero", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por promover acciones ecológicas", idNFC: 1),
             Insignia(id: 2, idZona: 1, idEvento: -1, nombre: "Protector del Bosque", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por proteger los recursos naturales", idNFC: 1),
             Insignia(id: 3, idZona: 1, idEvento: -1, nombre: "Amigo de la Tierra", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por cuidar la biodiversidad", idNFC: 1),
@@ -123,7 +117,7 @@ struct MockDataManager {
         
         
         // Add Zonas
-        // Agregar registros de depuración para cada inserción
+
         for zona in zonas {
             context.insert(zona)
         }
@@ -159,5 +153,6 @@ struct MockDataManager {
         }
     
    }
+
 }
 

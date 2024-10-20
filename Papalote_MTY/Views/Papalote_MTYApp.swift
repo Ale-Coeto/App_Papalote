@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Papalote_MTYApp: App {
@@ -13,5 +14,6 @@ struct Papalote_MTYApp: App {
         WindowGroup {
             MainView()
         }
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
     }
 }

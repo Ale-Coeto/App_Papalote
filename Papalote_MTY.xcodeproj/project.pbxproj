@@ -29,6 +29,7 @@
 		4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */; };
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
+		456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456680D32CC38DD200D88681 /* BadgeScrollView.swift */; };
 		9105D3EC2CBF84DD00B7CFD5 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
 /* End PBXBuildFile section */
@@ -56,12 +57,14 @@
 		4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManager.swift; sourceTree = "<group>"; };
 		55056AB12CC4604200469742 /* Foto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
+		456680D32CC38DD200D88681 /* BadgeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeScrollView.swift; sourceTree = "<group>"; };
 		9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
 		9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Papalote-MTY-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		456680D82CC38F1000D88681 /* BadgesView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BadgesView; sourceTree = "<group>"; };
 		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -120,6 +123,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				456680D82CC38F1000D88681 /* BadgesView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				2CD2B3472CBE0AF5004BBE01 /* Layout */,
 				2CD2B3412CBE0169004BBE01 /* HomeView */,
@@ -153,6 +157,7 @@
 				2CD2B3542CBED232004BBE01 /* Card.swift */,
 				2CEA466E2CC1C357003C3BF0 /* TriangleView.swift */,
 				2CEA46702CC1C811003C3BF0 /* CustomRoundedRectangle.swift */,
+				456680D32CC38DD200D88681 /* BadgeScrollView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				456680D82CC38F1000D88681 /* BadgesView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
 			);
@@ -264,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */,
 				2CA6BB892CC2512F00CD5840 /* Papalote_MTYApp.swift in Sources */,
 				2CA6BB882CC2508800CD5840 /* Papalote-MTY-Info.plist in Sources */,
 				9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */,

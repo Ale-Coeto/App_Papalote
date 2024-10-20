@@ -76,5 +76,4 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
 }

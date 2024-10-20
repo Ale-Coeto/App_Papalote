@@ -19,20 +19,20 @@ import SwiftData
 @Model
 class Insignia: Identifiable{
     var id: Int
+    var idZona: Int
+    var idEvento: Int
     var nombre: String
-    var fotoUrl: String
-    var zonaId: Int
-    var eventoId: Int
+    var imagen: String
     var descripcion: String
-    var nfcId: Int
+    var idNFC: Int
     
-    init(id: Int, nombre: String, fotoUrl: String, zonaId: Int, eventoId: Int, descripcion: String, nfcId: Int) {
+    init(id: Int, idZona: Int, idEvento: Int, nombre: String, imagen: String, descripcion: String, idNFC: Int) {
         self.id = id
+        self.idZona = idZona
+        self.idEvento = idEvento
         self.nombre = nombre
-        self.fotoUrl = fotoUrl
-        self.zonaId = zonaId
-        self.eventoId = eventoId
+        self.imagen = imagen
         self.descripcion = descripcion
-        self.nfcId = nfcId
+        self.idNFC = idNFC
     }
 }

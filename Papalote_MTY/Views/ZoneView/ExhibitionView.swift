@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct ExhibitionView: View {
-    @State var nombre = "Exhibición"
-    @State var descripcion = """
-    Para conseguir esta exhibición tendrás que ir a la zona donde está el arenero y encontrar una caja donde se encontrará una pieza que destaca, esa pieza será de forma de un contenedor y dentro de ella estará el tesoro a encontrar.
-    """
+    let exhibicion: Exhibicion
     
     var body: some View {
         VStack(spacing: 20) {
-            Text(nombre)
+            Text(exhibicion.nombre)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 20)
             
-            Image(systemName: "flag.2.crossed.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 200)
-                .padding()
+            AsyncImage(url: URL(string: exhibicion.imagen)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                    .padding()
+            } placeholder: {
+                ProgressView()
+                    .frame(width: 200, height: 200)
+            }
             
-            Text(descripcion)
+            Text(exhibicion.descripcion)
                 .font(.body)
                 .multilineTextAlignment(.center) 
                 .padding(.horizontal, 30)
@@ -54,6 +56,15 @@ struct ExhibitionView: View {
 }
 
 #Preview {
-    ExhibitionView()
+    let sampleExhibition = Exhibicion(
+        id: 1,
+        idZona: 1,
+        nombre: "Exhibición de Arte Moderno",
+        descripcion: "Una colección de obras de arte moderno de varios artistas.",
+        imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png",
+        isOpen: true,
+        location: "Sala de Arte"
+    )
+    ExhibitionView(exhibicion: sampleExhibition)
 }
 

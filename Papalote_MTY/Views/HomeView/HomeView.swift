@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
+    @Query private var zona: [Zona]
     @StateObject var viewModel = HomeViewModel()
     var body: some View {
         NavigationStack {
@@ -22,7 +24,7 @@ struct HomeView: View {
                             ForEach(viewModel.zonas) {
                                 zona in
                                 NavigationLink {
-                                    
+                                    ZoneView(zona: zona)
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)

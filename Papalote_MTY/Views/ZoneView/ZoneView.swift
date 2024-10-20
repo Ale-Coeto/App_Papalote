@@ -6,41 +6,42 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ZoneView: View {
-    @State var nombre = "Pertenezco"
-    @State var descripción = "Pertenezco a una gran red de vida en la que todo se relaciona para funcionarasdjias."
-    let exhibiciones = ["figure.walk.circle.fill", "figure.walk.circle.fill", "figure.walk.circle.fill"]
-    let insignias = ["flag.pattern.checkered", "flag.pattern.checkered", "flag.pattern.checkered"]
-    let fotos = ["camera.circle", "camera.circle", "camera.circle"]
-
-    @State private var showBadgeSheet = false
-    @State private var showExhibitionSheet = false
-    @State private var showPhotoSheet = false
+    @Environment(\.modelContext) private var context
+    let zona: Zona
+    @Query private var insignias: [Insignia]
+    @Query private var exhibiciones: [Exhibicion]
+    @Query private var fotos: [Foto]
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                Text(descripción)
+                Text(zona.descripcion)
                 VStack {
                     Text("Exhibiciones")
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                     ScrollView(.horizontal, showsIndicators: true) {
                         HStack(spacing: 40) {
-                            ForEach(exhibiciones, id: \.self) { exhibicion in
+                            ForEach(exhibiciones) { exhibicion in
                                 NavigationLink {
-                                    ExhibitionView()
+                                    ExhibitionView(exhibicion: exhibicion)
                                 } label: {
-                                    Image(systemName: exhibicion)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 80, height: 80)
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle().stroke(Color.green, lineWidth: 5)
-                                        }
-                                        
+                                    AsyncImage(url: URL(string: exhibicion.imagen)) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 80, height: 80)
+                                            .clipShape(Circle())
+                                            .overlay {
+                                                Circle().stroke(Color.green, lineWidth: 5)
+                                            }
+                                    } placeholder: {
+                                        ProgressView()
+                                            .frame(width: 80, height: 80)
+                                    }
                                 }
                             }
                         }
@@ -59,19 +60,23 @@ struct ZoneView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     ScrollView(.horizontal, showsIndicators: true) {
                         HStack(spacing: 40) {
-                            ForEach(insignias, id: \.self) { insignia in
+                            ForEach(insignias) { insignia in
                                 NavigationLink {
-                                    BadgeView()
+                                    BadgeView(insignia: insignia)
                                 } label: {
-                                    Image(systemName: insignia)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 80, height: 80)
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle().stroke(Color.green, lineWidth: 5)
-                                        }
-                                        
+                                    AsyncImage(url: URL(string: insignia.imagen)) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 80, height: 80)
+                                            .clipShape(Circle())
+                                            .overlay {
+                                                Circle().stroke(Color.green, lineWidth: 5)
+                                            }
+                                    } placeholder: {
+                                        ProgressView()
+                                            .frame(width: 80, height: 80)
+                                    }
                                 }
                             }
                         }
@@ -90,19 +95,23 @@ struct ZoneView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     ScrollView(.horizontal, showsIndicators: true) {
                         HStack(spacing: 40) {
-                            ForEach(fotos, id: \.self) { foto in
+                            ForEach(fotos) { foto in
                                 NavigationLink {
-                                    PhotoView()
+                                    PhotoView(foto: foto)
                                 } label: {
-                                    Image(systemName: foto)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 80, height: 80)
-                                        .clipShape(Circle())
-                                        .overlay {
-                                            Circle().stroke(Color.green, lineWidth: 5)
-                                        }
-                                        
+                                    AsyncImage(url: URL(string: foto.imagen)) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 80, height: 80)
+                                            .clipShape(Circle())
+                                            .overlay {
+                                                Circle().stroke(Color.green, lineWidth: 5)
+                                            }
+                                    } placeholder: {
+                                        ProgressView()
+                                            .frame(width: 80, height: 80)
+                                    }
                                 }
                             }
                         }
@@ -119,12 +128,22 @@ struct ZoneView: View {
             }
             .padding()
             .padding(.bottom, 40)
-            .navigationTitle(nombre)
+            .navigationTitle(zona.nombre)
             .multilineTextAlignment(.center)
+        }
+        .onAppear {
+            MockDataManager.addMockData(to: context)
         }
     }
 }
 
 #Preview {
-    ZoneView()
+    let sampleZona = Zona(
+        id: 1,
+        nombre: "Pertenezco",
+        descripcion: "aaaa",
+        color: "#C4D600",
+        logo: "Pertenezco")
+    ZoneView(zona: sampleZona)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

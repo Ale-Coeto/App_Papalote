@@ -11,7 +11,12 @@ struct BadgeView: View {
     let insignia: Insignia
     
     var body: some View {
-        VStack(spacing: 20) {            
+        VStack(spacing: 20) {
+            Text(insignia.nombre)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding(.top, 20)
+            
             AsyncImage(url: URL(string: insignia.imagen)) { image in
                 image
                     .resizable()

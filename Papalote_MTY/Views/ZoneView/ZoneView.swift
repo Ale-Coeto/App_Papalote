@@ -9,11 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct ZoneView: View {
-    @Environment(\.modelContext) private var context
-    let zona: Zona
-    @Query private var insignias: [Insignia]
-    @Query private var exhibiciones: [Exhibicion]
-    @Query private var fotos: [Foto]
+    var zona: Zona
+    var exhibiciones: [Exhibicion]
+    var insignias: [Insignia]
+    var fotos: [Foto]
     
     var body: some View {
         NavigationStack {
@@ -131,9 +130,6 @@ struct ZoneView: View {
             .navigationTitle(zona.nombre)
             .multilineTextAlignment(.center)
         }
-        .onAppear {
-            MockDataManager.addMockData(to: context)
-        }
     }
 }
 
@@ -143,7 +139,32 @@ struct ZoneView: View {
         nombre: "Pertenezco",
         descripcion: "aaaa",
         color: "#C4D600",
-        logo: "Pertenezco")
-    ZoneView(zona: sampleZona)
+        logo: "Pertenezco"
+    )
+    let sampleExhibition = [Exhibicion(
+        id: 1,
+        idZona: 1,
+        nombre: "Exhibición de Arte Moderno",
+        descripcion: "Una colección de obras de arte moderno de varios artistas.",
+        imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png",
+        isOpen: true,
+        location: "Sala de Arte"
+    )]
+    let sampleInsignia = [Insignia(
+        id: 1,
+        idZona: 1,
+        idEvento: -1,
+        nombre: "SuperPoderosa",
+        imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png",
+        descripcion: "no_descripcion",
+        idNFC: 1
+    )]
+    let samplePhoto = [Foto(
+        id: 1,
+        idZona: 1,
+        idVisita: 1,
+        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg"
+    )]
+    ZoneView(zona: sampleZona, exhibiciones: sampleExhibition, insignias: sampleInsignia, fotos: samplePhoto)
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

@@ -32,4 +32,19 @@ extension Color {
             opacity: Double(a) / 255
         )
     }
+    
+    struct AppColors {
+        static let VerdePapalote = Color(hex: "#8DE049")
+        static let AzulPapalote = Color(hex: "#36B4FE")
+        static let FondoAzulClaro = Color(hex: "#F4FAFE")
+        static let pertenezco = Color(hex: "#C4D600")
+        static let comunico = Color(hex: "#006BA6")
+        static let comprendo = Color(hex: "#84329B")
+        static let soy = Color(hex: "#D50032")
+        static let expreso = Color(hex: "#FF8200")
+        static let pequeños = Color(hex: "#009CA6")
+    }
 }
+
+
+

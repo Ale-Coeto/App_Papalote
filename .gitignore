@@ -30,7 +30,7 @@ fastlane/test_output
 *.xcarchive
 
 # Various settings files
-*.plist
+#*.plist
 
 # Build products
 *.app

@@ -30,7 +30,7 @@ struct NavigationView: View {
                                 
                         }
                     
-                    HomeView()
+                    BadgesView()
                         .tabItem {
                             Label("Insignias", systemImage: "trophy")
                                 

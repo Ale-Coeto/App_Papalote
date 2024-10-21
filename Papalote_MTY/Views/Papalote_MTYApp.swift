@@ -12,7 +12,7 @@ import SwiftData
 struct Papalote_MTYApp: App {
     var body: some Scene {
         WindowGroup {
-            LandingView()
+            SplashScreen()
         }
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
     }

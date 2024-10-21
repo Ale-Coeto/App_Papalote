@@ -67,6 +67,7 @@
 		456680D82CC38F1000D88681 /* BadgesView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BadgesView; sourceTree = "<group>"; };
 		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
+		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +124,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				456680D82CC38F1000D88681 /* BadgesView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				2CD2B3472CBE0AF5004BBE01 /* Layout */,
@@ -146,7 +148,6 @@
 			children = (
 				2CD2B3422CBE017E004BBE01 /* HomeView.swift */,
 				2CD2B34A2CBE0F48004BBE01 /* NavigationView.swift */,
-				9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -214,6 +215,7 @@
 				456680D82CC38F1000D88681 /* BadgesView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
+				911D02B92CC2FE4C00A820CF /* LandingViews */,
 			);
 			name = Papalote_MTY;
 			productName = Papalote_MTY;
@@ -274,7 +276,6 @@
 				2CA6BB892CC2512F00CD5840 /* Papalote_MTYApp.swift in Sources */,
 				2CA6BB882CC2508800CD5840 /* Papalote-MTY-Info.plist in Sources */,
 				9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */,
-				9105D3EC2CBF84DD00B7CFD5 /* LandingView.swift in Sources */,
 				2CD2B34E2CBECCD6004BBE01 /* Zona.swift in Sources */,
 				2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */,
 				4519DFE22CC33A0000DF6E7F /* InsigniaObtenida.swift in Sources */,

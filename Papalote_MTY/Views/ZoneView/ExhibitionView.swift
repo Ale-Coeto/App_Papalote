@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExhibitionView: View {
-    let exhibicion: Exhibicion
+    @State var exhibicion: Exhibicion
     
     var body: some View {
         VStack(spacing: 20) {
@@ -36,7 +36,7 @@ struct ExhibitionView: View {
                 .cornerRadius(12)
             
             Button {
-                // Acción para completar
+                exhibicion.completado.toggle()
             } label: {
                 Text("Completar")
                     .font(.title2)
@@ -44,7 +44,7 @@ struct ExhibitionView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(Color.green)
+                    .background(exhibicion.completado ? Color.green : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -56,11 +56,13 @@ struct ExhibitionView: View {
 }
 
 #Preview {
+    @Previewable @State var sampleColor = Color.gray
     let sampleExhibition = Exhibicion(
         id: 1,
         idZona: 1,
         nombre: "Exhibición de Arte Moderno",
         descripcion: "Una colección de obras de arte moderno de varios artistas.",
+        completado: true,
         imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png",
         isOpen: true,
         location: "Sala de Arte"

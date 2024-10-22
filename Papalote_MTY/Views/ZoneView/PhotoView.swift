@@ -25,7 +25,7 @@ struct PhotoView: View {
             
             
             Button {
-                // Acción para tomar foto
+                foto.completado.toggle()
             } label: {
                 Text("Tomar foto")
                     .font(.title2)
@@ -33,7 +33,7 @@ struct PhotoView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(Color.green)
+                    .background(foto.completado ? Color.green : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -49,7 +49,8 @@ struct PhotoView: View {
         id: 1,
         idZona: 1,
         idVisita: 1,
-        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg"
+        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg",
+        completado: false
     )
     PhotoView(foto: samplePhoto)
 }

@@ -36,7 +36,7 @@ struct BadgeView: View {
                 .cornerRadius(12)
             
             Button {
-                // Acción para tomar escanear
+                insignia.completado.toggle()
             } label: {
                 Text("Escanear")
                     .font(.title2)
@@ -44,7 +44,7 @@ struct BadgeView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(Color.green)
+                    .background(insignia.completado ? Color.green : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -60,9 +60,10 @@ struct BadgeView: View {
         id: 1,
         idZona: 1,
         idEvento: -1,
-        nombre: "SuperPoderosa",
+        nombre: "Eco Guerrero",
         imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png",
-        descripcion: "no_descripcion",
+        descripcion: "Insignia por promover acciones ecológicas",
+        completado: false,
         idNFC: 1
     )
     BadgeView(insignia: sampleInsignia)

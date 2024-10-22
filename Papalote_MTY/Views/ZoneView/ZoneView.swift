@@ -35,7 +35,8 @@ struct ZoneView: View {
                                             .frame(width: 80, height: 80)
                                             .clipShape(Circle())
                                             .overlay {
-                                                Circle().stroke(Color.green, lineWidth: 5)
+                                                Circle()
+                                                    .stroke(exhibicion.completado ? Color.green : Color.gray, lineWidth: 5)
                                             }
                                     } placeholder: {
                                         ProgressView()
@@ -70,7 +71,8 @@ struct ZoneView: View {
                                             .frame(width: 80, height: 80)
                                             .clipShape(Circle())
                                             .overlay {
-                                                Circle().stroke(Color.green, lineWidth: 5)
+                                                Circle()
+                                                    .stroke(insignia.completado ? Color.green : Color.gray, lineWidth: 5)
                                             }
                                     } placeholder: {
                                         ProgressView()
@@ -105,7 +107,8 @@ struct ZoneView: View {
                                             .frame(width: 80, height: 80)
                                             .clipShape(Circle())
                                             .overlay {
-                                                Circle().stroke(Color.green, lineWidth: 5)
+                                                Circle()
+                                                    .stroke(foto.completado ? Color.green : Color.gray, lineWidth: 5)
                                             }
                                     } placeholder: {
                                         ProgressView()
@@ -126,8 +129,18 @@ struct ZoneView: View {
                 
             }
             .padding()
+            .padding(.top, Constants.HEADER_HEIGHT)
             .padding(.bottom, 40)
-            .navigationTitle(zona.nombre)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(zona.nombre)
+                        .font(.largeTitle) 
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.black)
+                }
+            }
             .multilineTextAlignment(.center)
         }
     }
@@ -146,6 +159,7 @@ struct ZoneView: View {
         idZona: 1,
         nombre: "Exhibición de Arte Moderno",
         descripcion: "Una colección de obras de arte moderno de varios artistas.",
+        completado: false,
         imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png",
         isOpen: true,
         location: "Sala de Arte"
@@ -157,13 +171,15 @@ struct ZoneView: View {
         nombre: "SuperPoderosa",
         imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png",
         descripcion: "no_descripcion",
+        completado: false,
         idNFC: 1
     )]
     let samplePhoto = [Foto(
         id: 1,
         idZona: 1,
         idVisita: 1,
-        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg"
+        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg",
+        completado: false
     )]
     ZoneView(zona: sampleZona, exhibiciones: sampleExhibition, insignias: sampleInsignia, fotos: samplePhoto)
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)

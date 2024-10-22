@@ -9,37 +9,17 @@ import SwiftUI
 
 struct VisitsView: View {
     
-    @State private var buttons: [Int] = []  // Array to store the numbers for the buttons
-    @State private var nextNumber = 1
+    @State var buttons: [Int] = []  // Array to store the numbers for the buttons
+    @State var nextNumber: Int = 1
     
     var body: some View {
         ZStack {
             Color.AppColors.FondoAzulClaro
                 .ignoresSafeArea()
-            
             VStack {
                 if buttons.isEmpty {
                     // Case 1: No visits, center the "Nueva visita" button
-                    Spacer() // Push the button to the center of the screen
-                    
-                    Text("Oh oh, parece que no tienes ninguna visita...")
-                        .font(Font.custom("VagRounded-Light", size: 20))
-                        .padding()
-                    Button("Primera visita") {
-                        buttons.append(nextNumber)
-                        nextNumber += 1
-                        
-                    }
-                    .font(Font.custom("VagRoundedBold", size: 46))
-                    .foregroundStyle(Color.white)
-                    .frame(width: 320, height: 108)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .foregroundStyle(Color.AppColors.VerdePapalote)
-                            .shadow(radius: 3, x: 2, y: 2)
-                    )
-                    Spacer() // Add a spacer below to keep the button in the middle
-                    
+                    NoVisitsView(buttons: $buttons, nextNumber: $nextNumber)
                 } else {
                     // Case 2: When there are visits, show the visits and button at the bottom
                     Text("Mis Visitas")
@@ -48,7 +28,7 @@ struct VisitsView: View {
                         .foregroundStyle(Color.AppColors.AzulPapalote)
                     
                     ScrollView {
-                        LazyVStack(spacing: 10) {
+                        LazyVStack(spacing:10) {
                             ForEach(buttons, id: \.self) { buttonNumber in
                                 VisitaButton(numero: buttonNumber) {
                                     print("Button \(buttonNumber) clicked")
@@ -73,7 +53,6 @@ struct VisitsView: View {
                     )
                     .padding(.bottom, 100)
                 }
-                
             }
         }
     }
@@ -81,4 +60,40 @@ struct VisitsView: View {
 
 #Preview {
     VisitsView()
+}
+
+struct NoVisitsView: View {
+    @Binding var buttons: [Int]
+    @Binding var nextNumber: Int
+    
+    var body: some View {
+        VStack {
+            Text("Mis Visitas")
+                .padding(.top, 35)
+                .font(Font.custom("VagRoundedBold", size: 32))
+                .foregroundStyle(Color.AppColors.AzulPapalote)
+            
+            Spacer()
+            
+            Text("Oh, parece que no tienes ninguna visita...")
+                .font(Font.custom("VagRounded-Light", size: 24))
+                .padding()
+            
+            Spacer()
+            Button("Primera visita") {
+                buttons.append(nextNumber)
+                nextNumber += 1
+            }
+            
+            .font(Font.custom("VagRoundedBold", size: 46))
+            .foregroundStyle(Color.white)
+            .frame(width: 320, height: 108)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundStyle(Color.AppColors.VerdePapalote)
+                    .shadow(radius: 3, x: 2, y: 2)
+            )
+            .padding(.bottom, 100)
+        }
+    }
 }

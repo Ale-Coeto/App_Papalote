@@ -27,7 +27,7 @@ struct HomeView: View {
                             .frame(height: 200)
                         
                         VStack (spacing: 20) {
-                            ForEach(zonas, id: \.self.id) { zona in
+                            ForEach(zonas.sorted(by: { $0.id < $1.id }), id: \.self.id) { zona in
                                 let filteredExhibicion = exhibiciones.filter { $0.idZona == zona.id }
                                 let filteredInsignias = insignias.filter { $0.idZona == zona.id }
                                 let filteredFotos = fotos.filter { $0.idZona == zona.id }

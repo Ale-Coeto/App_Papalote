@@ -24,7 +24,7 @@ struct ZoneView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     ScrollView(.horizontal, showsIndicators: true) {
                         HStack(spacing: 40) {
-                            ForEach(exhibiciones) { exhibicion in
+                            ForEach(exhibiciones.sorted(by: { $0.id < $1.id }), id: \.self.id) { exhibicion in
                                 NavigationLink {
                                     ExhibitionView(exhibicion: exhibicion)
                                 } label: {
@@ -60,7 +60,7 @@ struct ZoneView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     ScrollView(.horizontal, showsIndicators: true) {
                         HStack(spacing: 40) {
-                            ForEach(insignias) { insignia in
+                            ForEach(insignias.sorted(by: { $0.id < $1.id }), id: \.self.id) { insignia in
                                 NavigationLink {
                                     BadgeView(insignia: insignia)
                                 } label: {
@@ -96,7 +96,7 @@ struct ZoneView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     ScrollView(.horizontal, showsIndicators: true) {
                         HStack(spacing: 40) {
-                            ForEach(fotos) { foto in
+                            ForEach(fotos.sorted(by: { $0.id < $1.id }), id: \.self.id) { foto in
                                 NavigationLink {
                                     PhotoView(foto: foto)
                                 } label: {

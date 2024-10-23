@@ -100,8 +100,8 @@ struct ZoneView: View {
                                 NavigationLink {
                                     PhotoView(foto: foto)
                                 } label: {
-                                    AsyncImage(url: URL(string: foto.imagen)) { image in
-                                        image
+                                    if let imageData = foto.imagen, let image = UIImage(data: imageData) {
+                                        Image(uiImage: image)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: 80, height: 80)
@@ -110,9 +110,17 @@ struct ZoneView: View {
                                                 Circle()
                                                     .stroke(foto.completado ? Color.green : Color.gray, lineWidth: 5)
                                             }
-                                    } placeholder: {
-                                        ProgressView()
+                                    } else {
+                                        Image(systemName: "photo")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
                                             .frame(width: 80, height: 80)
+                                            .foregroundColor(.gray) 
+                                            .clipShape(Circle())
+                                            .overlay {
+                                                Circle()
+                                                    .stroke(foto.completado ? Color.green : Color.gray, lineWidth: 5)
+                                            }
                                     }
                                 }
                             }
@@ -178,7 +186,7 @@ struct ZoneView: View {
         id: 1,
         idZona: 1,
         idVisita: 1,
-        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg",
+        imagen: nil,
         completado: false
     )]
     ZoneView(zona: sampleZona, exhibiciones: sampleExhibition, insignias: sampleInsignia, fotos: samplePhoto)

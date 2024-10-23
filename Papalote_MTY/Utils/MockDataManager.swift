@@ -104,35 +104,36 @@ struct MockDataManager {
         
         let fotos = [
             // Zona 1
-            Foto(id: 1, idZona: 1, idVisita: 1, imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg", completado: false),
-            Foto(id: 2, idZona: 1, idVisita: 1, imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg", completado: false),
-            Foto(id: 3, idZona: 1, idVisita: 1, imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg", completado: false),
+            Foto(id: 1, idZona: 1, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 2, idZona: 1, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 3, idZona: 1, idVisita: 1, imagen: nil, completado: false),
 
             // Zona 2
-            Foto(id: 4, idZona: 2, idVisita: 1, imagen: "https://i.pinimg.com/236x/90/a9/b9/90a9b9f5e07f6e1b890f7f433ded38bb.jpg", completado: false),
-            Foto(id: 5, idZona: 2, idVisita: 1, imagen: "https://i.pinimg.com/236x/90/a9/b9/90a9b9f5e07f6e1b890f7f433ded38bb.jpg", completado: false),
-            Foto(id: 6, idZona: 2, idVisita: 1, imagen: "https://i.pinimg.com/236x/90/a9/b9/90a9b9f5e07f6e1b890f7f433ded38bb.jpg", completado: false),
+            Foto(id: 4, idZona: 2, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 5, idZona: 2, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 6, idZona: 2, idVisita: 1, imagen: nil, completado: false),
 
             // Zona 3
-            Foto(id: 7, idZona: 3, idVisita: 1, imagen: "https://i.pinimg.com/474x/6a/08/7b/6a087ba1d220918fccdcb2f7c29c9814.jpg", completado: false),
-            Foto(id: 8, idZona: 3, idVisita: 1, imagen: "https://i.pinimg.com/474x/6a/08/7b/6a087ba1d220918fccdcb2f7c29c9814.jpg", completado: false),
-            Foto(id: 9, idZona: 3, idVisita: 1, imagen: "https://i.pinimg.com/474x/6a/08/7b/6a087ba1d220918fccdcb2f7c29c9814.jpg", completado: false),
+            Foto(id: 7, idZona: 3, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 8, idZona: 3, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 9, idZona: 3, idVisita: 1, imagen: nil, completado: false),
 
             // Zona 4
-            Foto(id: 10, idZona: 4, idVisita: 1, imagen: "https://i.pinimg.com/474x/14/3c/19/143c19d4bb713cc56671199245259b79.jpg", completado: false),
-            Foto(id: 11, idZona: 4, idVisita: 1, imagen: "https://i.pinimg.com/474x/14/3c/19/143c19d4bb713cc56671199245259b79.jpg", completado: false),
-            Foto(id: 12, idZona: 4, idVisita: 1, imagen: "https://i.pinimg.com/474x/14/3c/19/143c19d4bb713cc56671199245259b79.jpg", completado: false),
+            Foto(id: 10, idZona: 4, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 11, idZona: 4, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 12, idZona: 4, idVisita: 1, imagen: nil, completado: false),
 
             // Zona 5
-            Foto(id: 13, idZona: 5, idVisita: 1, imagen: "https://i.pinimg.com/550x/bd/a9/44/bda944b838ecbf867917c445a69347d7.jpg", completado: false),
-            Foto(id: 14, idZona: 5, idVisita: 1, imagen: "https://i.pinimg.com/550x/bd/a9/44/bda944b838ecbf867917c445a69347d7.jpg", completado: false),
-            Foto(id: 15, idZona: 5, idVisita: 1, imagen: "https://i.pinimg.com/550x/bd/a9/44/bda944b838ecbf867917c445a69347d7.jpg", completado: false),
+            Foto(id: 13, idZona: 5, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 14, idZona: 5, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 15, idZona: 5, idVisita: 1, imagen: nil, completado: false),
 
             // Zona 6
-            Foto(id: 16, idZona: 6, idVisita: 1, imagen: "https://i.pinimg.com/236x/6e/49/1b/6e491b12a21ca77d2ac85b5dd83fb827.jpg", completado: false),
-            Foto(id: 17, idZona: 6, idVisita: 1, imagen: "https://i.pinimg.com/236x/6e/49/1b/6e491b12a21ca77d2ac85b5dd83fb827.jpg", completado: false),
-            Foto(id: 18, idZona: 6, idVisita: 1, imagen: "https://i.pinimg.com/236x/6e/49/1b/6e491b12a21ca77d2ac85b5dd83fb827.jpg", completado: false)
+            Foto(id: 16, idZona: 6, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 17, idZona: 6, idVisita: 1, imagen: nil, completado: false),
+            Foto(id: 18, idZona: 6, idVisita: 1, imagen: nil, completado: false)
         ]
+
         
         
         let exhibiciones = [

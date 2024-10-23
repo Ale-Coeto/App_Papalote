@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct VisitaButton: View {
-    var numero: Int // Use a simple var instead of @State since it's passed from the parent
-    var action: () -> Void // Closure for handling button actions
+    var numero: Int
+    var action: () -> Void
     
     var body: some View {
         Button(action: {
-            action() // Perform the passed-in action when button is clicked
+            action()
         }) {
             Text("Visita \(numero)")
                 .padding()

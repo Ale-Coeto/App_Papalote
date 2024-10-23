@@ -33,7 +33,6 @@ struct NavigationView: View {
                     BadgesView()
                         .tabItem {
                             Label("Insignias", systemImage: "trophy")
-                                
                         }
                 }
                 .accentColor(Color("DarkGreen"))

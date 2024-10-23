@@ -9,14 +9,14 @@ import Foundation
 import SwiftData
 
 @Model
-class Foto: Identifiable{
+class Foto: Identifiable {
     var id: Int
     var idZona: Int
     var idVisita: Int
-    var imagen: String
+    var imagen: Data?
     var completado: Bool
     
-    init(id: Int, idZona: Int, idVisita: Int, imagen: String, completado: Bool) {
+    init(id: Int, idZona: Int, idVisita: Int, imagen: Data? = nil, completado: Bool) {
         self.id = id
         self.idZona = idZona
         self.idVisita = idVisita
@@ -24,3 +24,4 @@ class Foto: Identifiable{
         self.completado = completado
     }
 }
+

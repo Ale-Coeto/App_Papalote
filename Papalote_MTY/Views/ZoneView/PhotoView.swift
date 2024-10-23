@@ -8,24 +8,32 @@
 import SwiftUI
 
 struct PhotoView: View {
+    @Environment(\.modelContext) private var context
+    @State private var selectedImage: UIImage?
+    @State private var showCamera = false
+    @State private var showAlert = false
     let foto: Foto
     
     var body: some View {
         VStack(spacing: 20) {
-            AsyncImage(url: URL(string: foto.imagen)) { image in
-                image
+            if let image = selectedImage {
+                Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
                     .padding()
-            } placeholder: {
-                ProgressView()
+            } else {
+                Image(systemName: "photo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
+                    .foregroundColor(.gray) 
+                    .padding()
             }
             
             
             Button {
-                foto.completado.toggle()
+                showCamera.toggle()
             } label: {
                 Text("Tomar foto")
                     .font(.title2)
@@ -38,9 +46,37 @@ struct PhotoView: View {
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
             .padding(.bottom, 20)
+            .sheet(isPresented: $showCamera, onDismiss: checkImageSelection) {
+                CameraPickerView(selectedImage: $selectedImage).ignoresSafeArea()
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text("No se ha tomado ninguna foto"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
         .padding()
         .padding(.horizontal)
+    }
+    private func checkImageSelection() {
+        if let selectedImage = selectedImage {
+            foto.completado.toggle()
+            savePhotoToDatabase(photo: selectedImage)
+        } else {
+            showAlert = true
+        }
+    }
+    func savePhotoToDatabase(photo: UIImage) {
+        guard let data = photo.pngData() else { return }
+        foto.imagen = data
+        do {
+            try context.save()
+        } catch {
+            print("Error saving photo to database: \(error)")
+            showAlert = true
+        }
     }
 }
 
@@ -49,7 +85,7 @@ struct PhotoView: View {
         id: 1,
         idZona: 1,
         idVisita: 1,
-        imagen: "https://i.pinimg.com/474x/e0/af/b1/e0afb1f32c8af2af99cdfbb227edc885.jpg",
+        imagen: nil,
         completado: false
     )
     PhotoView(foto: samplePhoto)

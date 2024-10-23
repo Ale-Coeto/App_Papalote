@@ -73,6 +73,8 @@ struct UserWithVisits: View {
     @Binding var buttons: [Int]
     @Binding var nextNumber: Int
     
+    @State var isAlertOn: Bool = false
+    
     var body: some View {
         VStack {
             // Case 2: When there are visits, show the visits and button at the bottom
@@ -94,8 +96,7 @@ struct UserWithVisits: View {
             Spacer()
             
             Button("Nueva visita") {
-                buttons.append(nextNumber)
-                nextNumber += 1
+                isAlertOn = true
             }
             .padding()
             .font(Font.custom("VagRoundedBold", size: 26))
@@ -106,6 +107,17 @@ struct UserWithVisits: View {
                     .foregroundStyle(Color.AppColors.VerdePapalote)
             )
             .padding(.bottom, 100)
+            .alert(isPresented: $isAlertOn) {
+                Alert(
+                    title: Text("Crear visita"),
+                    message: Text("¿Quieres crear una nueva visita?"),
+                    primaryButton: .default(Text("Crear visita"), action: {
+                        buttons.append(nextNumber)
+                        nextNumber += 1
+                    }),
+                    secondaryButton: .destructive(Text("Cancelar"))
+                )
+            }
         }
     }
 }

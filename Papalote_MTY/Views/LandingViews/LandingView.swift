@@ -25,8 +25,10 @@ struct LandingView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 300, height: 300)
+                
                 Spacer()
-                NavigationLink(destination: MainView().modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)) {
+                NavigationLink(destination: HomeView()
+                    .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)){
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 220, height: 58)

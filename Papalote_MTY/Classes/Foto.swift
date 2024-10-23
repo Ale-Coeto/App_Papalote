@@ -14,11 +14,13 @@ class Foto: Identifiable{
     var idZona: Int
     var idVisita: Int
     var imagen: String
+    var completado: Bool
     
-    init(id: Int, idZona: Int, idVisita: Int, imagen: String) {
+    init(id: Int, idZona: Int, idVisita: Int, imagen: String, completado: Bool) {
         self.id = id
         self.idZona = idZona
         self.idVisita = idVisita
         self.imagen = imagen
+        self.completado = completado
     }
 }

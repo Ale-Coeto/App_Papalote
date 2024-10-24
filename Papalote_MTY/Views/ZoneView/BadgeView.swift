@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BadgeView: View {
     let insignia: Insignia
-    
+    let visita: Visita
     var body: some View {
         VStack(spacing: 20) {
             Text(insignia.nombre)
@@ -66,5 +66,5 @@ struct BadgeView: View {
         completado: false,
         idNFC: 1
     )
-    BadgeView(insignia: sampleInsignia)
+    BadgeView(insignia: sampleInsignia, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
 }

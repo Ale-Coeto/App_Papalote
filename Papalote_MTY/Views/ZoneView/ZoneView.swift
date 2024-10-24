@@ -13,7 +13,7 @@ struct ZoneView: View {
     var exhibiciones: [Exhibicion]
     var insignias: [Insignia]
     var fotos: [Foto]
-    
+    var visita: Visita
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -62,7 +62,7 @@ struct ZoneView: View {
                         HStack(spacing: 40) {
                             ForEach(insignias.sorted(by: { $0.id < $1.id }), id: \.self.id) { insignia in
                                 NavigationLink {
-                                    BadgeView(insignia: insignia)
+                                    BadgeView(insignia: insignia, visita: visita)
                                 } label: {
                                     AsyncImage(url: URL(string: insignia.imagen)) { image in
                                         image
@@ -189,6 +189,6 @@ struct ZoneView: View {
         imagen: nil,
         completado: false
     )]
-    ZoneView(zona: sampleZona, exhibiciones: sampleExhibition, insignias: sampleInsignia, fotos: samplePhoto)
+    ZoneView(zona: sampleZona, exhibiciones: sampleExhibition, insignias: sampleInsignia, fotos: samplePhoto, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

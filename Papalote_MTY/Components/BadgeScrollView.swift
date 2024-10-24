@@ -1,15 +1,9 @@
-//
-//  BadgeScrollView.swift
-//  Papalote_MTY
-//
-//  Created by Rodrigo Garcia on 19/10/24.
-//
-
 import SwiftUI
 
 struct BadgeScrollView: View {
     var sectionName: String
-    var insignias: [Insignia] // Now receive a list of Insignia objects
+    var insignias: [Insignia] // List of Insignia objects
+    var isCompleted: [Bool] // Array to track if the badge is completed
     @Binding var showSheet: Bool
 
     var body: some View {
@@ -22,11 +16,11 @@ struct BadgeScrollView: View {
                 
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: 15) {
-                        ForEach(insignias, id: \.self.id) { insignia in
+                        ForEach(Array(insignias.enumerated()), id: \.element.id) { index, insignia in
                             Button(action: {
                                 showSheet = true
                             }) {
-                                // Async image para url
+                                // Async image for insignia image URL
                                 AsyncImage(url: URL(string: insignia.imagen)) { phase in
                                     if let image = phase.image {
                                         image
@@ -36,7 +30,8 @@ struct BadgeScrollView: View {
                                             .background(Color.white)
                                             .clipShape(Circle())
                                             .overlay(
-                                                Circle().stroke(Color.gray, lineWidth: 1)
+                                                // Overlay with conditional border based on isCompleted
+                                                Circle().stroke(isCompleted[index] ? Color.green : Color.gray, lineWidth: 3.5) 
                                             )
                                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                             .padding(8)
@@ -48,9 +43,7 @@ struct BadgeScrollView: View {
                                 }
                             }
                             .sheet(isPresented: $showSheet) {
-                                Text("Sheet Content")
-                                    .font(.title)
-                                    .padding()
+                                BadgeView(insignia: insignia)
                             }
                         }
                     }
@@ -76,6 +69,7 @@ struct BadgeScrollView: View {
             Insignia(id: 3, idZona: 1, idEvento: 1, nombre: "Amigo de la Tierra", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por cuidar la biodiversidad", completado: false, idNFC: 1),
             Insignia(id: 4, idZona: 1, idEvento: 1, nombre: "Héroe Sustentable", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por promover la sustentabilidad", completado: false, idNFC: 1)
         ],
+        isCompleted: [true, false, true, false],
         showSheet: .constant(false)
     )
 }

@@ -27,7 +27,7 @@ struct LandingView: View {
                     .frame(width: 300, height: 300)
                 
                 Spacer()
-                NavigationLink(destination: HomeView()
+                NavigationLink(destination: NavigationView()
                     .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)){
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)

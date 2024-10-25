@@ -51,4 +51,5 @@ struct SplashScreen: View {
 
 #Preview {
     SplashScreen()
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

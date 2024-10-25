@@ -14,7 +14,7 @@ struct HomeView: View {
     @Query private var exhibiciones: [Exhibicion]
     @Query private var insignias: [Insignia]
     @Query private var fotos: [Foto]
-    
+    let visita: Visita
     @StateObject var viewModel = HomeViewModel()
     var body: some View {
         NavigationStack {
@@ -32,7 +32,7 @@ struct HomeView: View {
                                 let filteredInsignias = insignias.filter { $0.idZona == zona.id }
                                 let filteredFotos = fotos.filter { $0.idZona == zona.id }
                                 NavigationLink {
-                                    ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos)
+                                    ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos, visita: visita)
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
@@ -86,6 +86,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

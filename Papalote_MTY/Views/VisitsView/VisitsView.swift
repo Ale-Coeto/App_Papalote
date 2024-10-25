@@ -17,6 +17,7 @@ struct VisitsView: View {
             Color.AppColors.FondoAzulClaro
                 .ignoresSafeArea()
             VStack {
+                
                 if buttons.isEmpty {
                     //Case 1: New User, has no visits
                     NoVisitsView(buttons: $buttons, nextNumber: $nextNumber)
@@ -46,10 +47,15 @@ struct NoVisitsView: View {
             
             Spacer()
             
-            Text("Oh, parece que no tienes ninguna visita...")
-                .font(Font.custom("VagRounded-Light", size: 24))
-                .padding()
-            
+            ZStack {
+                Color.AppColors.FondoAzulClaro
+                
+                Text("¡Oh no! Parece que no tienes ninguna visita...")
+                    .font(Font.custom("VagRounded-Light", size: 24))
+                    .padding()
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Centra en toda la pantalla
+            }
             Spacer()
             Button("Primera visita") {
                 buttons.append(nextNumber)

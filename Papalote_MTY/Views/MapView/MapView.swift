@@ -11,7 +11,7 @@ struct MapView: View {
     @StateObject var mapViewModel = MapViewModel()
     @StateObject var locationManager = LocationManager()
     
-    @State private var scale: CGFloat = 1.0 
+    @State private var scale: CGFloat = 0.6
     let mapSize = CGSize(width: 1200, height: 800)
 
     let pins = [
@@ -25,16 +25,24 @@ struct MapView: View {
             .overlay(
                 
                 VStack {
-                 
                     ZStack {
                         GeometryReader { geometry in
+                            let screenWidth = geometry.size.width
+                                        let screenHeight = geometry.size.height
+
+                                        // Calculate the current image size based on scale
+                                        let currentWidth = mapSize.width * scale
+                                        let currentHeight = mapSize.height * scale
+                                        
+                                        // Calculate the offset needed to center the image
+                                        let horizontalOffset = max((screenWidth - currentWidth) / 2, 0)
+                                        let verticalOffset = max((screenHeight - currentHeight) / 2, 0)
                             ScrollView([.horizontal, .vertical], showsIndicators: false) {
-                                ZStack {
-                                    
+                                ZStack {    
                                     Image("Map")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: mapSize.width * scale, height: mapSize.height * scale)
+                                                                        .frame(width: mapSize.width * scale, height: mapSize.height * scale)
                                         .gesture(
                                             MagnificationGesture()
                                                 .onChanged { value in

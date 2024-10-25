@@ -41,12 +41,12 @@ struct MockDataManager {
     
         // Define the data to add
         let zonas = [
-            Zona(id: 1, nombre: "Pertenezco", descripcion: "Zona que te invita a comunicar tus ideas para mejorar el medio ambiente. ", color: "#C4D600", logo: "Pertenezco"),
-            Zona(id: 2, nombre: "Comunico", descripcion: "Poco a poco te darás cuenta de que pertenecemos a una gran red de vida en la que todo se relaciona para funcionar. ", color: "#006BA6", logo: "Comunico"),
-            Zona(id: 3, nombre: "Comprendo", descripcion: "Aquí en la zona científica entenderás cómo funciona nuestro planeta y cómo podemos cuidarlo a través de la ciencia. ", color: "#84329B", logo: "Pertenezco"),
-            Zona(id: 4, nombre: "Soy", descripcion: "Aquí, te darás cuenta de que las decisiones que tomes día a día, pueden dañar o mejorar al medio ambiente.", color: "#D50032" , logo: "Soy"),
-            Zona(id: 5, nombre: "Expreso", descripcion: "Es una oportunidad para poder expresar todos los sentimientos y emociones que te produce la naturaleza, y qué mejor manera que a través del arte.", color: "#FF8200", logo: "Expreso"),
-            Zona(id: 6, nombre: "Pequeños", descripcion: "Zona reservada para los niños menores de 5 años. Los pequeños jugarán en un ambiente inspirado en la naturaleza, ya sea en el bosque o en el mar. ", color: "#009CA6", logo: "Pequeños")
+            Zona(id: 1, nombre: "Pertenezco", descripcion: "Zona que te invita a comunicar tus ideas para mejorar el medio ambiente. ", color: "#C4D600", logo: "LogoPertenezco"),
+            Zona(id: 2, nombre: "Comunico", descripcion: "Poco a poco te darás cuenta de que pertenecemos a una gran red de vida en la que todo se relaciona para funcionar. ", color: "#006BA6", logo: "LogoComunico"),
+            Zona(id: 3, nombre: "Comprendo", descripcion: "Aquí en la zona científica entenderás cómo funciona nuestro planeta y cómo podemos cuidarlo a través de la ciencia. ", color: "#84329B", logo: "LogoComprendo"),
+            Zona(id: 4, nombre: "Soy", descripcion: "Aquí, te darás cuenta de que las decisiones que tomes día a día, pueden dañar o mejorar al medio ambiente.", color: "#D50032" , logo: "LogoSoy"),
+            Zona(id: 5, nombre: "Expreso", descripcion: "Es una oportunidad para poder expresar todos los sentimientos y emociones que te produce la naturaleza, y qué mejor manera que a través del arte.", color: "#FF8200", logo: "LogoExpreso"),
+            Zona(id: 6, nombre: "Pequeños", descripcion: "Zona reservada para los niños menores de 5 años. Los pequeños jugarán en un ambiente inspirado en la naturaleza, ya sea en el bosque o en el mar. ", color: "#009CA6", logo: "LogoPequeños")
         ]
         
         let eventos = [

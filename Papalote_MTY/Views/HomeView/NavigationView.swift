@@ -26,9 +26,9 @@ struct NavigationView: View {
                                 
                         }
                     
-                    HomeView(visita: visita)
+                    MapView()
                         .tabItem {
-                            Label("Visitas", systemImage: "map")
+                            Label("Mapa", systemImage: "map")
                                 
                         }
                     

@@ -40,7 +40,7 @@ struct HomeView: View {
                                             .shadow(radius: 5)
                                             .frame(minHeight: 50)
                                         HStack {
-                                                
+                                            
                                             Text(zona.nombre)
                                                 .foregroundStyle(.white)
                                                 .padding(.leading)
@@ -48,9 +48,9 @@ struct HomeView: View {
                                             
                                             ZStack (alignment: .trailing) {
                                                 HStack (spacing: 0) {
-
+                                                    
                                                     RightTriangle(width: 25, color: .white)
-                                                        
+                                                    
                                                     ZStack {
                                                         
                                                         CustomRoundedRectangle(topLeftRadius: 0, topRightRadius: 10, bottomLeftRadius: 0, bottomRightRadius: 10)

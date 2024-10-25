@@ -37,7 +37,7 @@ struct LandingView: View {
                 
                 Spacer()
                 NavigationLink(destination: MainView(visita: visita)
-                    .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)){
+                    ){
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 220, height: 58)
@@ -56,4 +56,5 @@ struct LandingView: View {
 
 #Preview {
     LandingView()
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

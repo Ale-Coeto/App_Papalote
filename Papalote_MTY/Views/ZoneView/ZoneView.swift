@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ZoneView: View {
+    @Environment(\.modelContext) private var context
     var zona: Zona
     var exhibiciones: [Exhibicion]
     var insignias: [Insignia]

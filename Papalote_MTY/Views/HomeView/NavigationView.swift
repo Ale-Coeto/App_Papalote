@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NavigationView: View {
+    @Environment(\.modelContext) private var context
     let visita: Visita
     var body: some View {
         HomeLayoutView(title: "Nav")

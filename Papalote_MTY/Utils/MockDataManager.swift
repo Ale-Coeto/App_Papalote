@@ -28,16 +28,16 @@ struct MockDataManager {
         
 
         // Fetch and delete all existing Fotos objects
-        let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
-        existingFotos?.forEach { context.delete($0) }
+        /*let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
+        existingFotos?.forEach { context.delete($0) }*/
         
         // Fetch and delete all existing Exhibicion objects
         let existingExhibicion = try? context.fetch(FetchDescriptor<Exhibicion>())
         existingExhibicion?.forEach { context.delete($0) }
         
         // Fetch and delete all existing InsigniaObtenida objects
-        let existingInsigniasObtenidas = try? context.fetch(FetchDescriptor<InsigniaObtenida>())
-        existingInsigniasObtenidas?.forEach { context.delete($0) }
+       /* let existingInsigniasObtenidas = try? context.fetch(FetchDescriptor<InsigniaObtenida>())
+        existingInsigniasObtenidas?.forEach { context.delete($0) }*/
     
         // Define the data to add
         let zonas = [
@@ -57,9 +57,9 @@ struct MockDataManager {
             Visita(id: 1, date: Date(), orden: "")
         ]
         
-        let insigniasObtenidas = [
+        /*let insigniasObtenidas = [
             InsigniaObtenida(id: 1, visitaId: 1)
-        ]
+        ]*/
         
         let insignias = [
             Insignia(id: 1, idZona: 1, idEvento: -1, nombre: "Eco Guerrero", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por promover acciones ecológicas", completado: false, idNFC: 1),
@@ -187,9 +187,10 @@ struct MockDataManager {
         }
         
         // Add InsigniasObtenidas
+        /*
         for insigniaObtenida in insigniasObtenidas {
             context.insert(insigniaObtenida)
-        }
+        }*/
         
         // Add Insignias
         for insignia in insignias {

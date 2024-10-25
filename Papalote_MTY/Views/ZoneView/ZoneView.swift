@@ -14,10 +14,14 @@ struct ZoneView: View {
     var insignias: [Insignia]
     var fotos: [Foto]
     var visita: Visita
+
+    @Query private var insigniasObtenidas: [InsigniaObtenida]
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
                 Text(zona.descripcion)
+                // Exhibiciones section
                 VStack {
                     Text("Exhibiciones")
                         .bold()
@@ -53,7 +57,8 @@ struct ZoneView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .shadow(color: Color.black.opacity(0.5), radius: 5, x: 4, y: 4)
-            
+
+                // Insignias section
                 VStack {
                     Text("Insignias")
                         .bold()
@@ -71,8 +76,12 @@ struct ZoneView: View {
                                             .frame(width: 80, height: 80)
                                             .clipShape(Circle())
                                             .overlay {
+                                                // Check if insignia is in `insigniasObtenidas` for this `visita`
+                                                let isCompleted = insigniasObtenidas.contains {
+                                                    $0.id == insignia.id && $0.visitaId == visita.id
+                                                }
                                                 Circle()
-                                                    .stroke(insignia.completado ? Color.green : Color.gray, lineWidth: 5)
+                                                    .stroke(isCompleted ? Color.green : Color.gray, lineWidth: 5)
                                             }
                                     } placeholder: {
                                         ProgressView()
@@ -89,7 +98,8 @@ struct ZoneView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .shadow(color: Color.black.opacity(0.5), radius: 5, x: 4, y: 4)
-            
+
+                // Fotos section
                 VStack {
                     Text("Fotos")
                         .bold()
@@ -115,7 +125,7 @@ struct ZoneView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: 80, height: 80)
-                                            .foregroundColor(.gray) 
+                                            .foregroundColor(.gray)
                                             .clipShape(Circle())
                                             .overlay {
                                                 Circle()
@@ -133,8 +143,6 @@ struct ZoneView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .shadow(color: Color.black.opacity(0.5), radius: 5, x: 4, y: 4)
-                
-                
             }
             .padding()
             .padding(.top, Constants.HEADER_HEIGHT)
@@ -144,7 +152,7 @@ struct ZoneView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(zona.nombre)
-                        .font(.largeTitle) 
+                        .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(Color.black)
                 }
@@ -153,7 +161,6 @@ struct ZoneView: View {
         }
     }
 }
-
 #Preview {
     let sampleZona = Zona(
         id: 1,

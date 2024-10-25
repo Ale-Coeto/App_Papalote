@@ -10,6 +10,7 @@ import Foundation
 
 class MapViewModel: ObservableObject {
     @Published var selectedFloor: Int = 1
+    @Published var scale: CGFloat = 0.6
     
     func changeFloor(_ floor: Int) {
         selectedFloor = floor

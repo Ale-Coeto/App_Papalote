@@ -10,9 +10,10 @@ import SwiftData
 
 @main
 struct Papalote_MTYApp: App {
+    @Environment(\.modelContext) private var context
     var body: some Scene {
         WindowGroup {
-            MainView()
+            SplashScreen()
         }
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
     }

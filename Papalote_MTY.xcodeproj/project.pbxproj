@@ -35,6 +35,7 @@
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
 		9105D3EC2CBF84DD00B7CFD5 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
+		919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A4F372CC6F31700532171 /* VisitaButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,12 +68,15 @@
 		9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
 		9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Papalote-MTY-Info.plist"; sourceTree = SOURCE_ROOT; };
+		919A4F372CC6F31700532171 /* VisitaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitaButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		456680D82CC38F1000D88681 /* BadgesView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BadgesView; sourceTree = "<group>"; };
 		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
+		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
+		919A4F322CC6E73500532171 /* VisitsView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VisitsView; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				919A4F322CC6E73500532171 /* VisitsView */,
+				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				2CD8C1C42CC6C9F30063E89D /* MapView */,
 				456680D82CC38F1000D88681 /* BadgesView */,
 				55056A702CC3306700469742 /* ZoneView */,
@@ -154,7 +160,6 @@
 			children = (
 				2CD2B3422CBE017E004BBE01 /* HomeView.swift */,
 				2CD2B34A2CBE0F48004BBE01 /* NavigationView.swift */,
-				9105D3EB2CBF84DD00B7CFD5 /* LandingView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				2CEA466E2CC1C357003C3BF0 /* TriangleView.swift */,
 				2CEA46702CC1C811003C3BF0 /* CustomRoundedRectangle.swift */,
 				456680D32CC38DD200D88681 /* BadgeScrollView.swift */,
+				919A4F372CC6F31700532171 /* VisitaButton.swift */,
 				2CD8C1C72CC6CB580063E89D /* CircleButtonView.swift */,
 			);
 			path = Components;
@@ -231,6 +237,8 @@
 				456680D82CC38F1000D88681 /* BadgesView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
+				911D02B92CC2FE4C00A820CF /* LandingViews */,
+				919A4F322CC6E73500532171 /* VisitsView */,
 			);
 			name = Papalote_MTY;
 			productName = Papalote_MTY;
@@ -292,7 +300,6 @@
 				2CA6BB892CC2512F00CD5840 /* Papalote_MTYApp.swift in Sources */,
 				2CA6BB882CC2508800CD5840 /* Papalote-MTY-Info.plist in Sources */,
 				9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */,
-				9105D3EC2CBF84DD00B7CFD5 /* LandingView.swift in Sources */,
 				2CD2B34E2CBECCD6004BBE01 /* Zona.swift in Sources */,
 				2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */,
 				4519DFE22CC33A0000DF6E7F /* InsigniaObtenida.swift in Sources */,
@@ -307,6 +314,7 @@
 				2CD2B3492CBE0B16004BBE01 /* HomeLayoutView.swift in Sources */,
 				2CD8C1C82CC6CB580063E89D /* CircleButtonView.swift in Sources */,
 				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
+				919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */,
 				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
 				2CD2B34B2CBE0F48004BBE01 /* NavigationView.swift in Sources */,
 				2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */,
@@ -446,10 +454,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 8T6TNTL5LD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -477,10 +486,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 8T6TNTL5LD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

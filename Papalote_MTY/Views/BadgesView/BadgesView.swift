@@ -10,7 +10,10 @@ struct BadgesView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(zonas, id: \.self.id) { zona in
+                // Use the sorting function from ZonaSorting.swift
+                let sortedZonas = sortZonasByOrden(zonas: zonas, orden: visita.orden)
+                
+                ForEach(sortedZonas, id: \.self.id) { zona in
                     // Pass only zona and visita to BadgeScrollView
                     BadgeScrollView(zona: zona, visita: visita)
                 }

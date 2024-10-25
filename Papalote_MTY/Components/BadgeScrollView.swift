@@ -14,8 +14,10 @@ struct BadgeScrollView: View {
     var body: some View {
         // Filter insignias based on the passed zona
         let filteredInsignias = insignias.filter { $0.idZona == zona.id }
+            .sorted(by: { $0.id < $1.id })
+        
         let isCompleted = getIsCompletedList(for: filteredInsignias)
-
+        
         VStack(alignment: .leading, spacing: 10) {
             VStack(alignment: .leading) {
                 Text(zona.nombre)

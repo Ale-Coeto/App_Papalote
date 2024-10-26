@@ -31,6 +31,7 @@
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
+		9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9188A6E82CCC5AC6008ADE1E /* Quiz.swift */; };
 		919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A4F372CC6F31700532171 /* VisitaButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
 		9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Papalote-MTY-Info.plist"; sourceTree = SOURCE_ROOT; };
+		9188A6E82CCC5AC6008ADE1E /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		919A4F372CC6F31700532171 /* VisitaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitaButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
 		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
+		9188A7062CCC5D6E008ADE1E /* QuizViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = QuizViews; sourceTree = "<group>"; };
 		919A4F322CC6E73500532171 /* VisitsView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VisitsView; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -125,6 +128,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				456680D82CC38F1000D88681 /* BadgesView */,
@@ -184,6 +188,7 @@
 				2CD2B3522CBED0FC004BBE01 /* Evento.swift */,
 				55056AB12CC4604200469742 /* Foto.swift */,
 				55056AB32CC4622F00469742 /* Exhibicion.swift */,
+				9188A6E82CCC5AC6008ADE1E /* Quiz.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
+				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 			);
 			name = Papalote_MTY;
@@ -287,6 +293,7 @@
 				4519DFDE2CC339BB00DF6E7F /* Insignia.swift in Sources */,
 				2CD2B3432CBE017E004BBE01 /* HomeView.swift in Sources */,
 				2C5D29A02CBDD6E800EB3DB2 /* MainView.swift in Sources */,
+				9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */,
 				2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */,
 				4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */,
 				2CD2B3512CBECE48004BBE01 /* ColorExtension.swift in Sources */,

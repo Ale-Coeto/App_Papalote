@@ -54,7 +54,7 @@ struct NoVisitsView: View {
                     .font(Font.custom("VagRounded-Light", size: 24))
                     .padding()
                     .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Centra en toda la pantalla
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) 
             }
             Spacer()
             Button("Primera visita") {

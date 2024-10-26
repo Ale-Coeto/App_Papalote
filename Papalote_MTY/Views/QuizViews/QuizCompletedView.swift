@@ -9,7 +9,13 @@ import SwiftUI
 
 struct QuizCompletedView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.AppColors.FondoAzulClaro
+                .ignoresSafeArea()
+            VStack{
+                Text("Acabaste el quiz")
+            }
+        }
     }
 }
 

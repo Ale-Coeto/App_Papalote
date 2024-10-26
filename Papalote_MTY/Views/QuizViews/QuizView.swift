@@ -27,7 +27,7 @@ struct QuizView: View {
         
         // TODO: Make a function in Quiz.swift that allows to read JSON files and turn the data into this struct/class
         
-           Question(questionText: "De estos colores, ¿cuál es el que más te gusta?", responses: ["Verde", "Rojo", "Azul", "Naranja", "Morado", "Celeste"]),
+           Question(questionText: "De estos colores,                                                     ¿cuál es el que más te gusta?", responses: ["Verde", "Rojo", "Azul", "Naranja", "Morado", "Celeste"]),
            
            Question(questionText: "¿Qué género de película disfrutas más?", responses: ["Cualquier género está bien", "Acción", "Comedia", "Fantasía", "Ciencia ficción", "Animadas"]),
            
@@ -62,6 +62,7 @@ struct QuizView: View {
            ZStack {
                Color.AppColors.FondoAzulClaro
                    .ignoresSafeArea()
+                   .navigationBarBackButtonHidden(true)
                
                // Main container with fixed size
                VStack(spacing: 10) {
@@ -76,8 +77,10 @@ struct QuizView: View {
                            .padding(.horizontal, 20)
                            .font(Font.custom("VagRounded-Light", size: 20))
                            .multilineTextAlignment(.center)
-                           .minimumScaleFactor(0.5)
-                           .lineLimit(4)
+                           .frame(maxWidth: .infinity) // This ensures the text takes full width
+                           .padding(.top, 5) // Start from the top with padding
+                           .minimumScaleFactor(0.3) // Scale down text if needed
+                           .lineLimit(6)
                    }
                    .frame(height: 150) // Fixed height for question container
                    
@@ -114,7 +117,7 @@ struct QuizView: View {
                    answers[responseIndex, default: 0] += 1
                    index += 1
                }
-               else{
+               else {
                    answers[responseIndex, default: 0] += 1
                    print(answers)
                }

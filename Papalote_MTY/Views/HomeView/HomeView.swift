@@ -25,7 +25,7 @@ struct HomeView: View {
                 .overlay(
                     VStack {
                         ForEach(eventosEspeciales, id: \.id) { evento in
-                            NavigationLink(destination: EventDetailView(evento: evento)) {
+                            NavigationLink(destination: SpecialEventView(evento: evento, visita: visita)) {
                                 VStack {
                                     Text("Evento de tiempo Limitado!")
                                         .font(.headline)

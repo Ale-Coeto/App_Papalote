@@ -15,7 +15,7 @@ struct BadgesView: View {
                 
                 ForEach(sortedZonas, id: \.self.id) { zona in
                     // Pass only zona and visita to BadgeScrollView
-                    BadgeScrollView(zona: zona, visita: visita)
+                    BadgeScrollView(zona: zona, visita: visita, isEventoEspecial: false)
                 }
             }
             .padding()

@@ -73,6 +73,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		456680D82CC38F1000D88681 /* BadgesView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BadgesView; sourceTree = "<group>"; };
+		45E6BB812CCC6A4D008F39A5 /* SpecialEventView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SpecialEventView; sourceTree = "<group>"; };
 		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
 		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				45E6BB812CCC6A4D008F39A5 /* SpecialEventView */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				2CD8C1C42CC6C9F30063E89D /* MapView */,
@@ -236,6 +238,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				456680D82CC38F1000D88681 /* BadgesView */,
+				45E6BB812CCC6A4D008F39A5 /* SpecialEventView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,

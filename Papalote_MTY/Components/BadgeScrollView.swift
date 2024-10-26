@@ -4,6 +4,7 @@ import SwiftData
 struct BadgeScrollView: View {
     var zona: Zona // Now it takes zona directly
     let visita: Visita
+    let isEventoEspecial: Bool
     
     @Environment(\.modelContext) private var context
     @Query private var insignias: [Insignia]
@@ -12,9 +13,11 @@ struct BadgeScrollView: View {
     @State private var selectedInsignia: Insignia? // State to track the selected insignia
     
     var body: some View {
-        // Filter insignias based on the passed zona
-        let filteredInsignias = insignias.filter { $0.idZona == zona.id }
-            .sorted(by: { $0.id < $1.id })
+        // Filter insignias based on the passed zona or evento
+        /*let filteredInsignias = isEventoEspecial ? insignias.filter { $0.idZona == zona.id } : insignias.filter { $0.idEvento == zona.id }
+            .sorted(by: { $0.id < $1.id })*/
+        let filteredInsignias = insignias.filter { $0.idZona == zona.id }.sorted(by: { $0.id < $1.id })
+
         
         let isCompleted = getIsCompletedList(for: filteredInsignias)
         
@@ -81,6 +84,7 @@ struct BadgeScrollView: View {
 #Preview {
     BadgeScrollView(
         zona: Zona(id: 1, nombre: "Zona 1", descripcion: "", color: "", logo: ""),
-        visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
+        visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"),
+        isEventoEspecial: false
     )
 }

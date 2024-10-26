@@ -21,6 +21,9 @@
 		2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3522CBED0FC004BBE01 /* Evento.swift */; };
 		2CD2B3552CBED232004BBE01 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3542CBED232004BBE01 /* Card.swift */; };
 		2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2B3562CBED59A004BBE01 /* Constants.swift */; };
+		2CD8C1C62CC6CA040063E89D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C1C52CC6CA040063E89D /* MapView.swift */; };
+		2CD8C1C82CC6CB580063E89D /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C1C72CC6CB580063E89D /* CircleButtonView.swift */; };
+		2CD8C1CA2CC6D1820063E89D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C1C92CC6D1820063E89D /* MapViewModel.swift */; };
 		2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA466E2CC1C357003C3BF0 /* TriangleView.swift */; };
 		2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA46702CC1C811003C3BF0 /* CustomRoundedRectangle.swift */; };
 		4519DFDE2CC339BB00DF6E7F /* Insignia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFDD2CC339BB00DF6E7F /* Insignia.swift */; };
@@ -28,6 +31,7 @@
 		4519DFE22CC33A0000DF6E7F /* InsigniaObtenida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */; };
 		4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */; };
 		456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456680D32CC38DD200D88681 /* BadgeScrollView.swift */; };
+		45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */; };
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
@@ -50,6 +54,9 @@
 		2CD2B3522CBED0FC004BBE01 /* Evento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evento.swift; sourceTree = "<group>"; };
 		2CD2B3542CBED232004BBE01 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2CD2B3562CBED59A004BBE01 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2CD8C1C52CC6CA040063E89D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		2CD8C1C72CC6CB580063E89D /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
+		2CD8C1C92CC6D1820063E89D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2CEA466E2CC1C357003C3BF0 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		2CEA46702CC1C811003C3BF0 /* CustomRoundedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRoundedRectangle.swift; sourceTree = "<group>"; };
 		4519DFDD2CC339BB00DF6E7F /* Insignia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insignia.swift; sourceTree = "<group>"; };
@@ -57,6 +64,7 @@
 		4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsigniaObtenida.swift; sourceTree = "<group>"; };
 		4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManager.swift; sourceTree = "<group>"; };
 		456680D32CC38DD200D88681 /* BadgeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeScrollView.swift; sourceTree = "<group>"; };
+		45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortZonasByOrden.swift; sourceTree = "<group>"; };
 		55056AB12CC4604200469742 /* Foto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
@@ -131,6 +139,7 @@
 				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
+				2CD8C1C42CC6C9F30063E89D /* MapView */,
 				456680D82CC38F1000D88681 /* BadgesView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				2CD2B3472CBE0AF5004BBE01 /* Layout */,
@@ -145,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				2CD2B3452CBE01A4004BBE01 /* HomeViewModel.swift */,
+				2CD8C1C92CC6D1820063E89D /* MapViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -166,6 +176,7 @@
 				2CEA46702CC1C811003C3BF0 /* CustomRoundedRectangle.swift */,
 				456680D32CC38DD200D88681 /* BadgeScrollView.swift */,
 				919A4F372CC6F31700532171 /* VisitaButton.swift */,
+				2CD8C1C72CC6CB580063E89D /* CircleButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -196,12 +207,21 @@
 		2CD2B34F2CBECE3C004BBE01 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */,
 				4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */,
 				9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */,
 				2CD2B3502CBECE48004BBE01 /* ColorExtension.swift */,
 				2CD2B3562CBED59A004BBE01 /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		2CD8C1C42CC6C9F30063E89D /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				2CD8C1C52CC6CA040063E89D /* MapView.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD8C1CA2CC6D1820063E89D /* MapViewModel.swift in Sources */,
 				456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */,
 				2CA6BB892CC2512F00CD5840 /* Papalote_MTYApp.swift in Sources */,
 				2CA6BB882CC2508800CD5840 /* Papalote-MTY-Info.plist in Sources */,
@@ -295,13 +316,16 @@
 				2C5D29A02CBDD6E800EB3DB2 /* MainView.swift in Sources */,
 				9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */,
 				2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */,
+				2CD8C1C62CC6CA040063E89D /* MapView.swift in Sources */,
 				4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */,
 				2CD2B3512CBECE48004BBE01 /* ColorExtension.swift in Sources */,
 				2CD2B3492CBE0B16004BBE01 /* HomeLayoutView.swift in Sources */,
+				2CD8C1C82CC6CB580063E89D /* CircleButtonView.swift in Sources */,
 				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
 				919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */,
 				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
 				2CD2B34B2CBE0F48004BBE01 /* NavigationView.swift in Sources */,
+				45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */,
 				2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */,
 				2CD2B3462CBE01A4004BBE01 /* HomeViewModel.swift in Sources */,
 				55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */,
@@ -439,10 +463,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 8T6TNTL5LD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -469,10 +495,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 8T6TNTL5LD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

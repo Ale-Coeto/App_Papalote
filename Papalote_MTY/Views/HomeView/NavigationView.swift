@@ -8,29 +8,31 @@
 import SwiftUI
 
 struct NavigationView: View {
+    @Environment(\.modelContext) private var context
+    let visita: Visita
     var body: some View {
         HomeLayoutView(title: "Nav")
             .overlay(
                 TabView {
-                    HomeView()
+                    HomeView(visita: visita)
                         .tabItem {
                             Label("Zonas", systemImage: "house")
                                
                         }
                     
-                    HomeView()
+                    HomeView(visita: visita)
                         .tabItem {
                             Label("Fotos", systemImage: "camera")
                                 
                         }
                     
-                    HomeView()
+                    MapView()
                         .tabItem {
-                            Label("Visitas", systemImage: "map")
+                            Label("Mapa", systemImage: "map")
                                 
                         }
                     
-                    BadgesView()
+                    BadgesView(visita: visita)
                         .tabItem {
                             Label("Insignias", systemImage: "trophy")
                         }
@@ -41,5 +43,5 @@ struct NavigationView: View {
 }
 
 #Preview {
-    NavigationView()
+    NavigationView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
 }

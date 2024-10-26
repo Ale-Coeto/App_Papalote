@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct BadgeView: View {
     let insignia: Insignia
+    let visita: Visita
+    
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) var dismiss
+    @Query private var insigniasObtenidas: [InsigniaObtenida]
     
     var body: some View {
         VStack(spacing: 20) {
@@ -36,7 +42,26 @@ struct BadgeView: View {
                 .cornerRadius(12)
             
             Button {
-                insignia.completado.toggle()
+                // Check if the insignia has already been obtained for the current visita
+                if !insigniasObtenidas.contains(where: { $0.id == insignia.id && $0.visitaId == visita.id }) {
+                    // Create a new InsigniaObtenida instance
+                    let newInsigniaObtenida = InsigniaObtenida(id: insignia.id, visitaId: visita.id)
+                    
+                    // Add it to the context
+                    context.insert(newInsigniaObtenida)
+                    
+                    // Save the context (if applicable in your environment)
+                    do {
+                        try context.save()
+                        // Dismiss the BadgeView after saving
+                        dismiss() // Dismisses the view
+                    } catch {
+                        print("Error saving new InsigniaObtenida: \(error)")
+                    }
+                } else {
+                    // Dismiss even if insignia is already obtained
+                    dismiss() // Dismisses the view
+                }
             } label: {
                 Text("Escanear")
                     .font(.title2)
@@ -44,7 +69,7 @@ struct BadgeView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(insignia.completado ? Color.green : Color.gray)
+                    .background(insigniasObtenidas.contains(where: { $0.id == insignia.id && $0.visitaId == visita.id }) ? Color.green : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -66,5 +91,5 @@ struct BadgeView: View {
         completado: false,
         idNFC: 1
     )
-    BadgeView(insignia: sampleInsignia)
+    BadgeView(insignia: sampleInsignia, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
 }

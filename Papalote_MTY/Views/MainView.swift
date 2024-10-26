@@ -9,11 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct MainView: View {
+    let visita: Visita
     @Environment(\.modelContext)private var context
     // ASI Consigues una lista de zonas
     @Query private var items: [Zona]
     var body: some View {
-        NavigationView()
+        NavigationView(visita: visita)
             .onAppear{
                 MockDataManager.addMockData(to: context)
             }
@@ -21,6 +22,6 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

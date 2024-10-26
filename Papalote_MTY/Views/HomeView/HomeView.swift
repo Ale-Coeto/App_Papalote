@@ -14,7 +14,7 @@ struct HomeView: View {
     @Query private var exhibiciones: [Exhibicion]
     @Query private var insignias: [Insignia]
     @Query private var fotos: [Foto]
-    
+    let visita: Visita
     @StateObject var viewModel = HomeViewModel()
     var body: some View {
         NavigationStack {
@@ -27,12 +27,12 @@ struct HomeView: View {
                             .frame(height: 200)
                         
                         VStack (spacing: 20) {
-                            ForEach(zonas, id: \.self.id) { zona in
+                            ForEach(zonas.sorted(by: { $0.id < $1.id }), id: \.self.id) { zona in
                                 let filteredExhibicion = exhibiciones.filter { $0.idZona == zona.id }
                                 let filteredInsignias = insignias.filter { $0.idZona == zona.id }
                                 let filteredFotos = fotos.filter { $0.idZona == zona.id }
                                 NavigationLink {
-                                    ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos)
+                                    ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos, visita: visita)
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
@@ -40,7 +40,7 @@ struct HomeView: View {
                                             .shadow(radius: 5)
                                             .frame(minHeight: 50)
                                         HStack {
-                                                
+                                            
                                             Text(zona.nombre)
                                                 .foregroundStyle(.white)
                                                 .padding(.leading)
@@ -48,9 +48,9 @@ struct HomeView: View {
                                             
                                             ZStack (alignment: .trailing) {
                                                 HStack (spacing: 0) {
-
+                                                    
                                                     RightTriangle(width: 25, color: .white)
-                                                        
+                                                    
                                                     ZStack {
                                                         
                                                         CustomRoundedRectangle(topLeftRadius: 0, topRightRadius: 10, bottomLeftRadius: 0, bottomRightRadius: 10)
@@ -86,6 +86,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

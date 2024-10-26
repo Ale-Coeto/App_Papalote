@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct LandingView: View {
+    // creo que esto se va a hacer en la visitsView
+    // ahi es donde se crea la visita
+    // como todavia no esta lo del quiz aqui voy a crear una visita y la voy a pasar a NavigationView
+    // Para que ya la podamos usar, pero la visita que se
+    // manda a navigation view se manda desde VisitsView
+    
+    let visita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
+    
+    
     var body: some View {
         NavigationStack{
         ZStack {
@@ -27,8 +36,8 @@ struct LandingView: View {
                     .frame(width: 300, height: 300)
                 
                 Spacer()
-                NavigationLink(destination: HomeView()
-                    .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)){
+                NavigationLink(destination: MainView(visita: visita)
+                    ){
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 220, height: 58)
@@ -47,4 +56,5 @@ struct LandingView: View {
 
 #Preview {
     LandingView()
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

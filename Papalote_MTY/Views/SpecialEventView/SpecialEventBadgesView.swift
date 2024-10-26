@@ -15,23 +15,22 @@ struct SpecialEventBadgesView: View {
     @Query var insigniasObtenidas: [InsigniaObtenida]
     
     var body: some View {
-        NavigationStack { // Move NavigationStack here
+        NavigationStack {
             ScrollView {
                 VStack {
                     // Title for the Event
                     Text("Gana insignias de tiempo limitado!")
-                        .font(.title3) // Title font size
-                        .padding(.top) // Padding at the top for better spacing
+                        .font(.title3)
+                        .padding(.top)
                         .padding(.bottom)
                     
                     // Grid for displaying insignias
                     let columns = [
-                        GridItem(.flexible()), // Flexible layout for 2 badges per row
+                        GridItem(.flexible()),
                         GridItem(.flexible())
                     ]
                     
                     LazyVGrid(columns: columns, spacing: 20) {
-                        // Sort insignias by ID before displaying
                         ForEach(insignias.filter { $0.idEvento == evento.id }.sorted(by: { $0.id < $1.id }), id: \.self.id) { insignia in
                             NavigationLink(destination: BadgeView(insignia: insignia, visita: visita)) {
                                 VStack {
@@ -42,7 +41,6 @@ struct SpecialEventBadgesView: View {
                                             .frame(width: 80, height: 80) // Fixed image size
                                             .clipShape(Circle())
                                             .overlay {
-                                                // Check if insignia is completed for this visita
                                                 let isCompleted = insigniasObtenidas.contains {
                                                     $0.id == insignia.id && $0.visitaId == visita.id
                                                 }
@@ -53,26 +51,29 @@ struct SpecialEventBadgesView: View {
                                         ProgressView()
                                             .frame(width: 80, height: 80) // Fixed placeholder size
                                     }
-                                    Text(insignia.nombre) // Display insignia name
-                                        .font(.caption.bold()) // Bold the name of the insignia
+                                    
+                                    // Fixed height for the text area to align it consistently
+                                    Text(insignia.nombre)
+                                        .font(.caption.bold())
                                         .multilineTextAlignment(.center)
+                                        .frame(height: 31) // Fixed height for text
+                                        .lineLimit(2) // Limit to 2 lines, adjust if needed
                                 }
-                                .frame(width: 120, height: 120) // Fixed size for the badge box
-                                .padding() // Add padding inside the badge section
-                                .background(Color.white) // Background color for the badge
-                                .cornerRadius(12) // Rounded corners
-                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 2, y: 2) // Shadow effect
+                                .frame(width: 120, height: 120)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(12)
+                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 2, y: 2)
                             }
-                            .buttonStyle(PlainButtonStyle()) // Remove default button style for better appearance
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                     .padding(.horizontal)
                 }
             }
-            .navigationTitle("\(evento.nombre)") // Set the navigation title here
-            .navigationBarTitleDisplayMode(.inline) // Optional: adjust title display mode
+            .navigationTitle("\(evento.nombre)")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                // Customize the navigation bar title appearance
                 ToolbarItem(placement: .principal) {
                     Text(evento.nombre)
                         .font(.largeTitle)
@@ -89,6 +90,5 @@ struct SpecialEventBadgesView: View {
     let sampleVisita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
     
     SpecialEventBadgesView(evento: sampleEvento, visita: sampleVisita)
-        .modelContainer(for: [Insignia.self, InsigniaObtenida.self], inMemory: true) // Adjust model as needed
+        .modelContainer(for: [Insignia.self, InsigniaObtenida.self], inMemory: true)
 }
-

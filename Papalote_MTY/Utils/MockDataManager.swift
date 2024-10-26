@@ -50,7 +50,7 @@ struct MockDataManager {
         ]
         
         let eventos = [
-            Evento(id: 1, fechaInicio: Date(), fechaFin: Date(), nombre: "Semana Cosmica", descripcion: "dia del espacio", imagen: "a")
+            Evento(id: 1, fechaInicio: Date(), fechaFin: Date(), nombre: "Semana Cosmica", descripcion: "dia del espacio", imagen: "https://d20ohkaloyme4g.cloudfront.net/img/document_thumbnails/a0b8d1f7b02a075564ed58d2c9a31d9d/thumb_1200_3000.png")
         ]
         
         let visitas = [

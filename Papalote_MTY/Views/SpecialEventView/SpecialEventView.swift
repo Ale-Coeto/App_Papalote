@@ -12,22 +12,23 @@ struct SpecialEventView: View {
     let visita: Visita
     var body: some View {
         TabView {
-                    // First tab showing InfographicView
-            SpecialEventBadgesView(evento: evento, visita: visita)
-                        .tabItem {
-                            Text("Infographic")
-                        }
-                    
-                    // Second tab showing SpecialEventBadgesView
+            
+            // First tab showing SpecialEventBadgesView
             InfographicView(evento: evento, visita: visita)
-                        .tabItem {
-                            Text("Badges")
-                        }
+                .tabItem {
+                    Text("Badges")
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always)) // Enables swiping
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always)) // Adds dots for page indicators
-            }
-
+            // Second tab showing InfographicView
+            SpecialEventBadgesView(evento: evento, visita: visita)
+                .tabItem {
+                    Text("Infographic")
+                }
+            
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always)) // Enables swiping
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always)) // Adds dots for page indicators
+    }
+    
 }
 
 #Preview {

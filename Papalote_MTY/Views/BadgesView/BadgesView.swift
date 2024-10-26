@@ -4,18 +4,29 @@ import SwiftData
 struct BadgesView: View {
     @Environment(\.modelContext) private var context
     @Query private var zonas: [Zona]
+    @Query private var eventos: [Evento] // Added Eventos query
     
     let visita: Visita
     
     var body: some View {
-        ScrollView {
+        // Use the sorting function from ZonaSorting.swift
+        let sortedZonas = sortZonasByOrden(zonas: zonas, orden: visita.orden)
+        
+        // Sort Eventos
+        let sortedEventos = eventos.sorted {
+            $0.fechaInicio < $1.fechaInicio // Sorting by start date
+        }
+        
+        return ScrollView {
             VStack {
-                // Use the sorting function from ZonaSorting.swift
-                let sortedZonas = sortZonasByOrden(zonas: zonas, orden: visita.orden)
-                
+                // Display Zona badges
                 ForEach(sortedZonas, id: \.self.id) { zona in
-                    // Pass only zona and visita to BadgeScrollView
-                    BadgeScrollView(zona: zona, visita: visita, isEventoEspecial: false)
+                    BadgeScrollView(zona: zona, visita: visita, isEvento: false)
+                }
+                
+                // Display Evento badges
+                ForEach(sortedEventos, id: \.self.id) { evento in
+                    BadgeScrollView(evento: evento, visita: visita, isEvento: true)
                 }
             }
             .padding()
@@ -29,5 +40,5 @@ struct BadgesView: View {
 
 #Preview {
     BadgesView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
+        .modelContainer(for: [Zona.self, Evento.self, InsigniaObtenida.self, Insignia.self, Visita.self], inMemory: true)
 }

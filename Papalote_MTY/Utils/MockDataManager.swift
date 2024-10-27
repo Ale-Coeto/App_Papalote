@@ -28,8 +28,9 @@ struct MockDataManager {
         
 
         // Fetch and delete all existing Fotos objects
-        /*let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
-        existingFotos?.forEach { context.delete($0) }*/
+        let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
+        let existingFotoIDs = existingFotos?.map { $0.id } ?? []
+        //existingFotos?.forEach { context.delete($0) }
         
         // Fetch and delete all existing Exhibicion objects
         let existingExhibicion = try? context.fetch(FetchDescriptor<Exhibicion>())
@@ -206,7 +207,9 @@ struct MockDataManager {
         
         // Add Fotos
         for foto in fotos {
-            context.insert(foto)
+            if !existingFotoIDs.contains(foto.id){
+                context.insert(foto)
+            }
         }
 
         // Add Exhibicion

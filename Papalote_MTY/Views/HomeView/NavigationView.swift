@@ -20,7 +20,7 @@ struct NavigationView: View {
                                
                         }
                     
-                    HomeView(visita: visita)
+                    PhotosView(visita: visita)
                         .tabItem {
                             Label("Fotos", systemImage: "camera")
                                 

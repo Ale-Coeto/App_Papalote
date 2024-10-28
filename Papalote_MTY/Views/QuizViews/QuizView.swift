@@ -21,6 +21,7 @@ struct QuizView: View {
         ]
     
     @State var mostAnwsers: Int = 0
+    @State var isQuizCompleted: Bool = false
     
     @State private var questions: [Question] = [
         // Hardcoded Questions and Anwsers. NOT MOST OPTIMAL
@@ -59,56 +60,63 @@ struct QuizView: View {
     
     
     var body: some View {
-           ZStack {
-               Color.AppColors.FondoAzulClaro
-                   .ignoresSafeArea()
-                   .navigationBarBackButtonHidden(true)
-               
-               // Main container with fixed size
-               VStack(spacing: 10) {
-                   // Question container with fixed size
-                   ZStack {
-                       RoundedRectangle(cornerRadius: 12)
-                           .frame(width: 350, height: 150)
-                           .foregroundStyle(Color.white)
-                           .shadow(radius: 5)
-                       
-                       Text(questions[index].questionText)
-                           .padding(.horizontal, 20)
-                           .font(Font.custom("VagRounded-Light", size: 20))
-                           .multilineTextAlignment(.center)
-                           .frame(maxWidth: .infinity) // This ensures the text takes full width
-                           .padding(.top, 5) // Start from the top with padding
-                           .minimumScaleFactor(0.3) // Scale down text if needed
-                           .lineLimit(6)
-                   }
-                   .frame(height: 150) // Fixed height for question container
-                   
-                   // Responses grid container with fixed size
-                   VStack(spacing: 8) {
-                       // First row
-                       HStack(spacing: 10) {
-                           responseButton(responseIndex: 0)
-                           responseButton(responseIndex: 1)
-                       }
-                       
-                       // Second row
-                       HStack(spacing: 10) {
-                           responseButton(responseIndex: 2)
-                           responseButton(responseIndex: 3)
-                       }
-                       
-                       // Third row
-                       HStack(spacing: 10) {
-                           responseButton(responseIndex: 4)
-                           responseButton(responseIndex: 5)
-                       }
-                   }
-                   .frame(maxWidth: .infinity ,maxHeight: .infinity) // Take remaining space
-               }
-               .padding(.vertical)
-           }
-       }
+        NavigationStack {
+            ZStack {
+            Color.AppColors.FondoAzulClaro
+                .ignoresSafeArea()
+                .navigationBarBackButtonHidden(true)
+            
+            // Main container with fixed size
+            VStack(spacing: 10) {
+                // Question container with fixed size
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .frame(width: 350, height: 150)
+                        .foregroundStyle(Color.white)
+                        .shadow(radius: 5)
+                    Text(questions[index].questionText)
+                        .padding(.horizontal, 20)
+                        .font(Font.custom("VagRounded-Light", size: 20))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity) // This ensures the text takes full width
+                        .padding(.top, 5) // Start from the top with padding
+                        .minimumScaleFactor(0.3) // Scale down text if needed
+                        .lineLimit(6)
+                }
+                .frame(height: 150) // Fixed height for question container
+                .padding(.top,40)
+                
+                // Responses grid container with fixed size
+                VStack(spacing: 8) {
+                    // First row
+                    HStack(spacing: 10) {
+                        responseButton(responseIndex: 0)
+                        responseButton(responseIndex: 1)
+                    }
+                    
+                    // Second row
+                    HStack(spacing: 10) {
+                        responseButton(responseIndex: 2)
+                        responseButton(responseIndex: 3)
+                    }
+                    
+                    // Third row
+                    HStack(spacing: 10) {
+                        responseButton(responseIndex: 4)
+                        responseButton(responseIndex: 5)
+                    }
+                }
+                .frame(maxWidth: .infinity ,maxHeight: .infinity) // Take remaining space
+            }
+            .padding(.vertical)
+            .navigationDestination(isPresented: $isQuizCompleted) {
+                SplashScreen(splasherText: "Cargando resultados.") {
+                    QuizCompletedView(answers: $answers)
+                }
+            }
+        }
+    }
+}
        
        @ViewBuilder
        private func responseButton(responseIndex: Int) -> some View {
@@ -119,6 +127,7 @@ struct QuizView: View {
                }
                else {
                    answers[responseIndex, default: 0] += 1
+                   isQuizCompleted = true
                    print(answers)
                }
                
@@ -140,7 +149,11 @@ struct QuizView: View {
                    .padding()
                }
            }
-           .frame(width: 170, height: 170)
+           
+           .frame(
+               width: UIScreen.main.bounds.width >= 402 ? 170 : 150,
+               height: UIScreen.main.bounds.width >= 402 ? 170 : 130
+           )
            .clipped() // Prevents content from overflowing
        }
        

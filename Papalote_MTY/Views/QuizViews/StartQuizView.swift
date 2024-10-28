@@ -17,71 +17,7 @@ struct StartQuizView: View {
             VStack{
                 Spacer()
                 Spacer()
-                VStack (spacing: 10){
-                    HStack{
-                        if let filePath = Bundle.main.path(forResource: "comprendo", ofType: "png"),
-                           let uiImage = UIImage(contentsOfFile: filePath) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width:50)
-                        } else {
-                            Text("Image not found")
-                        }
-                        
-                        if let filePath = Bundle.main.path(forResource: "comunico", ofType: "png"),
-                           let uiImage = UIImage(contentsOfFile: filePath) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width:50)
-                            
-                        } else {
-                            Text("Image not found")
-                        }
-                        
-                        if let filePath = Bundle.main.path(forResource: "expreso", ofType: "png"),
-                           let uiImage = UIImage(contentsOfFile: filePath) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width:50)
-                        } else {
-                            Text("Image not found")
-                        }
-                    }
-                    HStack{
-                        if let filePath = Bundle.main.path(forResource: "pequeños", ofType: "png"),
-                           let uiImage = UIImage(contentsOfFile: filePath) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width:50)
-                        } else {
-                            Text("Image not found")
-                        }
-                        
-                        if let filePath = Bundle.main.path(forResource: "pertenezco", ofType: "png"),
-                           let uiImage = UIImage(contentsOfFile: filePath) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width:50)
-                        } else {
-                            Text("Image not found")
-                        }
-                        
-                        if let filePath = Bundle.main.path(forResource: "soy", ofType: "png"),
-                           let uiImage = UIImage(contentsOfFile: filePath) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width:50)
-                        } else {
-                            Text("Image not found")
-                        }
-                    }
-                }
+                ZonasLogos()
                 Text("¿Qué zona de Papalote Museo del Niño Monterrey eres?")
                     .font(Font.custom("VagRoundedBold", size: 30))
                     .foregroundStyle(Color.AppColors.AzulPapalote)
@@ -112,6 +48,7 @@ struct StartQuizView: View {
                 .padding(.top, -20)
                 .padding(.bottom, 70)
             }
+            
         }.ignoresSafeArea()
             .alert(isPresented: $isAlertOn) {
                 Alert(
@@ -121,9 +58,80 @@ struct StartQuizView: View {
                     secondaryButton: .destructive(Text("Regresar"))
                 )
             }
-    }
+        }
     }
 }
+
+struct ZonasLogos: View {
+    var body: some View {
+        VStack (spacing: 10){
+            HStack{
+                if let filePath = Bundle.main.path(forResource: "comprendo", ofType: "png"),
+                   let uiImage = UIImage(contentsOfFile: filePath) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:50)
+                } else {
+                    Text("Image not found")
+                }
+                
+                if let filePath = Bundle.main.path(forResource: "comunico", ofType: "png"),
+                   let uiImage = UIImage(contentsOfFile: filePath) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:50)
+                    
+                } else {
+                    Text("Image not found")
+                }
+                
+                if let filePath = Bundle.main.path(forResource: "expreso", ofType: "png"),
+                   let uiImage = UIImage(contentsOfFile: filePath) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:50)
+                } else {
+                    Text("Image not found")
+                }
+            }
+            HStack{
+                if let filePath = Bundle.main.path(forResource: "pequeños", ofType: "png"),
+                   let uiImage = UIImage(contentsOfFile: filePath) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:50)
+                } else {
+                    Text("Image not found")
+                }
+                
+                if let filePath = Bundle.main.path(forResource: "pertenezco", ofType: "png"),
+                   let uiImage = UIImage(contentsOfFile: filePath) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:50)
+                } else {
+                    Text("Image not found")
+                }
+                
+                if let filePath = Bundle.main.path(forResource: "soy", ofType: "png"),
+                   let uiImage = UIImage(contentsOfFile: filePath) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:50)
+                } else {
+                    Text("Image not found")
+                }
+            }
+        }
+    }
+}
+
 
 #Preview {
     StartQuizView()

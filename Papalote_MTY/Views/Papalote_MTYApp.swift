@@ -13,7 +13,9 @@ struct Papalote_MTYApp: App {
     @Environment(\.modelContext) private var context
     var body: some Scene {
         WindowGroup {
-            SplashScreen()
+            SplashScreen(splasherText: " ") {
+                    LandingView() // Replace LandingView() with any other view we need to
+                }
         }
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self])
     }

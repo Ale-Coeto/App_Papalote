@@ -15,15 +15,12 @@ struct QuizCompletedView: View {
             id: 0,
             nombre: "Pertenezco",
             descripcion: """
-            
             Tienes una profunda conexión con la
             naturaleza. Eres una persona tranquila,
             pero serías capaz de explorar el mundo.
             Tu color es el verde, cuyo significado se
             relaciona a la armonía, la calma interior y
             el equilibrio emocional.
-            
-            
             """,
             color: Color.AppColors.pertenezco,
             logoFileName: "pertenezco"
@@ -45,7 +42,7 @@ struct QuizCompletedView: View {
             id: 2,
             nombre: "Comunico",
             descripcion: """
-                Para ti el diálogo es lo más importante.
+            Para ti el diálogo es lo más importante.
             Eres bastante fuerte con tus emociones y
             no dudas en alzar la voz cuando algo no
             te parece justo. Tu color es el azul, que
@@ -105,26 +102,56 @@ struct QuizCompletedView: View {
             }
             return nil
         }
+    let visita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
     
     @Binding var answers: [Int: Int]
     
     
     var body: some View {
         if let topZona = getTopZonaResultado() {
+            NavigationStack{
+                ZStack{
+                    Color.AppColors.FondoAzulClaro
+                        .ignoresSafeArea()
                     VStack {
-                        Spacer()
-                        Image(uiImage: topZona.logo)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 150, height: 150)
-                        
                         Text(topZona.nombre)
                             .font(Font.custom("VagRoundedBold", size: 60))
                             .foregroundColor(topZona.color)
-                        Text(topZona.descripcion)
-                            .font(Font.custom("VagRounded-Ligth", size: 20))
+                            .padding(.top, 60)
+                        
+                        Image(uiImage: topZona.logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 225)
                         Spacer()
+                        HStack{
+                            Text("Tu zona es")
+                                .font(Font.custom("VagRounded-Ligth", size: 20))
+                            Text(topZona.nombre)
+                                .font(Font.custom("VagRoundedBold", size: 20))
+                                .foregroundStyle(topZona.color)
+                        }
+                        .padding(.bottom)
+                        Text(topZona.descripcion)
+                            .font(Font.custom("VagRounded-Light", size: 18))
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                        Spacer()
+                        NavigationLink(destination: MainView(visita: visita)
+                        ){
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 220, height: 58)
+                                    .foregroundStyle(topZona.color)
+                                Text("Continuar")
+                                    .font(Font.custom("VagRoundedBold", size: 24))
+                                    .foregroundStyle(Color.init(hex: "#ffffff"))
+                            }
+                        }
+                        .padding(.bottom, 60)
                     }
+                }
+                }
                 } else {
                     Text("No results found.")
                 }
@@ -133,4 +160,5 @@ struct QuizCompletedView: View {
 
 #Preview {
     QuizCompletedView(answers: .constant([0: 0]))
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

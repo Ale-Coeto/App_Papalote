@@ -6,37 +6,33 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct VisitsView: View {
-    
     @State var buttons: [Int] = []  // Array to store the numbers for the buttons
     @State var nextNumber: Int = 1
+    
+    @Environment(\.modelContext) private var context
     
     var body: some View {
         ZStack {
             Color.AppColors.FondoAzulClaro
                 .ignoresSafeArea()
             VStack {
-                
                 if buttons.isEmpty {
-                    //Case 1: New User, has no visits
-                    NoVisitsView(buttons: $buttons, nextNumber: $nextNumber)
+                    NoVisitsView(buttons: $buttons, nextNumber: $nextNumber, context: context)
                 } else {
-                    //Case2: User has visits and wants to visit old ones or create a new visit
-                    UserWithVisits(buttons: $buttons, nextNumber: $nextNumber)
+                    UserWithVisits(buttons: $buttons, nextNumber: $nextNumber, context: context)
                 }
             }
         }
     }
 }
 
-#Preview {
-    VisitsView()
-}
-
 struct NoVisitsView: View {
     @Binding var buttons: [Int]
     @Binding var nextNumber: Int
+    var context: ModelContext  // Add the context
     
     var body: some View {
         VStack {
@@ -54,14 +50,13 @@ struct NoVisitsView: View {
                     .font(Font.custom("VagRounded-Light", size: 24))
                     .padding()
                     .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity) 
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             Spacer()
-            Button("Primera visita") {
-                buttons.append(nextNumber)
-                nextNumber += 1
-            }
             
+            Button("Primera visita") {
+                addNewVisit()
+            }
             .font(Font.custom("VagRoundedBold", size: 46))
             .foregroundStyle(Color.white)
             .frame(width: 320, height: 108)
@@ -73,17 +68,28 @@ struct NoVisitsView: View {
             .padding(.bottom, 100)
         }
     }
+    
+    private func addNewVisit() {
+        let newVisit = Visita(id: nextNumber, date: Date(), orden: "Orden \(nextNumber)")
+        buttons.append(nextNumber)
+        nextNumber += 1
+        do {
+            try context.save()
+        } catch {
+            print("Error saving new visit: \(error)")
+        }
+    }
 }
 
 struct UserWithVisits: View {
     @Binding var buttons: [Int]
     @Binding var nextNumber: Int
+    var context: ModelContext  // Add the context
     
     @State var isAlertOn: Bool = false
     
     var body: some View {
         VStack {
-            // Case 2: When there are visits, show the visits and button at the bottom
             Text("Mis Visitas")
                 .padding(.top, 35)
                 .font(Font.custom("VagRoundedBold", size: 32))
@@ -92,9 +98,7 @@ struct UserWithVisits: View {
             ScrollView {
                 LazyVStack(spacing: 10) {
                     ForEach(buttons, id: \.self) { buttonNumber in
-                        VisitaButton(numero: buttonNumber) {
-                            print("Button \(buttonNumber) clicked")
-                        }
+                        VisitaButton(numero: buttonNumber) {}
                     }
                     .padding(30)
                 }
@@ -118,12 +122,27 @@ struct UserWithVisits: View {
                     title: Text("Crear visita"),
                     message: Text("¿Quieres crear una nueva visita?"),
                     primaryButton: .default(Text("Crear visita"), action: {
-                        buttons.append(nextNumber)
-                        nextNumber += 1
+                        addNewVisit()
                     }),
                     secondaryButton: .destructive(Text("Cancelar"))
                 )
             }
         }
     }
+    
+    private func addNewVisit() {
+        let newVisit = Visita(id: nextNumber, date: Date(), orden: "Orden \(nextNumber)")
+        buttons.append(nextNumber)
+        nextNumber += 1
+        do {
+            try context.save()
+        } catch {
+            print("Error saving new visit: \(error)")
+        }
+    }
+}
+
+#Preview {
+    VisitsView()
+        .modelContainer(for: Visita.self, inMemory: true)
 }

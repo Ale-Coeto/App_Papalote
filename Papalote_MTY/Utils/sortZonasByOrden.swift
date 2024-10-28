@@ -3,21 +3,21 @@ import SwiftData
 // Function to sort zonas based on the orden property of Visita
 func sortZonasByOrden(zonas: [Zona], orden: String) -> [Zona] {
     let ordenArray = orden.components(separatedBy: " ")
-    // Create a dictionary to store the index of each zona based on orden
-    var zonaOrderDict: [Int: Int] = [:]
 
-    // Assuming each Zona has a unique nombre that matches the words in orden
+    // Create a dictionary to store the index of each zona based on orden
+    var zonaOrderDict: [String: Int] = [:] // Use String for zona.nombre
+
+    // Populate the dictionary with the order from ordenArray
     for (index, word) in ordenArray.enumerated() {
-        if let zona = zonas.first(where: { $0.nombre == word }) {
-            zonaOrderDict[zona.id] = index // Map the zona id to its index in orden
-        }
+        zonaOrderDict[word] = index // Map the zona nombre to its index in orden
     }
     
     // Sort zonas based on the order dictionary
-    return zonas.sorted {
-        guard let order1 = zonaOrderDict[$0.id], let order2 = zonaOrderDict[$1.id] else {
-            return false
-        }
+    let sortedZonas = zonas.sorted { zona1, zona2 in
+        let order1 = zonaOrderDict[zona1.nombre] ?? Int.max // Default to max if not found
+        let order2 = zonaOrderDict[zona2.nombre] ?? Int.max // Default to max if not found
         return order1 < order2
     }
+    
+    return sortedZonas
 }

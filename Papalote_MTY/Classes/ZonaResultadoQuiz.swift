@@ -15,11 +15,16 @@ class ZonaResultadoQuiz: Identifiable {
     var color: Color
     var logo: UIImage
     
-    init(id: Int, nombre: String, descripcion: String, color: Color, logo: UIImage) {
+    init(id: Int, nombre: String, descripcion: String, color: Color, logoFileName:String) {
         self.id = id
         self.nombre = nombre
         self.descripcion = descripcion
         self.color = Color(color)
-        self.logo = UIImage()
+        if let filePath = Bundle.main.path(forResource: logoFileName, ofType: "png"),
+           let uiImage = UIImage(contentsOfFile: filePath) {
+            self.logo = uiImage
+        } else {
+            self.logo = UIImage()
+        }
     }
 }

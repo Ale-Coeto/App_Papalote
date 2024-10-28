@@ -26,7 +26,7 @@ struct QuizCompletedView: View {
             
             """,
             color: Color.AppColors.pertenezco,
-            logo: UIImage(named: "pertenezco") ?? UIImage()
+            logoFileName: "pertenezco"
         ),
         ZonaResultadoQuiz(
             id: 1,
@@ -39,7 +39,7 @@ struct QuizCompletedView: View {
             amor, el fuego y la pasión.
             """,
             color: Color.AppColors.soy,
-            logo: UIImage(named: "soy") ?? UIImage()
+            logoFileName: "soy"
         ),
         ZonaResultadoQuiz(
             id: 2,
@@ -52,7 +52,7 @@ struct QuizCompletedView: View {
             inspira confianza y seguridad.
             """,
             color: Color.AppColors.comunico,
-            logo: UIImage(named: "comunico") ?? UIImage()
+            logoFileName: "comunico"
         ),
         ZonaResultadoQuiz(
             id: 3,
@@ -65,7 +65,7 @@ struct QuizCompletedView: View {
             entusiasmo, la confianza y la creatividad.
             """,
             color: Color.AppColors.expreso,
-            logo: UIImage(named: "expreso") ?? UIImage()
+            logoFileName: "expreso"
         ),
         ZonaResultadoQuiz(
             id: 4,
@@ -79,7 +79,7 @@ struct QuizCompletedView: View {
                 magia.
                 """,
             color: Color.AppColors.comprendo,
-            logo: UIImage(named: "comprendo") ?? UIImage()
+            logoFileName: "comprendo"
         ),
         ZonaResultadoQuiz(
             id: 5,
@@ -93,7 +93,7 @@ struct QuizCompletedView: View {
                 la protección.
                 """,
             color: Color.AppColors.pequeños,
-            logo: UIImage(named: "pequeños") ?? UIImage()
+            logoFileName: "pequeños"
         )
     ]
     
@@ -112,15 +112,18 @@ struct QuizCompletedView: View {
     var body: some View {
         if let topZona = getTopZonaResultado() {
                     VStack {
+                        Spacer()
+                        Image(uiImage: topZona.logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                        
                         Text(topZona.nombre)
                             .font(Font.custom("VagRoundedBold", size: 60))
                             .foregroundColor(topZona.color)
                         Text(topZona.descripcion)
-                            .padding()
-                        Image(uiImage: topZona.logo)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
+                            .font(Font.custom("VagRounded-Ligth", size: 20))
+                        Spacer()
                     }
                 } else {
                     Text("No results found.")

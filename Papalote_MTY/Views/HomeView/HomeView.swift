@@ -61,7 +61,8 @@ struct HomeView: View {
                             ForEach(zonas.sorted(by: { $0.id < $1.id }), id: \.self.id) { zona in
                                 let filteredExhibicion = exhibiciones.filter { $0.idZona == zona.id }
                                 let filteredInsignias = insignias.filter { $0.idZona == zona.id }
-                                let filteredFotos = fotos.filter { $0.idZona == zona.id }
+                                let filteredFotos = fotos.filter { $0.idVisita == visita.id && $0.idZona == zona.id }
+                                
                                 NavigationLink {
                                     ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos, visita: visita)
                                 } label: {

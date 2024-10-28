@@ -17,6 +17,7 @@ struct ZoneView: View {
     var visita: Visita
 
     @Query private var insigniasObtenidas: [InsigniaObtenida]
+    @Query private var exhibicionesObtenidas: [ExhibicionObtenida]
 
     var body: some View {
         NavigationStack {
@@ -31,7 +32,7 @@ struct ZoneView: View {
                         HStack(spacing: 40) {
                             ForEach(exhibiciones.sorted(by: { $0.id < $1.id }), id: \.self.id) { exhibicion in
                                 NavigationLink {
-                                    ExhibitionView(exhibicion: exhibicion)
+                                    ExhibitionView(exhibicion: exhibicion, visita: visita)
                                 } label: {
                                     AsyncImage(url: URL(string: exhibicion.imagen)) { image in
                                         image
@@ -40,8 +41,12 @@ struct ZoneView: View {
                                             .frame(width: 80, height: 80)
                                             .clipShape(Circle())
                                             .overlay {
+                                                let isCompleted = exhibicionesObtenidas.contains {
+                                                    $0.id == exhibicion.id && $0.visitaId == visita.id
+                                                }
+                                                
                                                 Circle()
-                                                    .stroke(exhibicion.completado ? Color.green : Color.gray, lineWidth: 5)
+                                                    .stroke(isCompleted ? Color.green : Color.gray, lineWidth: 5)
                                             }
                                     } placeholder: {
                                         ProgressView()
@@ -198,5 +203,5 @@ struct ZoneView: View {
         completado: false
     )]
     ZoneView(zona: sampleZona, exhibiciones: sampleExhibition, insignias: sampleInsignia, fotos: samplePhoto, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self], inMemory: true)
 }

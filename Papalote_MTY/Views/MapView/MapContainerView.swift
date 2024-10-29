@@ -45,11 +45,10 @@ struct MapContainerView: View {
                     // Add pins (fixed icons) at specific positions on the map
                     ForEach(pins.indices, id: \.self) { index in
                         let pinPosition = pins[index]
-                        Image(systemName: "mappin.circle.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.red)
-                            .position(x: pinPosition.x * mapViewModel.scale, y: pinPosition.y * mapViewModel.scale)
+                        let x = pinPosition.x * mapViewModel.scale
+                        let y = pinPosition.y * mapViewModel.scale
+                        
+                        PinView(x: x, y: y, color: .blue, icon: "mappin")
                     }
                 }
             }

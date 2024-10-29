@@ -94,31 +94,34 @@ struct QuizCompletedView: View {
         )
     ]
     
+    @Environment(\.modelContext) private var context
     let visita: Visita
-    
-    private func getTopZonaResultado() -> ZonaResultadoQuiz? {
+    @Binding var answers: [Int: Int]
+        
+        private func getTopZonaResultado() -> ZonaResultadoQuiz? {
             if let (id, _) = answers.max(by: { $0.value < $1.value }) {
-                print()
                 return mockZonaResultados.first(where: { $0.id == id })
             }
             return nil
         }
-    
-    @Binding var answers: [Int: Int]
-    
-    
-    
-    private func getOrderString() -> String {
-        // Sort answers by values in descending order and map keys to names
-        let orderedZonas = answers.sorted(by: { $0.value > $1.value }).compactMap { pair in
-            // Access the correct mockZonaResultados element based on the key
-            mockZonaResultados.first(where: { $0.id == pair.key })?.nombre
-        }
-        // Join names to form the order string
-        return orderedZonas.joined(separator: " ")
-    }
         
-        var body: some View {
+        private func getOrderString() -> String {
+            let orderedZonas = answers.sorted(by: { $0.value > $1.value }).compactMap { pair in
+                mockZonaResultados.first(where: { $0.id == pair.key })?.nombre
+            }
+            return orderedZonas.joined(separator: " ")
+        }
+        
+        private func updateVisitaOrder() {
+            visita.orden = getOrderString() // Update 'orden'
+            do {
+                try context.save() // Save changes to the database
+            } catch {
+                print("Error saving visita orden: \(error)")
+            }
+        }
+        
+    var body: some View {
             if let topZona = getTopZonaResultado() {
                 NavigationStack {
                     ZStack {
@@ -148,7 +151,7 @@ struct QuizCompletedView: View {
                                 .multilineTextAlignment(.center)
                                 .frame(maxWidth: .infinity)
                             Spacer()
-                            NavigationLink(destination: MainView(visita: updateVisitaOrder())) {
+                            NavigationLink(destination: MainView(visita: visita)) { // Use updated visita
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 20)
                                         .frame(width: 220, height: 58)
@@ -159,18 +162,15 @@ struct QuizCompletedView: View {
                                 }
                             }
                             .padding(.bottom, 60)
+                            .onAppear {
+                                updateVisitaOrder() // Update and save when view appears
+                            }
                         }
                     }
                 }
             } else {
                 Text("No results found.")
             }
-        }
-        
-        private func updateVisitaOrder() -> Visita {
-            let updatedVisita = visita
-            updatedVisita.orden = getOrderString()
-            return updatedVisita
         }
     }
 

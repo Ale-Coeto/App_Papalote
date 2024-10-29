@@ -23,6 +23,7 @@ struct VisitsView: View {
                 VStack {
                     if visitas.isEmpty {
                         NoVisitsView(nextNumber: $nextNumber, context: context, newVisit: $newVisit, shouldNavigateToStartQuiz: $shouldNavigateToStartQuiz)
+                        
                     } else {
                         UserWithVisits(nextNumber: $nextNumber, context: context)
                     }

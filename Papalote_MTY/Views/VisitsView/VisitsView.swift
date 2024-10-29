@@ -23,10 +23,15 @@ struct VisitsView: View {
                 VStack {
                     if visitas.isEmpty {
                         NoVisitsView(nextNumber: $nextNumber, context: context, newVisit: $newVisit, shouldNavigateToStartQuiz: $shouldNavigateToStartQuiz)
-                        
                     } else {
                         UserWithVisits(nextNumber: $nextNumber, context: context)
                     }
+                }
+            }
+            .onAppear {
+                // Update nextNumber based on existing visits
+                if let maxId = visitas.map({ $0.id }).max() {
+                    nextNumber = maxId + 1
                 }
             }
             .navigationDestination(isPresented: $shouldNavigateToStartQuiz) {

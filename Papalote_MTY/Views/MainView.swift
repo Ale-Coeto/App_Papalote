@@ -17,9 +17,7 @@ struct MainView: View {
         NavigationView(visita: visita)
             .onAppear{
                 MockDataManager.addMockData(to: context)
-                print(visita.orden)
             }
-            .navigationBarBackButtonHidden(true)
             
     }
 }

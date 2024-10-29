@@ -2,11 +2,10 @@
 //  QuizCompletedView.swift
 //  Papalote_MTY
 //
-//  Created by José Guerrero  on 25/10/24.
+//  Created by José Guerrero on 25/10/24.
 //
 
 import SwiftUI
-
 
 struct QuizCompletedView: View {
     
@@ -54,8 +53,7 @@ struct QuizCompletedView: View {
         ZonaResultadoQuiz(
             id: 3,
             nombre: "Expreso",
-            descripcion:
-                """
+            descripcion: """
             Eres una persona muy creativa, amas
             todo tipo de arte y fluyes con cada una de
             ellas. Tu color es el naranja, símbolo del
@@ -67,14 +65,14 @@ struct QuizCompletedView: View {
         ZonaResultadoQuiz(
             id: 4,
             nombre: "Comprendo",
-            descripcion:"""
-                Aparentas una personalidad seria pero en
-                realidad eres alguien bastante interesante
-                que siempre tiene algo bueno por decir. Tu
-                color es el morado, que representa la
-                sabiduría, la imaginación, el misterio y la
-                magia.
-                """,
+            descripcion: """
+            Aparentas una personalidad seria pero en
+            realidad eres alguien bastante interesante
+            que siempre tiene algo bueno por decir. Tu
+            color es el morado, que representa la
+            sabiduría, la imaginación, el misterio y
+            la magia.
+            """,
             color: Color.AppColors.comprendo,
             logoFileName: "comprendo"
         ),
@@ -82,13 +80,13 @@ struct QuizCompletedView: View {
             id: 5,
             nombre: "Pequeños",
             descripcion: """
-                Tienes una alma de niño, jamás dejas de
-                asombrarte. Para ti el explorar el mundo
-                que te rodea es increíble y representa una
-                fuente de felicidad. Tu color es el celeste, se
-                asocia con la tranquilidad, la generosidad y
-                la protección.
-                """,
+            Tienes una alma de niño, jamás dejas de
+            asombrarte. Para ti el explorar el mundo
+            que te rodea es increíble y representa una
+            fuente de felicidad. Tu color es el celeste, se
+            asocia con la tranquilidad, la generosidad y
+            la protección.
+            """,
             color: Color.AppColors.pequeños,
             logoFileName: "pequeños"
         )
@@ -97,113 +95,134 @@ struct QuizCompletedView: View {
     @Environment(\.modelContext) private var context
     let visita: Visita
     @Binding var answers: [Int: Int]
-        
-        private func getTopZonaResultado() -> ZonaResultadoQuiz? {
-    @Environment(\.modelContext) private var context
-    let visita: Visita
-    @Binding var answers: [Int: Int]
-        
-        private func getTopZonaResultado() -> ZonaResultadoQuiz? {
-            if let (id, _) = answers.max(by: { $0.value < $1.value }) {
-                return mockZonaResultados.first(where: { $0.id == id })
-            }
-            return nil
+    
+    @State private var topZona: ZonaResultadoQuiz?
+    @State private var orderString: String = ""
+    @State private var isSaving: Bool = false
+    @State private var shouldNavigateToMainView: Bool = false
+    
+    private func computeInitialValues() {
+        // Calculate top zona
+        if let (id, _) = answers.max(by: { $0.value < $1.value }) {
+            topZona = mockZonaResultados.first(where: { $0.id == id })
         }
         
-        private func getOrderString() -> String {
-            let orderedZonas = answers.sorted(by: { $0.value > $1.value }).compactMap { pair in
+        // Calculate order string
+        orderString = answers
+            .sorted(by: { $0.value > $1.value })
+            .compactMap { pair in
                 mockZonaResultados.first(where: { $0.id == pair.key })?.nombre
             }
-            return orderedZonas.joined(separator: " ")
-        }
+            .joined(separator: " ")
+    }
+    
+    private func updateVisitaOrder() async {
+        // Prevent multiple simultaneous saves
+        guard !isSaving else { return }
         
-        private func updateVisitaOrder() {
-            visita.orden = getOrderString() // Update 'orden'
+        isSaving = true
+        
+        // Perform database operation on background thread
+        await MainActor.run {
+            visita.orden = orderString
             do {
-                try context.save() // Save changes to the database
+                try context.save()
+                shouldNavigateToMainView = true // Set to true after saving
             } catch {
                 print("Error saving visita orden: \(error)")
             }
+            isSaving = false
         }
-        
-        
-        private func getOrderString() -> String {
-            let orderedZonas = answers.sorted(by: { $0.value > $1.value }).compactMap { pair in
-                mockZonaResultados.first(where: { $0.id == pair.key })?.nombre
-            }
-            return orderedZonas.joined(separator: " ")
-        }
-        
-        private func updateVisitaOrder() {
-            visita.orden = getOrderString() // Update 'orden'
-            do {
-                try context.save() // Save changes to the database
-            } catch {
-                print("Error saving visita orden: \(error)")
-            }
-        }
-        
+    }
+    
     var body: some View {
-        if let topZona = getTopZonaResultado() {
-            NavigationStack {
-                ZStack {
-                    Color.AppColors.FondoAzulClaro
-                        .ignoresSafeArea()
-                    VStack {
-                        Text(topZona.nombre)
-                            .font(Font.custom("VagRoundedBold", size: 60))
-                            .foregroundColor(topZona.color)
-                            .padding(.top, 60)
-
-                        Image(uiImage: topZona.logo)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 225)
-                        Spacer()
-                        HStack {
-                            Text("Tu zona es")
-                                .font(Font.custom("VagRounded-Ligth", size: 20))
+        Group {
+            if let topZona = topZona {
+                NavigationStack {
+                    ZStack {
+                        Color.AppColors.FondoAzulClaro
+                            .ignoresSafeArea()
+                        
+                        VStack {
                             Text(topZona.nombre)
-                                .font(Font.custom("VagRoundedBold", size: 20))
-                                .foregroundStyle(topZona.color)
-                        }
-                        .padding(.bottom)
-                        Text(topZona.descripcion)
-                            .font(Font.custom("VagRounded-Light", size: 18))
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                        Spacer()
-                        NavigationLink(destination: MainView(visita: visita)) { // Use updated visita
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 220, height: 58)
-                                    .foregroundStyle(topZona.color)
-                                Text("Continuar")
-                                    .font(Font.custom("VagRoundedBold", size: 24))
-                                    .foregroundStyle(Color.white)
+                                .font(.custom("VagRoundedBold", size: 60))
+                                .foregroundColor(topZona.color)
+                                .padding(.top, 60)
+                            
+                            Image(uiImage: topZona.logo)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 225)
+                                .drawingGroup() // Enable Metal rendering for better performance
+                            
+                            Spacer()
+                            
+                            VStack(spacing: 16) {
+                                HStack {
+                                    Text("Tu zona es")
+                                        .font(.custom("VagRounded-Light", size: 20))
+                                    Text(topZona.nombre)
+                                        .font(.custom("VagRoundedBold", size: 20))
+                                        .foregroundStyle(topZona.color)
+                                }
+                                
+                                Text(topZona.descripcion)
+                                    .font(.custom("VagRounded-Light", size: 18))
+                                    .multilineTextAlignment(.center)
+                                    .frame(maxWidth: .infinity)
                             }
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                Task {
+                                    await updateVisitaOrder()
+                                }
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .frame(width: 220, height: 58)
+                                        .foregroundStyle(topZona.color)
+                                    
+                                    if isSaving {
+                                        ProgressView()
+                                            .tint(.white)
+                                    } else {
+                                        Text("Continuar")
+                                            .font(.custom("VagRoundedBold", size: 24))
+                                            .foregroundStyle(Color.white)
+                                    }
+                                }
+                            }
+                            .disabled(isSaving)
+                            .padding(.bottom, 60)
                         }
-                        .padding(.bottom, 60)
-                        .simultaneousGesture(TapGesture().onEnded {
-                            // Update the visit order when the button is pressed
-                            updateVisitaOrder() // Ensure this does not block the main thread
-                        })
+                    }
+                    .navigationDestination(isPresented: $shouldNavigateToMainView) {
+                        MainView(visita: visita) // Navigate to MainView dynamically
                     }
                 }
-                .onAppear {
-                    // It's better to save the order when the view appears, but handle this asynchronously
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        updateVisitaOrder()
-                    }
-                }
+            } else {
+                Text("No results found.")
             }
-        } else {
-            Text("No results found.")
+        }
+        .onAppear {
+            computeInitialValues()
         }
     }
-    }
+}
 
 #Preview {
-    QuizCompletedView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), answers: .constant([2: 0]))
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
+    QuizCompletedView(
+        visita: Visita(
+            id: 1,
+            date: Date(),
+            orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"
+        ),
+        answers: .constant([2: 0])
+    )
+    .modelContainer(
+        for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self],
+        inMemory: true
+    )
 }

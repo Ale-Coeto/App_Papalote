@@ -12,20 +12,19 @@ struct VisitaButton: View {
     var action: () -> Void
     
     var body: some View {
-        Button(action: {
-            action()
-        }) {
+        HStack {
             Text("Visita \(numero)")
                 .padding()
+                .frame(width: 220, height: 70)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.white) // Button background color
-                        .frame(width: 220, height: 70)
-                        .shadow(radius: 3, x: 2, y: 2)
+                        .fill(Color.white)
+                        .shadow(color: Color.black.opacity(0.2), radius: 3, x: 2, y: 2)
                 )
-                .foregroundStyle(Color.black)    // Text color
+                .foregroundStyle(Color.black)
                 .font(Font.custom("VagRounded-Light", size: 26))
         }
+        .contentShape(Rectangle())
     }
 }
 

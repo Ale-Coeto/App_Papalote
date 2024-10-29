@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct ExhibitionView: View {
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) var dismiss
     @State var exhibicion: Exhibicion
-    
+    let visita: Visita
+    @Query private var exhibicionesObtenidas: [ExhibicionObtenida]
     var body: some View {
         VStack(spacing: 20) {
             Text(exhibicion.nombre)
@@ -30,13 +33,35 @@ struct ExhibitionView: View {
             
             Text(exhibicion.descripcion)
                 .font(.body)
-                .multilineTextAlignment(.center) 
+                .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .padding(.vertical, 10)
                 .cornerRadius(12)
             
             Button {
-                exhibicion.completado.toggle()
+                
+                // Check if the Exhibicion has already been obtained for the current visita
+                if !exhibicionesObtenidas.contains(where: { $0.id == exhibicion.id && $0.visitaId == visita.id }) {
+                    // Create a new InsigniaObtenida instance
+                    let newExhibicionObtenida = ExhibicionObtenida(id: exhibicion.id, visitaId: visita.id)
+                    
+                    // Add it to the context
+                    context.insert(newExhibicionObtenida)
+                   // print("Esta es la nueva exhibicion")
+                    //print(newExhibicionObtenida)
+                    // Save the context (if applicable in your environment)
+                    do {
+                        try context.save()
+                        // Dismiss the BadgeView after saving
+                        dismiss() // Dismisses the view
+                    } catch {
+                        print("Error saving new exhibicion obtenida: \(error)")
+                    }
+                } else {
+                    // Dismiss even if insignia is already obtained
+                    dismiss() // Dismisses the view
+                }
+                //exhibicion.completado.toggle()
             } label: {
                 Text("Completar")
                     .font(.title2)
@@ -44,7 +69,7 @@ struct ExhibitionView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(exhibicion.completado ? Color.green : Color.gray)
+                    .background(exhibicionesObtenidas.contains(where: { $0.id == exhibicion.id && $0.visitaId == visita.id }) ? Color.green : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -67,6 +92,6 @@ struct ExhibitionView: View {
         isOpen: true,
         location: "Sala de Arte"
     )
-    ExhibitionView(exhibicion: sampleExhibition)
+    ExhibitionView(exhibicion: sampleExhibition, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
 }
 

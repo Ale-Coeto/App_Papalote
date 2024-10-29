@@ -20,7 +20,7 @@ struct NavigationView: View {
                                
                         }
                     
-                    HomeView(visita: visita)
+                    PhotosView(visita: visita)
                         .tabItem {
                             Label("Fotos", systemImage: "camera")
                                 
@@ -37,7 +37,7 @@ struct NavigationView: View {
                             Label("Insignias", systemImage: "trophy")
                         }
                 }
-                .accentColor(Color("DarkGreen"))
+                    .accentColor(Color.AppColors.VerdePapalote)
             )
     }
 }

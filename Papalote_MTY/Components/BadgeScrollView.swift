@@ -2,8 +2,10 @@ import SwiftUI
 import SwiftData
 
 struct BadgeScrollView: View {
-    var zona: Zona // Now it takes zona directly
+    var zona: Zona? // Optional Zona
+    var evento: Evento? // Optional Evento
     let visita: Visita
+    let isEvento: Bool // Flag to differentiate between Zona and Evento
     
     @Environment(\.modelContext) private var context
     @Query private var insignias: [Insignia]
@@ -12,20 +14,24 @@ struct BadgeScrollView: View {
     @State private var selectedInsignia: Insignia? // State to track the selected insignia
     
     var body: some View {
-        // Filter insignias based on the passed zona
-        let filteredInsignias = insignias.filter { $0.idZona == zona.id }
-        let isCompleted = getIsCompletedList(for: filteredInsignias)
+        // Filter insignias based on whether it's for a Zona or Evento
+        let filteredInsignias = isEvento ?
+            insignias.filter { $0.idEvento == evento?.id } :
+            insignias.filter { $0.idZona == zona?.id }
+        let sortedInsignias = filteredInsignias.sorted(by: { $0.id < $1.id })
+
+        let isCompleted = getIsCompletedList(for: sortedInsignias)
 
         VStack(alignment: .leading, spacing: 10) {
             VStack(alignment: .leading) {
-                Text(zona.nombre)
+                Text(isEvento ? (evento?.nombre ?? "Evento") : (zona?.nombre ?? "Zona"))
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(.gray)
                     .padding([.top, .leading, .trailing])
-                
+
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: 15) {
-                        ForEach(Array(filteredInsignias.enumerated()), id: \.element.id) { index, insignia in
+                        ForEach(Array(sortedInsignias.enumerated()), id: \.element.id) { index, insignia in
                             Button(action: {
                                 selectedInsignia = insignia // Set the clicked insignia
                             }) {
@@ -79,6 +85,12 @@ struct BadgeScrollView: View {
 #Preview {
     BadgeScrollView(
         zona: Zona(id: 1, nombre: "Zona 1", descripcion: "", color: "", logo: ""),
-        visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
+        visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"),
+        isEvento: false
+    )
+    BadgeScrollView(
+        evento: Evento(id: 1, fechaInicio: Date(), fechaFin: Date(), nombre: "Evento 1", descripcion: "", imagen: ""),
+        visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"),
+        isEvento: true
     )
 }

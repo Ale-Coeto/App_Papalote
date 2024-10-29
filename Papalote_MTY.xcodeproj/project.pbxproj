@@ -28,10 +28,15 @@
 		4519DFE02CC339EF00DF6E7F /* Visita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFDF2CC339EF00DF6E7F /* Visita.swift */; };
 		4519DFE22CC33A0000DF6E7F /* InsigniaObtenida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */; };
 		4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */; };
+		454994982CCDC94300D8E464 /* InstagramSharingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454994972CCDC94300D8E464 /* InstagramSharingUtils.swift */; };
+		454995AE2CD02D7500D8E464 /* ExhibicionObtenida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */; };
 		456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456680D32CC38DD200D88681 /* BadgeScrollView.swift */; };
+		45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */; };
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
+		9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */; };
+		9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9188A6E82CCC5AC6008ADE1E /* Quiz.swift */; };
 		919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A4F372CC6F31700532171 /* VisitaButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,11 +62,16 @@
 		4519DFDF2CC339EF00DF6E7F /* Visita.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visita.swift; sourceTree = "<group>"; };
 		4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsigniaObtenida.swift; sourceTree = "<group>"; };
 		4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManager.swift; sourceTree = "<group>"; };
+		454994972CCDC94300D8E464 /* InstagramSharingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramSharingUtils.swift; sourceTree = "<group>"; };
+		454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibicionObtenida.swift; sourceTree = "<group>"; };
 		456680D32CC38DD200D88681 /* BadgeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeScrollView.swift; sourceTree = "<group>"; };
+		45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortZonasByOrden.swift; sourceTree = "<group>"; };
 		55056AB12CC4604200469742 /* Foto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
 		9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Papalote-MTY-Info.plist"; sourceTree = SOURCE_ROOT; };
+		9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZonaResultadoQuiz.swift; sourceTree = "<group>"; };
+		9188A6E82CCC5AC6008ADE1E /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		919A4F372CC6F31700532171 /* VisitaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitaButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,10 +79,13 @@
 		2CD8C2972CCB588E0063E89D /* MapView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MapView; sourceTree = "<group>"; };
 		2CD8C29D2CCB589C0063E89D /* HomeView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = HomeView; sourceTree = "<group>"; };
 		2CD8C2A12CCB58A30063E89D /* Layout */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Layout; sourceTree = "<group>"; };
+		454994942CCDADEE00D8E464 /* PhotosView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PhotosView; sourceTree = "<group>"; };
 		456680D82CC38F1000D88681 /* BadgesView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BadgesView; sourceTree = "<group>"; };
+		45E6BB812CCC6A4D008F39A5 /* SpecialEventView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SpecialEventView; sourceTree = "<group>"; };
 		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
 		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
+		9188A7062CCC5D6E008ADE1E /* QuizViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = QuizViews; sourceTree = "<group>"; };
 		919A4F322CC6E73500532171 /* VisitsView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VisitsView; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -130,6 +143,9 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				454994942CCDADEE00D8E464 /* PhotosView */,
+				45E6BB812CCC6A4D008F39A5 /* SpecialEventView */,
+				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				2CD8C2972CCB588E0063E89D /* MapView */,
@@ -168,6 +184,7 @@
 		2CD2B34C2CBECCC4004BBE01 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */,
 				4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */,
 				4519DFDF2CC339EF00DF6E7F /* Visita.swift */,
 				4519DFDD2CC339BB00DF6E7F /* Insignia.swift */,
@@ -175,6 +192,8 @@
 				2CD2B3522CBED0FC004BBE01 /* Evento.swift */,
 				55056AB12CC4604200469742 /* Foto.swift */,
 				55056AB32CC4622F00469742 /* Exhibicion.swift */,
+				9188A6E82CCC5AC6008ADE1E /* Quiz.swift */,
+				9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */,
 				2CEB11402CD0C4210073C1C5 /* Pin.swift */,
 			);
 			path = Classes;
@@ -183,6 +202,8 @@
 		2CD2B34F2CBECE3C004BBE01 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				454994972CCDC94300D8E464 /* InstagramSharingUtils.swift */,
+				45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */,
 				4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */,
 				9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */,
 				2CD2B3502CBECE48004BBE01 /* ColorExtension.swift */,
@@ -211,10 +232,13 @@
 				2CD8C2972CCB588E0063E89D /* MapView */,
 				2CD8C29D2CCB589C0063E89D /* HomeView */,
 				2CD8C2A12CCB58A30063E89D /* Layout */,
+				454994942CCDADEE00D8E464 /* PhotosView */,
 				456680D82CC38F1000D88681 /* BadgesView */,
+				45E6BB812CCC6A4D008F39A5 /* SpecialEventView */,
 				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
+				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 			);
 			name = Papalote_MTY;
@@ -284,13 +308,19 @@
 				55056AB22CC4604200469742 /* Foto.swift in Sources */,
 				4519DFDE2CC339BB00DF6E7F /* Insignia.swift in Sources */,
 				2C5D29A02CBDD6E800EB3DB2 /* MainView.swift in Sources */,
+				9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */,
 				2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */,
 				4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */,
 				2CD2B3512CBECE48004BBE01 /* ColorExtension.swift in Sources */,
+				454994982CCDC94300D8E464 /* InstagramSharingUtils.swift in Sources */,
+				454995AE2CD02D7500D8E464 /* ExhibicionObtenida.swift in Sources */,
 				2CD8C1C82CC6CB580063E89D /* CircleButtonView.swift in Sources */,
 				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
 				919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */,
 				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
+				2CD2B34B2CBE0F48004BBE01 /* NavigationView.swift in Sources */,
+				9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */,
+				45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */,
 				2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */,
 				2CD2B3462CBE01A4004BBE01 /* HomeViewModel.swift in Sources */,
 				55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */,
@@ -445,7 +475,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "CTST.Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = "tec.mx.Papalote-MTY";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -478,7 +508,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "CTST.Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = "tec.mx.Papalote-MTY";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

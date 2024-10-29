@@ -13,6 +13,7 @@ struct BadgeView: View {
     let visita: Visita
     
     @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) var dismiss
     @Query private var insigniasObtenidas: [InsigniaObtenida]
     
     var body: some View {
@@ -52,23 +53,17 @@ struct BadgeView: View {
                     // Save the context (if applicable in your environment)
                     do {
                         try context.save()
-                        print("Context saved successfully.")
-                        
-                        // Create a FetchDescriptor for InsigniaObtenida
-                        let fetchDescriptor = FetchDescriptor<InsigniaObtenida>()
-                        
-                        // Fetch the data using the descriptor
-                        let insigniasObtenidas: [InsigniaObtenida] = try context.fetch(fetchDescriptor)
-                        print("Insignias Obtenidas after saving:")
-                        for insignia in insigniasObtenidas {
-                            print("Insignia ID: \(insignia.id), Visita ID: \(insignia.visitaId)")
-                        }
+                        // Dismiss the BadgeView after saving
+                        dismiss() // Dismisses the view
                     } catch {
                         print("Error saving new InsigniaObtenida: \(error)")
                     }
-  }
+                } else {
+                    // Dismiss even if insignia is already obtained
+                    dismiss() // Dismisses the view
+                }
             } label: {
-                Text("Escanear")
+                Text("Completar")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)

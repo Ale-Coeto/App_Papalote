@@ -19,8 +19,8 @@ struct MockDataManager {
         existingEventos?.forEach { context.delete($0) }
         
         // Fetch and delete all existing Visita objects
-        let existingVisitas = try? context.fetch(FetchDescriptor<Visita>())
-        existingVisitas?.forEach { context.delete($0) }
+        /*let existingVisitas = try? context.fetch(FetchDescriptor<Visita>())
+        existingVisitas?.forEach { context.delete($0) }*/
         
         // Fetch and delete all existing Insignia objects
         let existingInsignias = try? context.fetch(FetchDescriptor<Insignia>())
@@ -28,8 +28,9 @@ struct MockDataManager {
         
 
         // Fetch and delete all existing Fotos objects
-        /*let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
-        existingFotos?.forEach { context.delete($0) }*/
+        let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
+        let existingFotoIDs = existingFotos?.map { $0.id } ?? []
+        //existingFotos?.forEach { context.delete($0) }
         
         // Fetch and delete all existing Exhibicion objects
         let existingExhibicion = try? context.fetch(FetchDescriptor<Exhibicion>())
@@ -63,7 +64,7 @@ struct MockDataManager {
         
         
         let eventos = [
-            Evento(id: 1, fechaInicio: Date(), fechaFin: Date(), nombre: "Semana Mundial del espacio", descripcion: "dia del espacio", imagen: "a")
+            Evento(id: 1, fechaInicio: Date(), fechaFin: Date(), nombre: "Semana Cosmica", descripcion: "dia del espacio", imagen: "https://d20ohkaloyme4g.cloudfront.net/img/document_thumbnails/a0b8d1f7b02a075564ed58d2c9a31d9d/thumb_1200_3000.png")
         ]
         
         let visitas = [
@@ -111,10 +112,17 @@ struct MockDataManager {
             Insignia(id: 29, idZona: 6, idEvento: -1, nombre: "Embajador del Reciclaje", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por fomentar el reciclaje en la comunidad", completado: false, idNFC: 1),
             Insignia(id: 30, idZona: 6, idEvento: -1, nombre: "Defensor de la Tierra", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por proteger el medio ambiente", completado: false, idNFC: 1),
             Insignia(id: 31, idZona: 6, idEvento: -1, nombre: "Caminante del Planeta", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por cuidar cada rincón del planeta", completado: false, idNFC: 1),
-            Insignia(id: 32, idZona: 6, idEvento: -1, nombre: "Héroe de la Naturaleza", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por acciones heroicas en pro de la naturaleza", completado: false, idNFC: 1)
+            Insignia(id: 32, idZona: 6, idEvento: -1, nombre: "Héroe de la Naturaleza", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por acciones heroicas en pro de la naturaleza", completado: false, idNFC: 1),
+            Insignia(id: 33, idZona: 0, idEvento: 1, nombre: "Iniciativa Verde", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por crear proyectos ecológicos comunitarios", completado: false, idNFC: 1),
+            Insignia(id: 34, idZona: 0, idEvento: 1, nombre: "Voluntario Ambiental", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por participar en actividades de limpieza", completado: false, idNFC: 1),
+            Insignia(id: 35, idZona: 0, idEvento: 1, nombre: "Colaborador Verde", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por colaborar en proyectos de conservación", completado: false, idNFC: 1),
+            Insignia(id: 36, idZona: 0, idEvento: 1, nombre: "Embajador del Reciclaje", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por fomentar el reciclaje en la comunidad", completado: false, idNFC: 1),
+            Insignia(id: 37, idZona: 0, idEvento: 1, nombre: "Defensor de la Tierra", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por proteger el medio ambiente", completado: false, idNFC: 1),
+            Insignia(id: 38, idZona: 0, idEvento: 1, nombre: "Caminante del Planeta", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por cuidar cada rincón del planeta", completado: false, idNFC: 1),
+            Insignia(id: 39, idZona: 0, idEvento: 1, nombre: "Héroe de la Naturaleza", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por acciones heroicas en pro de la naturaleza", completado: false, idNFC: 1)
         ]
         
-        
+        /*
         let fotos = [
             // Zona 1
             Foto(id: 1, idZona: 1, idVisita: 1, imagen: nil, completado: false),
@@ -145,7 +153,24 @@ struct MockDataManager {
             Foto(id: 16, idZona: 6, idVisita: 1, imagen: nil, completado: false),
             Foto(id: 17, idZona: 6, idVisita: 1, imagen: nil, completado: false),
             Foto(id: 18, idZona: 6, idVisita: 1, imagen: nil, completado: false)
-        ]
+        ]*/
+        
+        var fotos: [Foto] = []
+
+        let totalZonas = 6 // Total number of zonas
+        let fotosPorZona = 3 // Number of photos per zona
+        var fotoId = 1 // Initialize the fotoId counter
+
+        // Populate fotos with 20 visits
+        for idVisita in 1...20 {
+            for idZona in 1...totalZonas {
+                for _ in 0..<fotosPorZona {
+                    let foto = Foto(id: fotoId, idZona: idZona, idVisita: idVisita, imagen: nil, completado: false)
+                    fotos.append(foto)
+                    fotoId += 1 // Increment the fotoId for the next photo
+                }
+            }
+        }
 
         
         
@@ -195,9 +220,9 @@ struct MockDataManager {
         }
         
         // Add Visitas
-        for visita in visitas {
+        /*for visita in visitas {
             context.insert(visita)
-        }
+        }*/
         
         // Add InsigniasObtenidas
         /*
@@ -212,7 +237,9 @@ struct MockDataManager {
         
         // Add Fotos
         for foto in fotos {
-            context.insert(foto)
+            if !existingFotoIDs.contains(foto.id){
+                context.insert(foto)
+            }
         }
 
         // Add Exhibicion

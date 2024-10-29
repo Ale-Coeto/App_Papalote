@@ -6,36 +6,48 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct VisitsView: View {
-    
-    @State var buttons: [Int] = []  // Array to store the numbers for the buttons
-    @State var nextNumber: Int = 1
+    @Environment(\.modelContext) private var context
+    @Query private var visitas: [Visita]
+    @State private var nextNumber: Int = 1
+    @State private var newVisit: Visita?
+    @State private var shouldNavigateToStartQuiz = false
     
     var body: some View {
-        ZStack {
-            Color.AppColors.FondoAzulClaro
-                .ignoresSafeArea()
-            VStack {
-                if buttons.isEmpty {
-                    //Case 1: New User, has no visits
-                    NoVisitsView(buttons: $buttons, nextNumber: $nextNumber)
-                } else {
-                    //Case2: User has visits and wants to visit old ones or create a new visit
-                    UserWithVisits(buttons: $buttons, nextNumber: $nextNumber)
+        NavigationStack {
+            ZStack {
+                Color.AppColors.FondoAzulClaro
+                    .ignoresSafeArea()
+                VStack {
+                    if visitas.isEmpty {
+                        NoVisitsView(nextNumber: $nextNumber, context: context, newVisit: $newVisit, shouldNavigateToStartQuiz: $shouldNavigateToStartQuiz)
+                    } else {
+                        UserWithVisits(nextNumber: $nextNumber, context: context)
+                    }
+                }
+            }
+            .onAppear {
+                // Update nextNumber based on existing visits
+                if let maxId = visitas.map({ $0.id }).max() {
+                    nextNumber = maxId + 1
+                }
+            }
+            .navigationDestination(isPresented: $shouldNavigateToStartQuiz) {
+                if let visit = newVisit {
+                    StartQuizView(visita: visit)
                 }
             }
         }
     }
 }
 
-#Preview {
-    VisitsView()
-}
-
 struct NoVisitsView: View {
-    @Binding var buttons: [Int]
     @Binding var nextNumber: Int
+    var context: ModelContext
+    @Binding var newVisit: Visita?
+    @Binding var shouldNavigateToStartQuiz: Bool
     
     var body: some View {
         VStack {
@@ -46,16 +58,21 @@ struct NoVisitsView: View {
             
             Spacer()
             
-            Text("Oh, parece que no tienes ninguna visita...")
-                .font(Font.custom("VagRounded-Light", size: 24))
-                .padding()
-            
-            Spacer()
-            Button("Primera visita") {
-                buttons.append(nextNumber)
-                nextNumber += 1
+            ZStack {
+                Color.AppColors.FondoAzulClaro
+                
+                Text("¡Oh no! Parece que no tienes ninguna visita...")
+                    .font(Font.custom("VagRounded-Light", size: 24))
+                    .padding()
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
+            Spacer()
             
+            Button("Primera visita") {
+                addNewVisit()
+                shouldNavigateToStartQuiz = true
+            }
             .font(Font.custom("VagRoundedBold", size: 46))
             .foregroundStyle(Color.white)
             .frame(width: 320, height: 108)
@@ -67,34 +84,56 @@ struct NoVisitsView: View {
             .padding(.bottom, 100)
         }
     }
+    
+    private func addNewVisit() {
+        let visit = Visita(id: nextNumber, date: Date(), orden: "")
+        context.insert(visit)
+        nextNumber += 1
+        do {
+            try context.save()
+            newVisit = visit
+        } catch {
+            print("Error saving new visit: \(error)")
+        }
+    }
 }
 
 struct UserWithVisits: View {
-    @Binding var buttons: [Int]
     @Binding var nextNumber: Int
+    @Query private var visitas: [Visita]
+    var context: ModelContext
     
-    @State var isAlertOn: Bool = false
+    @State private var isAlertOn: Bool = false
+    @State private var newVisit: Visita?
+    @State private var shouldNavigate = false
     
     var body: some View {
         VStack {
-            // Case 2: When there are visits, show the visits and button at the bottom
             Text("Mis Visitas")
                 .padding(.top, 35)
                 .font(Font.custom("VagRoundedBold", size: 32))
                 .foregroundStyle(Color.AppColors.AzulPapalote)
-            
+
             ScrollView {
                 LazyVStack(spacing: 10) {
-                    ForEach(buttons, id: \.self) { buttonNumber in
-                        VisitaButton(numero: buttonNumber) {
-                            print("Button \(buttonNumber) clicked")
+                    ForEach(visitas.sorted(by: { $0.id < $1.id })) { visita in
+                        NavigationLink(destination: {
+                            if visita.orden == "" {
+                                StartQuizView(visita: visita)
+                            } else {
+                                HomeView(visita: visita)
+                            }
+                        }) {
+                            VisitaButton(numero: visita.id) {
+                                // Action handled by NavigationLink
+                            }
                         }
                     }
-                    .padding(30)
                 }
+                .padding(30)
             }
             Spacer()
-            
+
             Button("Nueva visita") {
                 isAlertOn = true
             }
@@ -112,12 +151,34 @@ struct UserWithVisits: View {
                     title: Text("Crear visita"),
                     message: Text("¿Quieres crear una nueva visita?"),
                     primaryButton: .default(Text("Crear visita"), action: {
-                        buttons.append(nextNumber)
-                        nextNumber += 1
+                        addNewVisit()
                     }),
                     secondaryButton: .destructive(Text("Cancelar"))
                 )
             }
+            .navigationDestination(isPresented: $shouldNavigate) {
+                if let visit = newVisit {
+                    StartQuizView(visita: visit)
+                }
+            }
         }
     }
+    
+    private func addNewVisit() {
+        let visit = Visita(id: nextNumber, date: Date(), orden: "")
+        context.insert(visit)
+        nextNumber += 1
+        do {
+            try context.save()
+            newVisit = visit
+            shouldNavigate = true
+        } catch {
+            print("Error saving new visit: \(error)")
+        }
+    }
+}
+
+#Preview {
+    VisitsView()
+        .modelContainer(for: Visita.self, inMemory: true)
 }

@@ -34,6 +34,8 @@
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
+		9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */; };
+		9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9188A6E82CCC5AC6008ADE1E /* Quiz.swift */; };
 		919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A4F372CC6F31700532171 /* VisitaButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
 		9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Papalote-MTY-Info.plist"; sourceTree = SOURCE_ROOT; };
+		9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZonaResultadoQuiz.swift; sourceTree = "<group>"; };
+		9188A6E82CCC5AC6008ADE1E /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		919A4F372CC6F31700532171 /* VisitaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitaButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +83,7 @@
 		55056A702CC3306700469742 /* ZoneView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZoneView; sourceTree = "<group>"; };
 		9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AssetsExtra; sourceTree = "<group>"; };
 		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
+		9188A7062CCC5D6E008ADE1E /* QuizViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = QuizViews; sourceTree = "<group>"; };
 		919A4F322CC6E73500532171 /* VisitsView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VisitsView; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -138,6 +143,7 @@
 			children = (
 				454994942CCDADEE00D8E464 /* PhotosView */,
 				45E6BB812CCC6A4D008F39A5 /* SpecialEventView */,
+				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				2CD8C2972CCB588E0063E89D /* MapView */,
@@ -184,6 +190,8 @@
 				2CD2B3522CBED0FC004BBE01 /* Evento.swift */,
 				55056AB12CC4604200469742 /* Foto.swift */,
 				55056AB32CC4622F00469742 /* Exhibicion.swift */,
+				9188A6E82CCC5AC6008ADE1E /* Quiz.swift */,
+				9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -227,6 +235,7 @@
 				55056A702CC3306700469742 /* ZoneView */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
+				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
 			);
 			name = Papalote_MTY;
@@ -295,6 +304,7 @@
 				55056AB22CC4604200469742 /* Foto.swift in Sources */,
 				4519DFDE2CC339BB00DF6E7F /* Insignia.swift in Sources */,
 				2C5D29A02CBDD6E800EB3DB2 /* MainView.swift in Sources */,
+				9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */,
 				2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */,
 				4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */,
 				2CD2B3512CBECE48004BBE01 /* ColorExtension.swift in Sources */,
@@ -304,6 +314,8 @@
 				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
 				919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */,
 				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
+				2CD2B34B2CBE0F48004BBE01 /* NavigationView.swift in Sources */,
+				9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */,
 				45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */,
 				2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */,
 				2CD2B3462CBE01A4004BBE01 /* HomeViewModel.swift in Sources */,

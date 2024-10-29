@@ -17,6 +17,7 @@ struct MainView: View {
         NavigationView(visita: visita)
             .onAppear{
                 MockDataManager.addMockData(to: context)
+                print(visita.orden)
             }
             .navigationBarBackButtonHidden(true)
             
@@ -24,6 +25,6 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
+    MainView(visita: Visita(id: 1, date: Date(), orden: "Pequeños Comunico Comprendo Soy Expreso Pertenezco"))
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

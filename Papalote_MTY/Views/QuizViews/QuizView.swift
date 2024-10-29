@@ -23,6 +23,8 @@ struct QuizView: View {
     @State var mostAnwsers: Int = 0
     @State var isQuizCompleted: Bool = false
     
+    let visita: Visita
+    
     @State private var questions: [Question] = [
         // Hardcoded Questions and Anwsers. NOT MOST OPTIMAL
         
@@ -111,7 +113,7 @@ struct QuizView: View {
             .padding(.vertical)
             .navigationDestination(isPresented: $isQuizCompleted) {
                 SplashScreen(splasherText: "Cargando resultados.") {
-                    QuizCompletedView(answers: $answers)
+                    QuizCompletedView(visita: visita,answers: $answers)
                 }
             }
         }
@@ -171,5 +173,5 @@ struct QuizView: View {
 }
 
 #Preview {
-    QuizView()
+    QuizView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
 }

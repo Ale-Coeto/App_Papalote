@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StartQuizView: View {
     @State var isAlertOn: Bool = false
-    
+    let visita: Visita
     var body: some View {
         NavigationStack{
         ZStack{
@@ -24,7 +24,7 @@ struct StartQuizView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 Spacer()
-                NavigationLink(destination: QuizView()) {
+                NavigationLink(destination: QuizView(visita: visita)) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 350, height: 80)
@@ -59,6 +59,7 @@ struct StartQuizView: View {
                 )
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -134,5 +135,5 @@ struct ZonasLogos: View {
 
 
 #Preview {
-    StartQuizView()
+    StartQuizView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
 }

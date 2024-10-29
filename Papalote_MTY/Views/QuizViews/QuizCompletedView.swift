@@ -94,6 +94,7 @@ struct QuizCompletedView: View {
         )
     ]
     
+    let visita: Visita
     
     private func getTopZonaResultado() -> ZonaResultadoQuiz? {
             if let (id, _) = answers.max(by: { $0.value < $1.value }) {
@@ -102,63 +103,78 @@ struct QuizCompletedView: View {
             }
             return nil
         }
-    let visita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
     
     @Binding var answers: [Int: Int]
     
     
-    var body: some View {
-        if let topZona = getTopZonaResultado() {
-            NavigationStack{
-                ZStack{
-                    Color.AppColors.FondoAzulClaro
-                        .ignoresSafeArea()
-                    VStack {
-                        Text(topZona.nombre)
-                            .font(Font.custom("VagRoundedBold", size: 60))
-                            .foregroundColor(topZona.color)
-                            .padding(.top, 60)
-                        
-                        Image(uiImage: topZona.logo)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 225)
-                        Spacer()
-                        HStack{
-                            Text("Tu zona es")
-                                .font(Font.custom("VagRounded-Ligth", size: 20))
+    
+    private func getOrderString() -> String {
+        // Sort answers by values in descending order and map keys to names
+        let orderedZonas = answers.sorted(by: { $0.value > $1.value }).compactMap { pair in
+            // Access the correct mockZonaResultados element based on the key
+            mockZonaResultados.first(where: { $0.id == pair.key })?.nombre
+        }
+        // Join names to form the order string
+        return orderedZonas.joined(separator: " ")
+    }
+        
+        var body: some View {
+            if let topZona = getTopZonaResultado() {
+                NavigationStack {
+                    ZStack {
+                        Color.AppColors.FondoAzulClaro
+                            .ignoresSafeArea()
+                        VStack {
                             Text(topZona.nombre)
-                                .font(Font.custom("VagRoundedBold", size: 20))
-                                .foregroundStyle(topZona.color)
-                        }
-                        .padding(.bottom)
-                        Text(topZona.descripcion)
-                            .font(Font.custom("VagRounded-Light", size: 18))
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                        Spacer()
-                        NavigationLink(destination: MainView(visita: visita)
-                        ){
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 220, height: 58)
+                                .font(Font.custom("VagRoundedBold", size: 60))
+                                .foregroundColor(topZona.color)
+                                .padding(.top, 60)
+                            
+                            Image(uiImage: topZona.logo)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 225)
+                            Spacer()
+                            HStack {
+                                Text("Tu zona es")
+                                    .font(Font.custom("VagRounded-Ligth", size: 20))
+                                Text(topZona.nombre)
+                                    .font(Font.custom("VagRoundedBold", size: 20))
                                     .foregroundStyle(topZona.color)
-                                Text("Continuar")
-                                    .font(Font.custom("VagRoundedBold", size: 24))
-                                    .foregroundStyle(Color.init(hex: "#ffffff"))
                             }
+                            .padding(.bottom)
+                            Text(topZona.descripcion)
+                                .font(Font.custom("VagRounded-Light", size: 18))
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity)
+                            Spacer()
+                            NavigationLink(destination: MainView(visita: updateVisitaOrder())) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .frame(width: 220, height: 58)
+                                        .foregroundStyle(topZona.color)
+                                    Text("Continuar")
+                                        .font(Font.custom("VagRoundedBold", size: 24))
+                                        .foregroundStyle(Color.init(hex: "#ffffff"))
+                                }
+                            }
+                            .padding(.bottom, 60)
                         }
-                        .padding(.bottom, 60)
                     }
                 }
-                }
-                } else {
-                    Text("No results found.")
-                }
+            } else {
+                Text("No results found.")
+            }
+        }
+        
+        private func updateVisitaOrder() -> Visita {
+            let updatedVisita = visita
+            updatedVisita.orden = getOrderString()
+            return updatedVisita
+        }
     }
-}
 
 #Preview {
-    QuizCompletedView(answers: .constant([0: 0]))
+    QuizCompletedView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), answers: .constant([2: 0]))
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

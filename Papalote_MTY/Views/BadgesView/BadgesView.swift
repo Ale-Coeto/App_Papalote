@@ -35,7 +35,7 @@ struct BadgesView: View {
                 .padding()
                 .background(Color(red: 240/255, green: 244/255, blue: 248/255))
             }
-                .padding(.top, 50)
+                .padding(.top, 30)
             .onAppear {
                 MockDataManager.addMockData(to: context)
             })

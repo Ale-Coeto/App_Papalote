@@ -9,4 +9,5 @@ import Foundation
 
 struct Constants {
     static let HEADER_HEIGHT = 80.0
+    static let PIN_SIZE = 40.0
 }

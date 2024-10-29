@@ -10,14 +10,14 @@ import SwiftUI
 struct MapView: View {
     @StateObject var mapViewModel = MapViewModel()
     @StateObject var locationManager = LocationManager()
-    
+    let visita: Visita
     
     var body: some View {
         HomeLayoutView(title: "Mapa")
             .overlay(
                 VStack {
                     ZStack {
-                        MapContainerView(mapViewModel: mapViewModel)
+                        MapContainerView(visita: visita, mapViewModel: mapViewModel)
                         
                         //Header
                         MapHeaderView(mapViewModel: mapViewModel)
@@ -43,5 +43,6 @@ struct MapView: View {
 
 
 #Preview {
-    MapView()
+    MapView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

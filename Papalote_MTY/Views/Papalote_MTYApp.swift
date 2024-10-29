@@ -15,6 +15,6 @@ struct Papalote_MTYApp: App {
         WindowGroup {
             SplashScreen()
         }
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self])
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Pin.self])
     }
 }

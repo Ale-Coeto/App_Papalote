@@ -7,39 +7,45 @@
 
 import SwiftUI
 
+
 struct PinView: View {
     var x: CGFloat
     var y: CGFloat
     var color: Color
     var icon: String
+    var scale: CGFloat
+    
     
     var body: some View {
         
             ZStack (alignment: .center) {
                 
-                PointerTriangle(frameSize: 20)
+                PointerTriangle(frameSize: Constants.PIN_SIZE*scale)
                     .fill(.white)
-                    .offset(y: 26)
-                    .frame(width: 20, height: 20)
+                    .offset(y: 26*scale)
+                    .frame(width: Constants.PIN_SIZE*scale, height: Constants.PIN_SIZE*scale)
                     .shadow(radius: 3)
                 
                 Circle()
                     .fill(color)
                     .overlay {
-                        Circle().stroke(Color.white, lineWidth: 3)
+                        Circle().stroke(Color.white, lineWidth: 3*scale)
                     }
                     .shadow(radius: 3)
-                    .frame(height: 45)                
+                    .frame(height: (Constants.PIN_SIZE+15)*scale)
 
                 Image(systemName: icon)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundStyle(.white)
-                    .frame(height: 20)
+                    .frame(height: Constants.PIN_SIZE*scale)
                     .frame(alignment: .center)
                                 
             }
+//            .background(.blue)
+            .frame(width: (Constants.PIN_SIZE+20)*scale, height: Constants.PIN_SIZE*scale)
             .position(x:x, y:y)
+            
             
             
             
@@ -49,5 +55,5 @@ struct PinView: View {
 }
 
 #Preview {
-    PinView(x: 100, y: 100, color: .red, icon: "mappin")
+    PinView(x: 100, y: 100, color: .red, icon: "mappin", scale: 1)
 }

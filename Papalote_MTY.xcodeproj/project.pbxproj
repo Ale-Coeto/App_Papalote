@@ -318,7 +318,6 @@
 				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
 				919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */,
 				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
-				2CD2B34B2CBE0F48004BBE01 /* NavigationView.swift in Sources */,
 				9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */,
 				45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */,
 				2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */,
@@ -459,12 +458,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 3832828XZ7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires access to your photo library to save and share photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -475,7 +475,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "tec.mx.Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTY";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -492,12 +492,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 3832828XZ7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires access to your photo library to save and share photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -508,7 +509,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "tec.mx.Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTY";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

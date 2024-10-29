@@ -1,10 +1,3 @@
-//
-//  LoopingVideoPlayer.swift
-//  Papalote_MTY
-//
-//  Created by José Guerrero  on 17/10/24.
-//
-
 import SwiftUI
 import AVKit
 
@@ -31,24 +24,39 @@ class LoopingVideoPlayerUIView: UIView {
             return
         }
         
-        // Load the asset
         let fileUrl = URL(fileURLWithPath: filePath)
         let asset = AVAsset(url: fileUrl)
         let playerItem = AVPlayerItem(asset: asset)
         
-        // Set up the player
         self.queuePlayer.isMuted = true
         self.playerLayer.player = self.queuePlayer
         self.playerLayer.videoGravity = .resizeAspectFill
         
-        // Setup the playerLooper which takes care of the looping for us
         self.playerLooper = AVPlayerLooper(player: self.queuePlayer, templateItem: playerItem)
-        self.queuePlayer.play()
+        self.queuePlayer.addObserver(self, forKeyPath: "status", options: [.new, .initial], context: nil)
         
-        // Insert the player layer to our view's layer
+        self.layer.insertSublayer(self.playerLayer, at: 0)
+        
+        // Observe for app state changes
+        NotificationCenter.default.addObserver(self, selector: #selector(reinsertPlayerLayer), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(playWhenActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc private func reinsertPlayerLayer() {
+        self.playerLayer.removeFromSuperlayer()
         self.layer.insertSublayer(self.playerLayer, at: 0)
     }
     
+    @objc private func playWhenActive() {
+        self.queuePlayer.play()  // Resume playing when the app becomes active
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "status", let player = object as? AVQueuePlayer, player.status == .readyToPlay {
+            player.play()
+        }
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         playerLayer.frame = self.bounds
@@ -57,8 +65,10 @@ class LoopingVideoPlayerUIView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        queuePlayer.removeObserver(self, forKeyPath: "status")
+    }
 }
-
-
-
-

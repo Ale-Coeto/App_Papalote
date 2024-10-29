@@ -52,7 +52,7 @@ struct PhotosView: View {
                 }
                 .padding(8)
             }
-                .padding(.top, 50)
+                .padding(.top, 40)
                 )
         }
         .sheet(isPresented: Binding<Bool>(

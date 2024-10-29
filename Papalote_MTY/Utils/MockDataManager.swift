@@ -19,8 +19,8 @@ struct MockDataManager {
         existingEventos?.forEach { context.delete($0) }
         
         // Fetch and delete all existing Visita objects
-        let existingVisitas = try? context.fetch(FetchDescriptor<Visita>())
-        existingVisitas?.forEach { context.delete($0) }
+        /*let existingVisitas = try? context.fetch(FetchDescriptor<Visita>())
+        existingVisitas?.forEach { context.delete($0) }*/
         
         // Fetch and delete all existing Insignia objects
         let existingInsignias = try? context.fetch(FetchDescriptor<Insignia>())

@@ -7,37 +7,42 @@
 
 import SwiftUI
 
-
 struct HomeLayoutView: View {
     var title = ""
     
     var body: some View {
         ZStack {
-            Color("Background")
+            Color(.systemBackground)
                 .ignoresSafeArea()
             
             VStack {
-                ZStack {
+                ZStack(alignment: .top) { // Align the ZStack to the top
                     RoundedRectangle(cornerRadius: 0)
                         .fill(
-                        LinearGradient(gradient: Gradient(colors: [Color("LightGreen"), Color("DarkGreen")]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/))
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.green.opacity(0.7), Color.green.opacity(0.9)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(height: 110)
                         .ignoresSafeArea()
-                        .frame(height: Constants.HEADER_HEIGHT)
+
+                    // Align the title to the top within the ZStack
                     Text(title)
-                        .foregroundStyle(.white)
+                        .foregroundColor(.white)
                         .font(.title)
                         .fontWeight(.semibold)
+                        .padding(.top, 0) // Adjust top padding as needed
                 }
                 
-                Spacer()
+                  Spacer()
             }
-            
-            
         }
-        
     }
 }
 
 #Preview {
     HomeLayoutView(title: "Papalote MTY")
 }
+

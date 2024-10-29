@@ -10,13 +10,7 @@ import SwiftUI
 
 struct PinView: View {
     var pin: Pin
-//    var x: CGFloat
-//    var y: CGFloat
-//    var color: Color
-//    var icon: String
     var show: Bool
-//    var idZona: Int
-    
     @ObservedObject var mapViewModel: MapViewModel
 
     
@@ -33,7 +27,6 @@ struct PinView: View {
                         .offset(y: 26*mapViewModel.scale)
                         .frame(width: Constants.PIN_SIZE*mapViewModel.scale, height: Constants.PIN_SIZE*mapViewModel.scale)
                         .shadow(radius: 3)
-//                        .position(x:x, y:y)
                     
                     Circle()
                         .fill(Color(hex: pin.color))
@@ -42,36 +35,16 @@ struct PinView: View {
                         }
                         .shadow(radius: 3)
                         .frame(height: (Constants.PIN_SIZE+15)*mapViewModel.scale)
-//                        .position(x:x, y:y)
                     
                     Image(systemName: pin.icon)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .foregroundStyle(.white)
                         .frame(height: Constants.PIN_SIZE*mapViewModel.scale)
-//                        .frame(alignment: .center)
-//                        .position(x:x, y:y)
-                    
-                }
-                //            .background(.blue)
-                
-//                .frame(width: (Constants.PIN_SIZE+20)*mapViewModel.scale, height: Constants.PIN_SIZE*mapViewModel.scale)
-            
-            
-                
-//                .background(.blue)
-            }
-//            .frame(width: (Constants.PIN_SIZE+20)*scale, height: Constants.PIN_SIZE*scale)
-//            .position(x:x, y:y)
-//
-//            
-//            .background(.pink)
 
-            
-            
+                }
+            }
         }
-        
-           
     }
     
     private func ZoneDetailView() -> some View {

@@ -220,6 +220,7 @@ struct MockDataManager {
             context.insert(exhibicion)
         }
         
+        // Add Pin
         for pin in pines {
             context.insert(pin)
         }

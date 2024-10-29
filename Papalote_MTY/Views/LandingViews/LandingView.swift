@@ -14,7 +14,7 @@ struct LandingView: View {
     // Para que ya la podamos usar, pero la visita que se
     // manda a navigation view se manda desde VisitsView
     
-    let visita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
+    let visita = Visita(id: 15, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
     
     
     var body: some View {

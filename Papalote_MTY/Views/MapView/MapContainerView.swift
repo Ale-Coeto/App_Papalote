@@ -18,6 +18,7 @@ struct MapContainerView: View {
     let visita: Visita
     
     @ObservedObject var mapViewModel: MapViewModel
+
     let mapSize = CGSize(width: 1200, height: 800)
 
     
@@ -42,35 +43,45 @@ struct MapContainerView: View {
                             let x = pin.x * mapViewModel.scale
                             let y = pin.y * mapViewModel.scale
                             
-                            NavigationLink {
-                                
-                                ZoneDetailView(for: pin)
-                            } label: {
-                                PinView(x: x, y: y, color: .blue, icon: "mappin", scale: mapViewModel.scale)
-                            }
+//                            NavigationLink {
+//                                
+//                                ZoneDetailView(for: pin)
+//                            } label: {
+                            PinView(pin: pin, show: pin.floor == mapViewModel.selectedFloor, mapViewModel: mapViewModel)
+                                    .position(x:x, y:y)
+//                                    .frame(width: 30, height: 30)
+//                                    .background(.red)
+//                            }
                         }
                     }
 //                }
-                .background(Color.gray.opacity(0.3))
+                
             }
+                .background(Color.gray.opacity(0.3))
+        }
+        .onAppear {
+            mapViewModel.zonas = zonas
+            mapViewModel.exhibiciones = exhibiciones
+            mapViewModel.fotos = fotos
+            mapViewModel.visita = visita
         }
     }
     
-    private func ZoneDetailView(for pin: Pin) -> some View {
-            let filteredZona = zonas.first { $0.id == pin.idZona }
-        let defaultZona = Zona(id: 1, nombre: "", descripcion: "", color: "", logo: "Map")
-            let filteredExhibicion = exhibiciones.filter { $0.idZona == pin.idZona }
-            let filteredInsignias = insignias.filter { $0.idZona == pin.idZona }
-            let filteredFotos = fotos.filter { $0.idZona == pin.idZona }
-
-            return ZoneView(
-                zona: filteredZona ?? defaultZona,
-                exhibiciones: filteredExhibicion,
-                insignias: filteredInsignias,
-                fotos: filteredFotos,
-                visita: visita
-            )
-        }
+//    private func ZoneDetailView(for pin: Pin) -> some View {
+//            let filteredZona = zonas.first { $0.id == pin.idZona }
+//        let defaultZona = Zona(id: 1, nombre: "", descripcion: "", color: "", logo: "Map")
+//            let filteredExhibicion = exhibiciones.filter { $0.idZona == pin.idZona }
+//            let filteredInsignias = insignias.filter { $0.idZona == pin.idZona }
+//            let filteredFotos = fotos.filter { $0.idZona == pin.idZona }
+//
+//            return ZoneView(
+//                zona: filteredZona ?? defaultZona,
+//                exhibiciones: filteredExhibicion,
+//                insignias: filteredInsignias,
+//                fotos: filteredFotos,
+//                visita: visita
+//            )
+//        }
 }
 
 #Preview {

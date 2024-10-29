@@ -27,7 +27,7 @@ struct MapHeaderView: View {
                     
                     Spacer()
                     Button() {
-                        if mapViewModel.scale > 0.4 {
+                        if mapViewModel.scale > 0.3 {
                             mapViewModel.scale -= 0.1
                         }
                         
@@ -36,7 +36,7 @@ struct MapHeaderView: View {
                             .font(.title)
                     }
                     Button() {
-                        if mapViewModel.scale < 1 {
+                        if mapViewModel.scale < 1.5 {
                             mapViewModel.scale += 0.1
                         }
                         

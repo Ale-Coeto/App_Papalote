@@ -10,7 +10,13 @@ import SwiftUI
 
 class MapViewModel: ObservableObject {
     @Published var selectedFloor: Int = 1
-    @Published var scale: CGFloat = 0.4
+    @Published var scale: CGFloat = 0.7
+    var zonas: [Zona] = []
+    var exhibiciones: [Exhibicion] = []
+    var fotos: [Foto] = []
+    var insignias: [Insignia] = []
+    var visita: Visita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
+    
     
     var mapImages = [Image("MapaA"), Image("Map")]
     var points = [[CGPoint(x: 300, y: 400),
@@ -23,6 +29,8 @@ class MapViewModel: ObservableObject {
     func changeFloor(_ floor: Int) {
         selectedFloor = floor
     }
+    
+    
     
     //    var mapImage = Image("Piso1")
     

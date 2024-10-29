@@ -53,12 +53,12 @@ struct MockDataManager {
         ]
         
         let pines = [
-            Pin(id: 1, idZona: 1, x: 730, y: 360),
-            Pin(id: 2, idZona: 2, x: 560, y: 500),
-            Pin(id: 3, idZona: 3, x: 0, y: 0),
-            Pin(id: 4, idZona: 4, x: 0, y: 0),
-            Pin(id: 5, idZona: 5, x: 0, y: 0),
-            Pin(id: 6, idZona: 6, x: 800, y: 660)
+            Pin(id: 1, idZona: 1, x: 730, y: 360, floor: 1, color: "222222", icon: "mappin"),
+            Pin(id: 2, idZona: 2, x: 560, y: 500, floor: 1, color: "222222", icon: "mappin"),
+            Pin(id: 3, idZona: 3, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
+            Pin(id: 4, idZona: 4, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
+            Pin(id: 5, idZona: 5, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
+            Pin(id: 6, idZona: 6, x: 800, y: 660, floor: 1, color: "222222", icon: "mappin")
         ]
         
         

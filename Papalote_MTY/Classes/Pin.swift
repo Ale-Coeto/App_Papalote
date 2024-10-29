@@ -14,11 +14,17 @@ class Pin: Identifiable {
     var idZona: Int
     var x: CGFloat
     var y: CGFloat
+    var floor: Int
+    var color: String
+    var icon: String
     
-    init(id: Int, idZona: Int, x: CGFloat, y: CGFloat) {
+    init(id: Int, idZona: Int, x: CGFloat, y: CGFloat, floor: Int, color: String, icon: String) {
         self.id = id
         self.idZona = idZona
         self.x = x
         self.y = y
+        self.floor = floor
+        self.color = color
+        self.icon = icon
     }
 }

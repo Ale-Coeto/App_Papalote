@@ -21,7 +21,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            HomeLayoutView(title: "Zonas")
+            HomeLayoutView(title: "Papalote MTY")
                 .overlay(
                     VStack {
                         ForEach(eventosEspeciales, id: \.id) { evento in

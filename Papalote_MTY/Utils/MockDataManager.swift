@@ -207,9 +207,9 @@ struct MockDataManager {
         }
         
         // Add Visitas
-        for visita in visitas {
+        /*for visita in visitas {
             context.insert(visita)
-        }
+        }*/
         
         // Add InsigniasObtenidas
         /*

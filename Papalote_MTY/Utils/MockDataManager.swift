@@ -54,12 +54,14 @@ struct MockDataManager {
         ]
         
         let pines = [
-            Pin(id: 1, idZona: 1, x: 730, y: 360, floor: 1, color: "222222", icon: "mappin"),
-            Pin(id: 2, idZona: 2, x: 560, y: 500, floor: 1, color: "222222", icon: "mappin"),
-            Pin(id: 3, idZona: 3, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
-            Pin(id: 4, idZona: 4, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
-            Pin(id: 5, idZona: 5, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
-            Pin(id: 6, idZona: 6, x: 800, y: 660, floor: 1, color: "222222", icon: "mappin")
+            Pin(id: 1, idZona: 1, x: 730, y: 360, floor: 1, color: "#476ADC", icon: "leaf", nombre: "Pertenezco"),
+            Pin(id: 2, idZona: 2, x: 560, y: 500, floor: 1, color: "#476ADC", icon: "phone", nombre: "Comunico"),
+            Pin(id: 3, idZona: 3, x: 0, y: 0, floor: 2, color: "#476ADC", icon: "testtube.2", nombre: "Comprendo"),
+            Pin(id: 4, idZona: 4, x: 0, y: 0, floor: 2, color: "#476ADC", icon: "sun.max", nombre: "Soy"),
+            Pin(id: 5, idZona: 5, x: 0, y: 0, floor: 2, color: "#476ADC", icon: "paintbrush", nombre: "Expreso"),
+            Pin(id: 6, idZona: 6, x: 800, y: 660, floor: 1, color: "#476ADC", icon: "figure.child", nombre: "Pequeños"),
+            Pin(id: 7, idZona: 100, x: 300, y: 380, floor: 1, color: "#DCBA4F", icon: "toilet", nombre: "Baños"),
+            Pin(id: 8, idZona: 100, x: 340, y: 300, floor: 1, color: "#DB4B3D", icon: "storefront", nombre: "Tienda")
         ]
         
         

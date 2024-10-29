@@ -23,6 +23,14 @@ class MapViewModel: ObservableObject {
     func changeFloor(_ floor: Int) {
         selectedFloor = floor
     }
+    
+//    func updateDataAsync(zonas: [Zona], exhibiciones: [Exhibicion], fotos: [Foto], visita: Visita?) async {
+//            try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds delay
+//            self.zonas = zonas
+//            self.exhibiciones = exhibiciones
+//            self.fotos = fotos
+//            t
+//        }
 
     
 }

@@ -30,11 +30,7 @@ struct MapView: View {
 //                    Text("Latitude: \(String(describing: locationManager.latitude)),  \(String(describing: locationManager.longitude))")
                     
                 }
-
-                    .onAppear {
-                        
-                    }
-                    .padding(.top, Constants.HEADER_HEIGHT)
+                    .padding(.top, 34)
             )
     }
     

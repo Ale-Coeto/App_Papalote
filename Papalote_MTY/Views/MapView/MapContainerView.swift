@@ -42,7 +42,7 @@ struct MapContainerView: View {
                             let x = pin.x * mapViewModel.scale
                             let y = pin.y * mapViewModel.scale
                             
-                            PinView(pin: pin, show: pin.floor == mapViewModel.selectedFloor, mapViewModel: mapViewModel)
+                            PinView(pin: pin, show: pin.floor == mapViewModel.selectedFloor, mapViewModel: mapViewModel, zonas: zonas, exhibiciones: exhibiciones, insignias: insignias, fotos: fotos)
                                     .position(x:x, y:y)
                         }
                     }
@@ -51,10 +51,12 @@ struct MapContainerView: View {
                 .background(Color.gray.opacity(0.3))
         }
         .onAppear {
-            mapViewModel.zonas = zonas
-            mapViewModel.exhibiciones = exhibiciones
-            mapViewModel.fotos = fotos
-            mapViewModel.visita = visita
+            Task {
+                mapViewModel.zonas = zonas
+                mapViewModel.exhibiciones = exhibiciones
+                mapViewModel.fotos = fotos
+                mapViewModel.visita = visita
+            }
         }
     }
     

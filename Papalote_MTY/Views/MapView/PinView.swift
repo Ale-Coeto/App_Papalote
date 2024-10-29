@@ -12,15 +12,29 @@ struct PinView: View {
     var pin: Pin
     var show: Bool
     @ObservedObject var mapViewModel: MapViewModel
+    var zonas: [Zona]
+    var exhibiciones: [Exhibicion]
+    var insignias: [Insignia]
+    var fotos: [Foto]
+    
 
     
     var body: some View {
         
         if show {
             NavigationLink {
-                ZoneDetailView()
+//                pin.idZona != 0 ? AnyView(ZoneDetailView()) : nil
+//                if pin.idZona != 0 {
+                    ZoneDetailView()
+//                } else {
+//                    nil
+//                }
             } label: {
+                
                 ZStack (alignment: .center) {
+                    Text(pin.nombre)
+                        .offset(y:-(Constants.PIN_SIZE+15)*mapViewModel.scale)
+                        .foregroundStyle(Color(hex: pin.color))
                     
                     PointerTriangle(frameSize: Constants.PIN_SIZE*mapViewModel.scale)
                         .fill(.white)
@@ -48,14 +62,13 @@ struct PinView: View {
     }
     
     private func ZoneDetailView() -> some View {
-        print(pin.idZona)
-        print(mapViewModel.zonas.count)
-        let filteredZona = mapViewModel.zonas.first { $0.id == pin.idZona }
-        let defaultZona = Zona(id: 1, nombre: "L", descripcion: "", color: "", logo: "Map")
-        let filteredExhibicion = mapViewModel.exhibiciones.filter { $0.idZona == pin.idZona }
-        let filteredInsignias = mapViewModel.insignias.filter { $0.idZona == pin.idZona }
-        let filteredFotos = mapViewModel.fotos.filter { $0.idZona == pin.idZona }
-        print(filteredZona?.nombre ?? "NADA")
+        let filteredZona = zonas.first { $0.id == pin.idZona }
+        let defaultZona = Zona(id: 1, nombre: "Zona no encontrada", descripcion: "", color: "", logo: "")
+
+        let filteredExhibicion = exhibiciones.filter { $0.idZona == pin.idZona }
+        let filteredInsignias = insignias.filter { $0.idZona == pin.idZona }
+        let filteredFotos = fotos.filter { $0.idZona == pin.idZona }
+        
             return ZoneView(
                 zona: filteredZona ?? defaultZona,
                 exhibiciones: filteredExhibicion,
@@ -67,5 +80,5 @@ struct PinView: View {
 }
 
 #Preview {
-    PinView(pin: Pin(id: 1, idZona: 1, x: 1, y: 1, floor: 1, color: "#111111", icon: ""), show: true, mapViewModel: MapViewModel())
+    PinView(pin: Pin(id: 1, idZona: 1, x: 1, y: 1, floor: 1, color: "#111111", icon: "", nombre: "Baños"), show: true, mapViewModel: MapViewModel(), zonas: [], exhibiciones: [], insignias: [], fotos: [])
 }

@@ -109,7 +109,7 @@ struct MockDataManager {
             Insignia(id: 39, idZona: 0, idEvento: 1, nombre: "Héroe de la Naturaleza", imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png", descripcion: "Insignia por acciones heroicas en pro de la naturaleza", completado: false, idNFC: 1)
         ]
         
-        
+        /*
         let fotos = [
             // Zona 1
             Foto(id: 1, idZona: 1, idVisita: 1, imagen: nil, completado: false),
@@ -140,7 +140,24 @@ struct MockDataManager {
             Foto(id: 16, idZona: 6, idVisita: 1, imagen: nil, completado: false),
             Foto(id: 17, idZona: 6, idVisita: 1, imagen: nil, completado: false),
             Foto(id: 18, idZona: 6, idVisita: 1, imagen: nil, completado: false)
-        ]
+        ]*/
+        
+        var fotos: [Foto] = []
+
+        let totalZonas = 6 // Total number of zonas
+        let fotosPorZona = 3 // Number of photos per zona
+        var fotoId = 1 // Initialize the fotoId counter
+
+        // Populate fotos with 20 visits
+        for idVisita in 1...20 {
+            for idZona in 1...totalZonas {
+                for _ in 0..<fotosPorZona {
+                    let foto = Foto(id: fotoId, idZona: idZona, idVisita: idVisita, imagen: nil, completado: false)
+                    fotos.append(foto)
+                    fotoId += 1 // Increment the fotoId for the next photo
+                }
+            }
+        }
 
         
         
@@ -190,9 +207,9 @@ struct MockDataManager {
         }
         
         // Add Visitas
-        for visita in visitas {
+        /*for visita in visitas {
             context.insert(visita)
-        }
+        }*/
         
         // Add InsigniasObtenidas
         /*

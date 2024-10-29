@@ -22,6 +22,8 @@ struct PhotosView: View {
     
     var body: some View {
         VStack {
+            HomeLayoutView(title: "Àlbum de fotos")
+                .overlay(
             ScrollView {
                 LazyVGrid(columns: [
                     GridItem(.flexible(minimum: 100, maximum: 200), spacing: 8),
@@ -50,6 +52,8 @@ struct PhotosView: View {
                 }
                 .padding(8)
             }
+                .padding(.top, 50)
+                )
         }
         .sheet(isPresented: Binding<Bool>(
             get: { isShareSheetPresented && selectedPhotoImage != nil },

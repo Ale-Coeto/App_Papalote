@@ -60,8 +60,6 @@ struct SplashScreen<NextView: View>: View {
 }
 
 #Preview {
-    SplashScreen(splasherText: " ") {
-            LandingView() // Replace LandingView() with any other view we need 
-        }
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
+    SplashScreen()
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self], inMemory: true)
 }

@@ -17,23 +17,28 @@ struct BadgesView: View {
             $0.fechaInicio < $1.fechaInicio // Sorting by start date
         }
         
-        return ScrollView {
-            VStack {
-                // Display Zona badges
-                ForEach(sortedZonas, id: \.self.id) { zona in
-                    BadgeScrollView(zona: zona, visita: visita, isEvento: false)
+        return VStack() { // Set spacing to 0 to remove any gaps
+            HomeLayoutView(title: "Insignias")
+                .overlay(
+            ScrollView {
+                VStack(spacing: 16) { // Adjust spacing as needed between items
+                    // Display Zona badges
+                    ForEach(sortedZonas, id: \.self.id) { zona in
+                        BadgeScrollView(zona: zona, visita: visita, isEvento: false)
+                    }
+                    
+                    // Display Evento badges
+                    ForEach(sortedEventos, id: \.self.id) { evento in
+                        BadgeScrollView(evento: evento, visita: visita, isEvento: true)
+                    }
                 }
-                
-                // Display Evento badges
-                ForEach(sortedEventos, id: \.self.id) { evento in
-                    BadgeScrollView(evento: evento, visita: visita, isEvento: true)
-                }
+                .padding()
+                .background(Color(red: 240/255, green: 244/255, blue: 248/255))
             }
-            .padding()
-            .background(Color(red: 240/255, green: 244/255, blue: 248/255))
-        }
-        .onAppear {
-            MockDataManager.addMockData(to: context)
+                .padding(.top, 50)
+            .onAppear {
+                MockDataManager.addMockData(to: context)
+            })
         }
     }
 }

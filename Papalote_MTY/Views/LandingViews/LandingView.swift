@@ -14,6 +14,8 @@ struct LandingView: View {
     // Para que ya la podamos usar, pero la visita que se
     // manda a navigation view se manda desde VisitsView
     
+    let visita = Visita(id: 15, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
+    
     
     var body: some View {
         NavigationStack{
@@ -54,5 +56,5 @@ struct LandingView: View {
 
 #Preview {
     LandingView()
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self], inMemory: true)
 }

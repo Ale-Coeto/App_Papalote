@@ -20,8 +20,11 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
+        // Use the sorting function from ZonaSorting.swift
+        let sortedZonas = sortZonasByOrden(zonas: zonas, orden: visita.orden)
+
         NavigationStack {
-            HomeLayoutView(title: "Zonas")
+            HomeLayoutView(title: "Papalote MTY")
                 .overlay(
                     VStack {
                         ForEach(eventosEspeciales, id: \.id) { evento in
@@ -58,10 +61,11 @@ struct HomeView: View {
 
                         
                         VStack(spacing: 20) {
-                            ForEach(zonas.sorted(by: { $0.id < $1.id }), id: \.self.id) { zona in
+                            ForEach(sortedZonas, id: \.self.id) { zona in
                                 let filteredExhibicion = exhibiciones.filter { $0.idZona == zona.id }
                                 let filteredInsignias = insignias.filter { $0.idZona == zona.id }
-                                let filteredFotos = fotos.filter { $0.idZona == zona.id }
+                                let filteredFotos = fotos.filter { $0.idVisita == visita.id && $0.idZona == zona.id }
+                                
                                 NavigationLink {
                                     ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos, visita: visita)
                                 } label: {
@@ -131,6 +135,6 @@ func formattedDate(_ date: Date) -> String {
 }
 
 #Preview {
-    HomeView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
+    HomeView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Pequeños Expreso"))
         .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self], inMemory: true)
 }

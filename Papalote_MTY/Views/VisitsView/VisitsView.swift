@@ -123,7 +123,6 @@ struct UserWithVisits: View {
                                 // Action handled by NavigationLink
                             }
                         }
-                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 .padding(30)

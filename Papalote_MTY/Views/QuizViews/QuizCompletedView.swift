@@ -99,6 +99,11 @@ struct QuizCompletedView: View {
     @Binding var answers: [Int: Int]
         
         private func getTopZonaResultado() -> ZonaResultadoQuiz? {
+    @Environment(\.modelContext) private var context
+    let visita: Visita
+    @Binding var answers: [Int: Int]
+        
+        private func getTopZonaResultado() -> ZonaResultadoQuiz? {
             if let (id, _) = answers.max(by: { $0.value < $1.value }) {
                 return mockZonaResultados.first(where: { $0.id == id })
             }
@@ -121,57 +126,81 @@ struct QuizCompletedView: View {
             }
         }
         
-    var body: some View {
-            if let topZona = getTopZonaResultado() {
-                NavigationStack {
-                    ZStack {
-                        Color.AppColors.FondoAzulClaro
-                            .ignoresSafeArea()
-                        VStack {
-                            Text(topZona.nombre)
-                                .font(Font.custom("VagRoundedBold", size: 60))
-                                .foregroundColor(topZona.color)
-                                .padding(.top, 60)
-                            
-                            Image(uiImage: topZona.logo)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 225)
-                            Spacer()
-                            HStack {
-                                Text("Tu zona es")
-                                    .font(Font.custom("VagRounded-Ligth", size: 20))
-                                Text(topZona.nombre)
-                                    .font(Font.custom("VagRoundedBold", size: 20))
-                                    .foregroundStyle(topZona.color)
-                            }
-                            .padding(.bottom)
-                            Text(topZona.descripcion)
-                                .font(Font.custom("VagRounded-Light", size: 18))
-                                .multilineTextAlignment(.center)
-                                .frame(maxWidth: .infinity)
-                            Spacer()
-                            NavigationLink(destination: MainView(visita: visita)) { // Use updated visita
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .frame(width: 220, height: 58)
-                                        .foregroundStyle(topZona.color)
-                                    Text("Continuar")
-                                        .font(Font.custom("VagRoundedBold", size: 24))
-                                        .foregroundStyle(Color.init(hex: "#ffffff"))
-                                }
-                            }
-                            .padding(.bottom, 60)
-                            .onAppear {
-                                updateVisitaOrder() // Update and save when view appears
-                            }
-                        }
-                    }
-                }
-            } else {
-                Text("No results found.")
+        
+        private func getOrderString() -> String {
+            let orderedZonas = answers.sorted(by: { $0.value > $1.value }).compactMap { pair in
+                mockZonaResultados.first(where: { $0.id == pair.key })?.nombre
+            }
+            return orderedZonas.joined(separator: " ")
+        }
+        
+        private func updateVisitaOrder() {
+            visita.orden = getOrderString() // Update 'orden'
+            do {
+                try context.save() // Save changes to the database
+            } catch {
+                print("Error saving visita orden: \(error)")
             }
         }
+        
+    var body: some View {
+        if let topZona = getTopZonaResultado() {
+            NavigationStack {
+                ZStack {
+                    Color.AppColors.FondoAzulClaro
+                        .ignoresSafeArea()
+                    VStack {
+                        Text(topZona.nombre)
+                            .font(Font.custom("VagRoundedBold", size: 60))
+                            .foregroundColor(topZona.color)
+                            .padding(.top, 60)
+
+                        Image(uiImage: topZona.logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 225)
+                        Spacer()
+                        HStack {
+                            Text("Tu zona es")
+                                .font(Font.custom("VagRounded-Ligth", size: 20))
+                            Text(topZona.nombre)
+                                .font(Font.custom("VagRoundedBold", size: 20))
+                                .foregroundStyle(topZona.color)
+                        }
+                        .padding(.bottom)
+                        Text(topZona.descripcion)
+                            .font(Font.custom("VagRounded-Light", size: 18))
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                        Spacer()
+                        NavigationLink(destination: MainView(visita: visita)) { // Use updated visita
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 220, height: 58)
+                                    .foregroundStyle(topZona.color)
+                                Text("Continuar")
+                                    .font(Font.custom("VagRoundedBold", size: 24))
+                                    .foregroundStyle(Color.white)
+                            }
+                        }
+                        .padding(.bottom, 60)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // Update the visit order when the button is pressed
+                            updateVisitaOrder() // Ensure this does not block the main thread
+                        })
+                    }
+                }
+                .onAppear {
+                    // It's better to save the order when the view appears, but handle this asynchronously
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        updateVisitaOrder()
+                    }
+                }
+            }
+        } else {
+            Text("No results found.")
+        }
+    }
     }
 
 #Preview {

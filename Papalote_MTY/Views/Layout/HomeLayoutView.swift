@@ -4,6 +4,12 @@
 //
 //  Created by Alejandra Coeto on 14/10/24.
 //
+//
+//  HomeLayoutView.swift
+//  Papalote_MTY
+//
+//  Created by Alejandra Coeto on 14/10/24.
+//
 
 import SwiftUI
 
@@ -25,7 +31,7 @@ struct HomeLayoutView: View {
                                 endPoint: .trailing
                             )
                         )
-                        .frame(height: 110)
+                        .frame(minHeight: 110, maxHeight: 130) // Allow it to grow as needed
                         .ignoresSafeArea()
 
                     // Align the title to the top within the ZStack
@@ -33,10 +39,10 @@ struct HomeLayoutView: View {
                         .foregroundColor(.white)
                         .font(.title)
                         .fontWeight(.semibold)
-                        .padding(.top, 0) // Adjust top padding as needed
+                        .padding(.top, -30) // Adjust the top padding as needed
                 }
                 
-                  Spacer()
+                Spacer()
             }
         }
     }
@@ -45,4 +51,3 @@ struct HomeLayoutView: View {
 #Preview {
     HomeLayoutView(title: "Papalote MTY")
 }
-

@@ -23,6 +23,7 @@
 		2CD8C2A62CCB5ADF0063E89D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C2A52CCB5ADF0063E89D /* LocationManager.swift */; };
 		2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA466E2CC1C357003C3BF0 /* TriangleView.swift */; };
 		2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA46702CC1C811003C3BF0 /* CustomRoundedRectangle.swift */; };
+		2CEB11412CD0C4210073C1C5 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB11402CD0C4210073C1C5 /* Pin.swift */; };
 		4519DFDE2CC339BB00DF6E7F /* Insignia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFDD2CC339BB00DF6E7F /* Insignia.swift */; };
 		4519DFE02CC339EF00DF6E7F /* Visita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFDF2CC339EF00DF6E7F /* Visita.swift */; };
 		4519DFE22CC33A0000DF6E7F /* InsigniaObtenida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */; };
@@ -56,6 +57,7 @@
 		2CD8C2A52CCB5ADF0063E89D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		2CEA466E2CC1C357003C3BF0 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		2CEA46702CC1C811003C3BF0 /* CustomRoundedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRoundedRectangle.swift; sourceTree = "<group>"; };
+		2CEB11402CD0C4210073C1C5 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		4519DFDD2CC339BB00DF6E7F /* Insignia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insignia.swift; sourceTree = "<group>"; };
 		4519DFDF2CC339EF00DF6E7F /* Visita.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visita.swift; sourceTree = "<group>"; };
 		4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsigniaObtenida.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				55056AB32CC4622F00469742 /* Exhibicion.swift */,
 				9188A6E82CCC5AC6008ADE1E /* Quiz.swift */,
 				9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */,
+				2CEB11402CD0C4210073C1C5 /* Pin.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */,
 				2CA6BB892CC2512F00CD5840 /* Papalote_MTYApp.swift in Sources */,
 				2CA6BB882CC2508800CD5840 /* Papalote-MTY-Info.plist in Sources */,
+				2CEB11412CD0C4210073C1C5 /* Pin.swift in Sources */,
 				9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */,
 				2CD2B34E2CBECCD6004BBE01 /* Zona.swift in Sources */,
 				2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */,
@@ -455,7 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = RBLDZXT349;
+				DEVELOPMENT_TEAM = FBFGPPRU68;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
@@ -484,10 +488,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = RBLDZXT349;
+				DEVELOPMENT_TEAM = FBFGPPRU68;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
@@ -505,6 +510,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "tec.mx.Papalote-MTY";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

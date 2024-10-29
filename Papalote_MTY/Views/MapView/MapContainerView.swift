@@ -6,59 +6,61 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MapContainerView: View {
+    @Environment(\.modelContext) private var context
+    @Query private var zonas: [Zona]
+    @Query private var pines: [Pin]
+    @Query private var exhibiciones: [Exhibicion]
+    @Query private var insignias: [Insignia]
+    @Query private var fotos: [Foto]
+    let visita: Visita
+    
     @ObservedObject var mapViewModel: MapViewModel
+
     let mapSize = CGSize(width: 1200, height: 800)
 
-    let pins = [
-        CGPoint(x: 300, y: 400),
-        CGPoint(x: 900, y: 600),
-        CGPoint(x: 600, y: 200)
-    ]
     
     var body: some View {
-        GeometryReader { geometry in
-            let screenWidth = geometry.size.width
-                        let screenHeight = geometry.size.height
-
-                        // Calculate the current image size based on scale
-            let currentWidth = mapSize.width * mapViewModel.scale
-            let currentHeight = mapSize.height * mapViewModel.scale
-                        
-                        // Calculate the offset needed to center the image
-                        let horizontalOffset = max((screenWidth - currentWidth) / 2, 0)
-                        let verticalOffset = max((screenHeight - currentHeight) / 2, 0)
-            ScrollView([.horizontal, .vertical], showsIndicators: false) {
-                ZStack {
-                    mapViewModel.mapImages[mapViewModel.selectedFloor-1]
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: mapSize.width * mapViewModel.scale, height: mapSize.height * mapViewModel.scale)
-                        .gesture(
-                            MagnificationGesture()
-                                .onChanged { value in
-                                    mapViewModel.scale = value // Update scale during pinch zoom
-                                }
-                        )
-                    
-                    // Add pins (fixed icons) at specific positions on the map
-                    ForEach(pins.indices, id: \.self) { index in
-                        let pinPosition = pins[index]
-                        Image(systemName: "mappin.circle.fill")
+        NavigationStack {
+                
+                ScrollView([.horizontal, .vertical], showsIndicators: false) {
+                    ZStack {
+                        mapViewModel.mapImages[mapViewModel.selectedFloor-1]
                             .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.red)
-                            .position(x: pinPosition.x * mapViewModel.scale, y: pinPosition.y * mapViewModel.scale)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: mapSize.width * mapViewModel.scale, height: mapSize.height * mapViewModel.scale)
+                            .gesture(
+                                MagnificationGesture()
+                                    .onChanged { value in
+                                        mapViewModel.scale = value
+                                    }
+                            )
+
+                        ForEach(pines, id: \.self.id) { pin in
+                            let x = pin.x * mapViewModel.scale
+                            let y = pin.y * mapViewModel.scale
+                            
+                            PinView(pin: pin, show: pin.floor == mapViewModel.selectedFloor, mapViewModel: mapViewModel)
+                                    .position(x:x, y:y)
+                        }
                     }
-                }
+                
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.black.opacity(0.1))
+                .background(Color.gray.opacity(0.3))
+        }
+        .onAppear {
+            mapViewModel.zonas = zonas
+            mapViewModel.exhibiciones = exhibiciones
+            mapViewModel.fotos = fotos
+            mapViewModel.visita = visita
         }
     }
+    
 }
 
 #Preview {
-    MapContainerView(mapViewModel: MapViewModel())
+    MapContainerView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), mapViewModel: MapViewModel())
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, Pin.self], inMemory: true)
 }

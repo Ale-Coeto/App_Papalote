@@ -39,6 +39,9 @@ struct MockDataManager {
         // Fetch and delete all existing InsigniaObtenida objects
        /* let existingInsigniasObtenidas = try? context.fetch(FetchDescriptor<InsigniaObtenida>())
         existingInsigniasObtenidas?.forEach { context.delete($0) }*/
+        
+        let existingPines = try? context.fetch(FetchDescriptor<Pin>())
+        existingPines?.forEach { context.delete($0)}
     
         // Define the data to add
         let zonas = [
@@ -47,8 +50,18 @@ struct MockDataManager {
             Zona(id: 3, nombre: "Comprendo", descripcion: "Aquí en la zona científica entenderás cómo funciona nuestro planeta y cómo podemos cuidarlo a través de la ciencia. ", color: "#84329B", logo: "LogoComprendo"),
             Zona(id: 4, nombre: "Soy", descripcion: "Aquí, te darás cuenta de que las decisiones que tomes día a día, pueden dañar o mejorar al medio ambiente.", color: "#D50032" , logo: "LogoSoy"),
             Zona(id: 5, nombre: "Expreso", descripcion: "Es una oportunidad para poder expresar todos los sentimientos y emociones que te produce la naturaleza, y qué mejor manera que a través del arte.", color: "#FF8200", logo: "LogoExpreso"),
-            Zona(id: 6, nombre: "Pequeños", descripcion: "Zona reservada para los niños menores de 5 años. Los pequeños jugarán en un ambiente inspirado en la naturaleza, ya sea en el bosque o en el mar. ", color: "#009CA6", logo: "LogoPequeños")
+            Zona(id: 6, nombre: "Pequeños", descripcion: "Zona reservada para los niños menores de 5 años. Los pequeños jugarán en un ambiente inspirado en la naturaleza, ya sea en el bosque o en el mar. ", color: "#009CA6", logo: "LogoPequenos")
         ]
+        
+        let pines = [
+            Pin(id: 1, idZona: 1, x: 730, y: 360, floor: 1, color: "222222", icon: "mappin"),
+            Pin(id: 2, idZona: 2, x: 560, y: 500, floor: 1, color: "222222", icon: "mappin"),
+            Pin(id: 3, idZona: 3, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
+            Pin(id: 4, idZona: 4, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
+            Pin(id: 5, idZona: 5, x: 0, y: 0, floor: 2, color: "222222", icon: "mappin"),
+            Pin(id: 6, idZona: 6, x: 800, y: 660, floor: 1, color: "222222", icon: "mappin")
+        ]
+        
         
         let eventos = [
             Evento(id: 1, fechaInicio: Date(), fechaFin: Date(), nombre: "Semana Cosmica", descripcion: "dia del espacio", imagen: "https://d20ohkaloyme4g.cloudfront.net/img/document_thumbnails/a0b8d1f7b02a075564ed58d2c9a31d9d/thumb_1200_3000.png")
@@ -232,6 +245,11 @@ struct MockDataManager {
         // Add Exhibicion
         for exhibicion in exhibiciones {
             context.insert(exhibicion)
+        }
+        
+        // Add Pin
+        for pin in pines {
+            context.insert(pin)
         }
     
    }

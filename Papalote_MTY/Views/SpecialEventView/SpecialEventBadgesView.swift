@@ -49,7 +49,7 @@ struct SpecialEventBadgesView: View {
                                             }
                                     } placeholder: {
                                         ProgressView()
-                                            .frame(width: 80, height: 80) // Fixed placeholder size
+                                            .frame(width: 80, height: 80) // xFixed placeholder size
                                     }
                                     
                                     // Fixed height for the text area to align it consistently
@@ -71,16 +71,7 @@ struct SpecialEventBadgesView: View {
                     .padding(.horizontal)
                 }
             }
-            .navigationTitle("\(evento.nombre)")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(evento.nombre)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.black)
-                }
-            }
         }
     }
 }

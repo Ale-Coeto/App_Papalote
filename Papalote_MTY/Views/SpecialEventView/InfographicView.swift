@@ -25,14 +25,6 @@ struct InfographicView: View {
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(evento.nombre)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.black)
-            }
-        }
     }
 }
 

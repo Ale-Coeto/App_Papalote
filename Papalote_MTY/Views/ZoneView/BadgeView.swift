@@ -63,7 +63,7 @@ struct BadgeView: View {
                     dismiss() // Dismisses the view
                 }
             } label: {
-                Text("Escanear")
+                Text("Completar")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)

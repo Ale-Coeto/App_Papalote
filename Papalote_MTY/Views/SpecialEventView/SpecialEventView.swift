@@ -11,6 +11,7 @@ struct SpecialEventView: View {
     let evento: Evento
     let visita: Visita
     var body: some View {
+        HomeLayoutView(title: evento.nombre).overlay(
         TabView {
             
             // First tab showing SpecialEventBadgesView
@@ -18,15 +19,19 @@ struct SpecialEventView: View {
                 .tabItem {
                     Text("Badges")
                 }
+                .padding(.top, 22)
             // Second tab showing InfographicView
             SpecialEventBadgesView(evento: evento, visita: visita)
                 .tabItem {
                     Text("Infographic")
                 }
+                .padding(.top, 35)
             
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always)) // Enables swiping
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always)) // Adds dots for page indicators
+
+        )
     }
     
 }

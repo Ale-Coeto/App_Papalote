@@ -121,7 +121,7 @@ struct UserWithVisits: View {
                             if visita.orden == "" {
                                 StartQuizView(visita: visita)
                             } else {
-                                HomeView(visita: visita)
+                                MainView(visita: visita)
                             }
                         }) {
                             VisitaButton(numero: visita.id) {

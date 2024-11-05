@@ -21,21 +21,22 @@ struct ZoneView: View {
 
     var body: some View {
         NavigationStack {
-            HomeLayoutView(title: zona.nombre)
+            HomeLayoutView(title: zona.nombre, headerColor: Color(hex: zona.color))
                 .overlay(
                     ScrollView {
                         VStack(spacing: 20) {
                             Text(zona.descripcion)
+                                .font(Font.custom("VagRounded-Light", size: 20))
                             // Exhibiciones section
                             VStack {
                                 Text("Exhibiciones")
-                                    .bold()
+                                    .font(Font.custom("VagRoundedBold", size: 20))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 ScrollView(.horizontal, showsIndicators: true) {
                                     HStack(spacing: 40) {
                                         ForEach(exhibiciones.sorted(by: { $0.id < $1.id }), id: \.self.id) { exhibicion in
                                             NavigationLink {
-                                                ExhibitionView(exhibicion: exhibicion, visita: visita)
+                                                ExhibitionView(zonaColor: Color(hex: zona.color), exhibicion: exhibicion, visita: visita)
                                             } label: {
                                                 AsyncImage(url: URL(string: exhibicion.imagen)) { image in
                                                     image
@@ -49,7 +50,7 @@ struct ZoneView: View {
                                                             }
                                                             
                                                             Circle()
-                                                                .stroke(isCompleted ? Color.green : Color.gray, lineWidth: 5)
+                                                                .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
                                                         }
                                                 } placeholder: {
                                                     ProgressView()
@@ -65,12 +66,13 @@ struct ZoneView: View {
                             .padding()
                             .background(Color.white)
                             .cornerRadius(12)
+                            .frame(width: 360)
                             .shadow(color: Color.black.opacity(0.5), radius: 5, x: 4, y: 4)
                             
                             // Insignias section
                             VStack {
                                 Text("Insignias")
-                                    .bold()
+                                    .font(Font.custom("VagRoundedBold", size: 20))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 ScrollView(.horizontal, showsIndicators: true) {
                                     HStack(spacing: 40) {
@@ -90,7 +92,7 @@ struct ZoneView: View {
                                                                 $0.id == insignia.id && $0.visitaId == visita.id
                                                             }
                                                             Circle()
-                                                                .stroke(isCompleted ? Color.green : Color.gray, lineWidth: 5)
+                                                                .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
                                                         }
                                                 } placeholder: {
                                                     ProgressView()
@@ -106,18 +108,19 @@ struct ZoneView: View {
                             .padding()
                             .background(Color.white)
                             .cornerRadius(12)
+                            .frame(width: 360)
                             .shadow(color: Color.black.opacity(0.5), radius: 5, x: 4, y: 4)
                             
                             // Fotos section
                             VStack {
                                 Text("Fotos")
-                                    .bold()
+                                    .font(Font.custom("VagRoundedBold", size: 20))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 ScrollView(.horizontal, showsIndicators: true) {
                                     HStack(spacing: 40) {
                                         ForEach(fotos.sorted(by: { $0.id < $1.id }), id: \.self.id) { foto in
                                             NavigationLink {
-                                                PhotoView(foto: foto)
+                                                PhotoView(zonaColor: Color(hex: zona.color), foto: foto)
                                             } label: {
                                                 if let imageData = foto.imagen, let image = UIImage(data: imageData) {
                                                     Image(uiImage: image)
@@ -127,19 +130,14 @@ struct ZoneView: View {
                                                         .clipShape(Circle())
                                                         .overlay {
                                                             Circle()
-                                                                .stroke(foto.completado ? Color.green : Color.gray, lineWidth: 5)
+                                                                .stroke(foto.completado ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
                                                         }
                                                 } else {
-                                                    Image(systemName: "photo")
+                                                    Image(systemName: "photo.circle")
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fit)
                                                         .frame(width: 80, height: 80)
                                                         .foregroundColor(.gray)
-                                                        .clipShape(Circle())
-                                                        .overlay {
-                                                            Circle()
-                                                                .stroke(foto.completado ? Color.green : Color.gray, lineWidth: 5)
-                                                        }
                                                 }
                                             }
                                         }
@@ -151,6 +149,7 @@ struct ZoneView: View {
                             .padding()
                             .background(Color.white)
                             .cornerRadius(12)
+                            .frame(width: 360)
                             .shadow(color: Color.black.opacity(0.5), radius: 5, x: 4, y: 4)
                         }
                         .padding()
@@ -166,7 +165,7 @@ struct ZoneView: View {
     let sampleZona = Zona(
         id: 1,
         nombre: "Pertenezco",
-        descripcion: "aaaa",
+        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis dapibus lectus vel lacinia. Ut viverra elit quis nibh pharetra interdum. Nullam dapibus, dolor vel faucibus consequat, metus magna auctor nulla, in tincidunt arcu eros ut nisi.",
         color: "#C4D600",
         logo: "Pertenezco"
     )

@@ -15,6 +15,7 @@ import SwiftUI
 
 struct HomeLayoutView: View {
     var title = ""
+    var headerColor: Color = Color.green
     
     var body: some View {
         ZStack {
@@ -26,7 +27,7 @@ struct HomeLayoutView: View {
                     RoundedRectangle(cornerRadius: 0)
                         .fill(
                             LinearGradient(
-                                gradient: Gradient(colors: [Color.green.opacity(0.7), Color.green.opacity(0.9)]),
+                                gradient: Gradient(colors: [headerColor.opacity(0.7), headerColor.opacity(0.9)]),
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -49,5 +50,5 @@ struct HomeLayoutView: View {
 }
 
 #Preview {
-    HomeLayoutView(title: "Papalote MTY")
+    HomeLayoutView(title: "Papalote MTY", headerColor: Color.green)
 }

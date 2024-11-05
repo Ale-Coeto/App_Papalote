@@ -19,7 +19,8 @@ struct BadgeView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text(insignia.nombre)
-                .font(.largeTitle)
+                .font(Font.custom("VagRoundedBold", size: 40))
+                .multilineTextAlignment(.center)
                 .fontWeight(.bold)
                 .padding(.top, 20)
             
@@ -35,7 +36,7 @@ struct BadgeView: View {
             }
             
             Text(insignia.descripcion)
-                .font(.body)
+                .font(Font.custom("VagRounded-Light", size: 20))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .padding(.vertical, 10)
@@ -64,7 +65,7 @@ struct BadgeView: View {
                 }
             } label: {
                 Text("Completar")
-                    .font(.title2)
+                    .font(Font.custom("VagRoundedBold", size: 24))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)

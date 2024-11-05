@@ -12,10 +12,17 @@ struct PhotoView: View {
     @State private var selectedImage: UIImage?
     @State private var showCamera = false
     @State private var showAlert = false
+    var zonaColor : Color 
     let foto: Foto
     
     var body: some View {
         VStack(spacing: 20) {
+            Text("Mi Foto")
+                .font(Font.custom("VagRoundedBold", size: 40))
+                .multilineTextAlignment(.center)
+                .fontWeight(.bold)
+                .padding(.top, 20)
+            
             if let image = selectedImage {
                 Image(uiImage: image)
                     .resizable()
@@ -23,7 +30,7 @@ struct PhotoView: View {
                     .frame(width: 200, height: 200)
                     .padding()
             } else {
-                Image(systemName: "photo")
+                Image(systemName: "photo.circle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
@@ -31,17 +38,16 @@ struct PhotoView: View {
                     .padding()
             }
             
-            
             Button {
                 showCamera.toggle()
             } label: {
                 Text("Tomar foto")
-                    .font(.title2)
+                    .font(Font.custom("VagRoundedBold", size: 24))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(foto.completado ? Color.green : Color.gray)
+                    .background(foto.completado ? Color(zonaColor) : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -52,7 +58,7 @@ struct PhotoView: View {
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Error"),
-                    message: Text("No se ha tomado ninguna foto"),
+                    message: Text("Error al tomar la foto"),
                     dismissButton: .default(Text("OK"))
                 )
             }
@@ -88,6 +94,6 @@ struct PhotoView: View {
         imagen: nil,
         completado: false
     )
-    PhotoView(foto: samplePhoto)
+    PhotoView(zonaColor: Color.green, foto: samplePhoto)
 }
 

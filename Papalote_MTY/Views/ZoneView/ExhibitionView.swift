@@ -7,16 +7,21 @@
 
 import SwiftUI
 import SwiftData
+
+
 struct ExhibitionView: View {
+    
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
+    var zonaColor : Color 
     @State var exhibicion: Exhibicion
     let visita: Visita
     @Query private var exhibicionesObtenidas: [ExhibicionObtenida]
     var body: some View {
         VStack(spacing: 20) {
             Text(exhibicion.nombre)
-                .font(.largeTitle)
+                .font(Font.custom("VagRoundedBold", size: 40))
+                .multilineTextAlignment(.center)
                 .fontWeight(.bold)
                 .padding(.top, 20)
             
@@ -32,7 +37,7 @@ struct ExhibitionView: View {
             }
             
             Text(exhibicion.descripcion)
-                .font(.body)
+                .font(Font.custom("VagRounded-Light", size: 20))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 30)
                 .padding(.vertical, 10)
@@ -64,12 +69,12 @@ struct ExhibitionView: View {
                 //exhibicion.completado.toggle()
             } label: {
                 Text("Completar")
-                    .font(.title2)
+                    .font(Font.custom("VagRoundedBold", size: 24))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(exhibicionesObtenidas.contains(where: { $0.id == exhibicion.id && $0.visitaId == visita.id }) ? Color.green : Color.gray)
+                    .background(exhibicionesObtenidas.contains(where: { $0.id == exhibicion.id && $0.visitaId == visita.id }) ? Color(zonaColor) : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -81,7 +86,6 @@ struct ExhibitionView: View {
 }
 
 #Preview {
-    @Previewable @State var sampleColor = Color.gray
     let sampleExhibition = Exhibicion(
         id: 1,
         idZona: 1,
@@ -92,6 +96,6 @@ struct ExhibitionView: View {
         isOpen: true,
         location: "Sala de Arte"
     )
-    ExhibitionView(exhibicion: sampleExhibition, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
+    ExhibitionView(zonaColor: Color.green, exhibicion: sampleExhibition, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
 }
 

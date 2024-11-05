@@ -33,19 +33,17 @@ struct ExhibitionView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
+                    .frame(width: 280, height: 280)
                     .padding()
             } placeholder: {
                 ProgressView()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 280, height: 280)
             }
             
             Text(exhibicion.descripcion)
                 .font(Font.custom("VagRounded-Light", size: 20))
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 30)
-                .padding(.vertical, 10)
-                .cornerRadius(12)
+                .padding(.vertical, 5)
             
             Button {
                 
@@ -94,7 +92,7 @@ struct ExhibitionView: View {
         id: 1,
         idZona: 1,
         nombre: "Exhibición de Arte Moderno",
-        descripcion: "Una colección de obras de arte moderno de varios artistas.",
+        descripcion: "Una colección de obras de arte moderno de varios artistas.na colección de obras de arte moderno de varios artistasna colección de obras de arte moderno de varios artistas",
         completado: true,
         imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png",
         isOpen: true,

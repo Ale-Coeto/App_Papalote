@@ -18,7 +18,6 @@ struct MainView: View {
             .onAppear{
                 MockDataManager.addMockData(to: context)
             }
-            
     }
 }
 

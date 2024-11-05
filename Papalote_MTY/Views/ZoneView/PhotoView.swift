@@ -90,7 +90,7 @@ struct PhotoView: View {
         }
     }
     func savePhotoToDatabase(photo: UIImage) {
-        guard let data = photo.pngData() else { return }
+        guard let data = photo.jpegData(compressionQuality: 0.6) else { return }
         foto.imagen = data
         do {
             try context.save()

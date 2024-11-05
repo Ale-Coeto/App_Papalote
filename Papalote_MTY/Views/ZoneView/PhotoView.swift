@@ -14,10 +14,21 @@ struct PhotoView: View {
     @State private var showAlert = false
     var zonaColor : Color 
     let foto: Foto
+
+    private var fotoNumero: String {
+        switch foto.id % 3 {
+        case 1:
+            return "Foto 1"
+        case 2:
+            return "Foto 2"
+        default:
+            return "Foto 3"
+        }
+    }
     
     var body: some View {
         VStack(spacing: 20) {
-            Text(String(foto.id))
+            Text(fotoNumero)
                 .font(Font.custom("VagRoundedBold", size: 40))
                 .multilineTextAlignment(.center)
                 .fontWeight(.bold)
@@ -31,14 +42,14 @@ struct PhotoView: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
+                    .frame(width: 250, height: 250)
                     .padding()
             } else {
                 Image(systemName: "photo.circle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.gray) 
+                    .frame(width: 280, height: 280)
+                    .foregroundColor(.gray)
                     .padding()
             }
             

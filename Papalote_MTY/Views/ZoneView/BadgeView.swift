@@ -33,11 +33,11 @@ struct BadgeView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
+                    .frame(width: 280, height: 280)
                     .padding()
             } placeholder: {
                 ProgressView()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 280, height: 280)
             }
             
             Text(insignia.descripcion)

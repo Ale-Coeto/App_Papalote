@@ -49,7 +49,6 @@ struct ZoneView: View {
                                                 AsyncImage(url: URL(string: exhibicion.imagen)) { image in
                                                     image
                                                         .resizable()
-                                                        .aspectRatio(contentMode: .fit)
                                                         .frame(width: 80, height: 80)
                                                         .clipShape(Circle())
                                                         .overlay {
@@ -91,7 +90,6 @@ struct ZoneView: View {
                                                 AsyncImage(url: URL(string: insignia.imagen)) { image in
                                                     image
                                                         .resizable()
-                                                        .aspectRatio(contentMode: .fit)
                                                         .frame(width: 80, height: 80)
                                                         .clipShape(Circle())
                                                         .overlay {
@@ -133,7 +131,6 @@ struct ZoneView: View {
                                                 if let imageData = foto.imagen, let image = UIImage(data: imageData) {
                                                     Image(uiImage: image)
                                                         .resizable()
-                                                        .aspectRatio(contentMode: .fit)
                                                         .frame(width: 80, height: 80)
                                                         .clipShape(Circle())
                                                         .overlay {
@@ -183,7 +180,7 @@ struct ZoneView: View {
         nombre: "Exhibición de Arte Moderno",
         descripcion: "Una colección de obras de arte moderno de varios artistas.",
         completado: false,
-        imagen: "https://w7.pngwing.com/pngs/963/1005/png-transparent-modern-art-drawing-visual-arts-design-child-text-cartoon.png",
+        imagen: "https://drive.google.com/uc?id=1UGgzWVKqQ6vK6YSGOaUCTTNIkFMb2NPf",
         isOpen: true,
         location: "Sala de Arte"
     )]

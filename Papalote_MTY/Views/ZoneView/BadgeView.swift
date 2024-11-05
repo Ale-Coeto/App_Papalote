@@ -11,6 +11,7 @@ import SwiftData
 struct BadgeView: View {
     let insignia: Insignia
     let visita: Visita
+    var zonaColor : Color 
     
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
@@ -23,6 +24,10 @@ struct BadgeView: View {
                 .multilineTextAlignment(.center)
                 .fontWeight(.bold)
                 .padding(.top, 20)
+    
+            Divider()
+                .frame(minHeight: 5)
+                .background(zonaColor)
             
             AsyncImage(url: URL(string: insignia.imagen)) { image in
                 image
@@ -70,7 +75,7 @@ struct BadgeView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 15)
-                    .background(insigniasObtenidas.contains(where: { $0.id == insignia.id && $0.visitaId == visita.id }) ? Color.green : Color.gray)
+                    .background(insigniasObtenidas.contains(where: { $0.id == insignia.id && $0.visitaId == visita.id }) ? zonaColor : Color.gray)
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
@@ -92,5 +97,5 @@ struct BadgeView: View {
         completado: false,
         idNFC: 1
     )
-    BadgeView(insignia: sampleInsignia, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
+    BadgeView(insignia: sampleInsignia, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), zonaColor: Color.gray)
 }

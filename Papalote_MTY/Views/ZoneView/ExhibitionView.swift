@@ -25,6 +25,10 @@ struct ExhibitionView: View {
                 .fontWeight(.bold)
                 .padding(.top, 20)
             
+            Divider()
+                .frame(minHeight: 5)
+                .background(zonaColor)
+            
             AsyncImage(url: URL(string: exhibicion.imagen)) { image in
                 image
                     .resizable()

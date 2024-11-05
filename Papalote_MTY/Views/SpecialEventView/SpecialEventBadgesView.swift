@@ -32,7 +32,7 @@ struct SpecialEventBadgesView: View {
                     
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(insignias.filter { $0.idEvento == evento.id }.sorted(by: { $0.id < $1.id }), id: \.self.id) { insignia in
-                            NavigationLink(destination: BadgeView(insignia: insignia, visita: visita)) {
+                            NavigationLink(destination: BadgeView(insignia: insignia, visita: visita, zonaColor: Color.green)) {
                                 VStack {
                                     AsyncImage(url: URL(string: insignia.imagen)) { image in
                                         image

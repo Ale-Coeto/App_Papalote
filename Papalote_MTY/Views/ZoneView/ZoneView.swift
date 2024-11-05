@@ -19,6 +19,14 @@ struct ZoneView: View {
     @Query private var insigniasObtenidas: [InsigniaObtenida]
     @Query private var exhibicionesObtenidas: [ExhibicionObtenida]
 
+    var sortedExhibiciones: [Exhibicion] {
+            exhibiciones.sorted(by: { $0.id < $1.id })
+        }
+
+    var sortedInsignias: [Insignia] {
+        insignias.sorted(by: { $0.id < $1.id })
+    }
+
     var body: some View {
         NavigationStack {
             HomeLayoutView(title: zona.nombre, headerColor: Color(hex: zona.color))
@@ -34,7 +42,7 @@ struct ZoneView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 ScrollView(.horizontal, showsIndicators: true) {
                                     HStack(spacing: 40) {
-                                        ForEach(exhibiciones.sorted(by: { $0.id < $1.id }), id: \.self.id) { exhibicion in
+                                        ForEach(sortedExhibiciones, id: \.self.id) { exhibicion in
                                             NavigationLink {
                                                 ExhibitionView(zonaColor: Color(hex: zona.color), exhibicion: exhibicion, visita: visita)
                                             } label: {
@@ -76,9 +84,9 @@ struct ZoneView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 ScrollView(.horizontal, showsIndicators: true) {
                                     HStack(spacing: 40) {
-                                        ForEach(insignias.sorted(by: { $0.id < $1.id }), id: \.self.id) { insignia in
+                                        ForEach(sortedInsignias, id: \.self.id) { insignia in
                                             NavigationLink {
-                                                BadgeView(insignia: insignia, visita: visita)
+                                                BadgeView(insignia: insignia, visita: visita, zonaColor: Color(hex: zona.color))
                                             } label: {
                                                 AsyncImage(url: URL(string: insignia.imagen)) { image in
                                                     image

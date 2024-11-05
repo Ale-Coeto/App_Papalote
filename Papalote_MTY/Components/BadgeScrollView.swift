@@ -6,13 +6,13 @@ struct BadgeScrollView: View {
     var evento: Evento? // Optional Evento
     let visita: Visita
     let isEvento: Bool // Flag to differentiate between Zona and Evento
-    
     @Environment(\.modelContext) private var context
     @Query private var insignias: [Insignia]
     @Query private var insigniasObtenidas: [InsigniaObtenida]
     
     @State private var selectedInsignia: Insignia? // State to track the selected insignia
     
+    @State public var zoneColor = Color.green
     var body: some View {
         // Filter insignias based on whether it's for a Zona or Evento
         let filteredInsignias = isEvento ?
@@ -46,7 +46,7 @@ struct BadgeScrollView: View {
                                             .clipShape(Circle())
                                             .overlay(
                                                 // Overlay with conditional border based on isCompleted
-                                                Circle().stroke(isCompleted[index] ? Color.green : Color.gray, lineWidth: 3.5)
+                                                Circle().stroke(isCompleted[index] ? zoneColor : Color.gray, lineWidth: 3.5)
                                             )
                                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                             .padding(8)
@@ -58,7 +58,7 @@ struct BadgeScrollView: View {
                                 }
                             }
                             .sheet(item: $selectedInsignia) { insignia in
-                                BadgeView(insignia: insignia, visita: visita)
+                                BadgeView(insignia: insignia, visita: visita, zonaColor: zoneColor)
                             }
                         }
                     }
@@ -72,6 +72,13 @@ struct BadgeScrollView: View {
         }
         .padding(.horizontal)
         .padding(.bottom, 10)
+        .onAppear{
+            if let hexColor = zona?.color {
+                            zoneColor = Color(hex: hexColor)
+                        } else {
+                            zoneColor = Color.green // Fallback color
+                        }
+        }
     }
     
     // Helper function to determine if insignias are completed

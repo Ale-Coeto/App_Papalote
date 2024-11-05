@@ -10,6 +10,9 @@ import SwiftUI
 struct StartQuizView: View {
     @State var isAlertOn: Bool = false
     let visita: Visita
+    @State var isSkipping: Bool = false
+    
+    
     var body: some View {
         NavigationStack{
         ZStack{
@@ -44,24 +47,38 @@ struct StartQuizView: View {
                             .foregroundStyle(Color.init(hex: "#8D9193"))
                             .underline()
                     }
+                    
                 }
                 .padding(.top, -20)
                 .padding(.bottom, 70)
             }
-            
+
         }.ignoresSafeArea()
             .alert(isPresented: $isAlertOn) {
-                Alert(
-                    title: Text("¿Quieres saltar la encuesta?"),
-                    message: Text("Ya no podrás hacer la encuesta en otra ocasión."),
-                    primaryButton: .default(Text("Saltar encuesta"), action: {}),
-                    secondaryButton: .destructive(Text("Regresar"))
+                        Alert(
+                title: Text("¿Quieres saltar la encuesta?"),
+                message: Text("Ya no podrás hacer la encuesta en otra ocasión."),
+                primaryButton: .destructive(Text("Saltar encuesta"), action: {
+                    visita.orden = "Pertenezco Comunico Comprendo Soy Expreso Pequeño"
+                    isSkipping = true
+                }),
+                secondaryButton: .default(Text("Regresar"))
                 )
+            }
+            .navigationDestination(isPresented: $isSkipping) {
+                MainView(visita: visita)
             }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
+
+
+
+
+
+
+
 
 struct ZonasLogos: View {
     var body: some View {

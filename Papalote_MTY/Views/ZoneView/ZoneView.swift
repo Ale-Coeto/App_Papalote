@@ -33,7 +33,9 @@ struct ZoneView: View {
                 .overlay(
                     ScrollView {
                         VStack(spacing: 20) {
+                            Spacer()
                             Text(zona.descripcion)
+                                .padding(10)
                                 .font(Font.custom("VagRounded-Light", size: 20))
                             // Exhibiciones section
                             VStack {
@@ -156,11 +158,14 @@ struct ZoneView: View {
                             .cornerRadius(12)
                             .frame(width: 360)
                             .shadow(color: Color.black.opacity(0.5), radius: 5, x: 4, y: 4)
+                            Spacer()
+ 
                         }
                         .padding()
-                        .padding(.top, Constants.HEADER_HEIGHT)
                         .multilineTextAlignment(.center)
                     }
+                    .background(Color(red: 240/255, green: 244/255, blue: 248/255))
+                    .padding(.top, 30)
                 )
         }
     }

@@ -24,6 +24,10 @@ struct BadgeView: View {
                 .multilineTextAlignment(.center)
                 .fontWeight(.bold)
                 .padding(.top, 20)
+    
+            Divider()
+                .frame(minHeight: 5)
+                .background(zonaColor)
             
             AsyncImage(url: URL(string: insignia.imagen)) { image in
                 image
@@ -93,5 +97,5 @@ struct BadgeView: View {
         completado: false,
         idNFC: 1
     )
-    BadgeView(insignia: sampleInsignia, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), zonaColor: Color.green)
+    BadgeView(insignia: sampleInsignia, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), zonaColor: Color.gray)
 }

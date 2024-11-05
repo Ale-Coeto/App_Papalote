@@ -17,11 +17,15 @@ struct PhotoView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Mi Foto")
+            Text(String(foto.id))
                 .font(Font.custom("VagRoundedBold", size: 40))
                 .multilineTextAlignment(.center)
                 .fontWeight(.bold)
                 .padding(.top, 20)
+            
+            Divider()
+                .frame(minHeight: 5)
+                .background(zonaColor)
             
             if let image = selectedImage {
                 Image(uiImage: image)

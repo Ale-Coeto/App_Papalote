@@ -164,7 +164,7 @@ struct ZoneView: View {
                         .padding(.top, Constants.HEADER_HEIGHT)
                         .multilineTextAlignment(.center)
                     }
-            )
+                )
         }
     }
 }

@@ -87,6 +87,7 @@
 		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
 		9188A7062CCC5D6E008ADE1E /* QuizViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = QuizViews; sourceTree = "<group>"; };
 		919A4F322CC6E73500532171 /* VisitsView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VisitsView; sourceTree = "<group>"; };
+		91EDCBCE2CDAC078009081C6 /* NFCUnblockView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = NFCUnblockView; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +144,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				91EDCBCE2CDAC078009081C6 /* NFCUnblockView */,
 				454994942CCDADEE00D8E464 /* PhotosView */,
 				45E6BB812CCC6A4D008F39A5 /* SpecialEventView */,
 				9188A7062CCC5D6E008ADE1E /* QuizViews */,
@@ -240,6 +242,7 @@
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
+				91EDCBCE2CDAC078009081C6 /* NFCUnblockView */,
 			);
 			name = Papalote_MTY;
 			productName = Papalote_MTY;
@@ -458,7 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 3832828XZ7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
@@ -492,7 +495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = FBFGPPRU68;
+				DEVELOPMENT_TEAM = 3832828XZ7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";

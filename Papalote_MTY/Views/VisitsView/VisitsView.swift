@@ -36,7 +36,7 @@ struct VisitsView: View {
             }
             .navigationDestination(isPresented: $shouldNavigateToNFCUnblock) {
                 if let visit = newVisit {
-                    NFCUnblockView(visita: visit)
+                    WelcomeView(visit: visit)
                 }
             }
         }
@@ -158,7 +158,7 @@ struct UserWithVisits: View {
             }
             .navigationDestination(isPresented: $shouldNavigate) {
                 if let visit = newVisit {
-                    NFCUnblockView(visita: visit)
+                    WelcomeBackView(visit: visit)
                 }
             }
         }

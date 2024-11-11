@@ -36,7 +36,7 @@ struct VisitsView: View {
             }
             .navigationDestination(isPresented: $shouldNavigateToStartQuiz) {
                 if let visit = newVisit {
-                    StartQuizView(visita: visit)
+                    WelcomeView(visit: visit)
                 }
             }
         }
@@ -158,7 +158,7 @@ struct UserWithVisits: View {
             }
             .navigationDestination(isPresented: $shouldNavigate) {
                 if let visit = newVisit {
-                    StartQuizView(visita: visit)
+                    WelcomeBackView(visit: visit)
                 }
             }
         }

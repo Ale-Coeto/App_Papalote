@@ -93,21 +93,24 @@ struct PhotosView: View {
     
 }
 
-// View for sharing the photo
+// Modifica ShareSheetView para usar UIActivityViewController
 struct ShareSheetView: View {
     let image: UIImage
     let zone: String
     let zoneColor: Color
     
+    @Environment(\.presentationMode) var presentationMode
+    @State private var isActivityViewPresented = false
+    
     var body: some View {
         VStack(spacing: 16) {
-            // Title at the top
+            // Título en la parte superior
             Text("Foto tomada en \(zone)")
-                .font(.largeTitle)
+                .font(Font.custom("VagRoundedBold", size: 48))
                 .fontWeight(.bold)
                 .padding(.top)
             
-            Spacer() // Add space between the title and the image
+            Spacer() // Espacio entre el título y la imagen
             
             Image(uiImage: image)
                 .resizable()
@@ -118,27 +121,27 @@ struct ShareSheetView: View {
                 .cornerRadius(12)
                 .shadow(radius: 10)
             
-            if InstagramSharingUtils.canOpenInstagramStories {
-                Button(action: {
-                    InstagramSharingUtils.shareToInstagramStories(image)
-                }) {
-                    Text("Compartir en Instagram Stories")
-                        .fontWeight(.bold)
-                        .padding()
-                        .frame(maxWidth: .infinity) // Full width
-                        .background(
-                            LinearGradient(gradient: Gradient(colors: [Color(red: 0.95, green: 0.25, blue: 0.56), Color(red: 0.25, green: 0.47, blue: 0.93)]), startPoint: .leading, endPoint: .trailing) // Horizontal gradient
-                        )
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.top, 20)
-            } else {
-                Text("Instagram no está disponible.")
-                    .foregroundColor(.gray)
-                    .padding(.top, 20)
+            Button(action: {
+                // Abre el ActivityViewController
+                isActivityViewPresented = true
+            }) {
+                Text("Compartir")
+                    .font(Font.custom("VagRoundedBold", size: 24))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 15)
+                    .background(zoneColor)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
-            
+            .padding(.top, 20)
+            .sheet(isPresented: $isActivityViewPresented) {
+                ActivityViewController(activityItems: [image])
+                    .presentationDetents([.medium, .large])
+            }
+
+
             Spacer()
         }
         .padding()
@@ -147,6 +150,20 @@ struct ShareSheetView: View {
         .padding(.horizontal)
     }
 }
+
+// Wrapper para UIActivityViewController
+struct ActivityViewController: UIViewControllerRepresentable {
+    var activityItems: [Any]
+    var applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
 
 #Preview {
     PhotosView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco, Comunico, Comprendo, Soy, Expreso, Pequeño"))

@@ -119,7 +119,7 @@ struct UserWithVisits: View {
                     ForEach(visitas.sorted(by: { $0.id < $1.id })) { visita in
                         NavigationLink(destination: {
                             if visita.orden == "" {
-                                StartQuizView(visita: visita)
+                                NFCUnblockView(visita: visita)
                             } else {
                                 MainView(visita: visita)
                             }
@@ -158,7 +158,7 @@ struct UserWithVisits: View {
             }
             .navigationDestination(isPresented: $shouldNavigate) {
                 if let visit = newVisit {
-                    StartQuizView(visita: visit)
+                    NFCUnblockView(visita: visit)
                 }
             }
         }

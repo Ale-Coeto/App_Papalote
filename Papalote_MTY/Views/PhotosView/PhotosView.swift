@@ -101,6 +101,7 @@ struct ShareSheetView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var isActivityViewPresented = false
+    @State private var imageWithBorder: UIImage?
     
     var body: some View {
         VStack(spacing: 16) {
@@ -122,6 +123,9 @@ struct ShareSheetView: View {
                 .shadow(radius: 10)
             
             Button(action: {
+                // Crear imagen con borde
+                imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 10)
+                
                 // Abre el ActivityViewController
                 isActivityViewPresented = true
             }) {
@@ -148,6 +152,27 @@ struct ShareSheetView: View {
         .background(.white)
         .cornerRadius(20)
         .padding(.horizontal)
+    }
+    // Función para agregar el borde a la imagen
+    private func addBorderToImage(_ image: UIImage, borderColor: UIColor, borderWidth: CGFloat) -> UIImage {
+        let size = CGSize(width: image.size.width + 2 * borderWidth, height: image.size.height + 2 * borderWidth)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        let rect = CGRect(origin: CGPoint(x: borderWidth, y: borderWidth), size: image.size)
+        
+        // Dibujar el borde
+        let path = UIBezierPath(rect: CGRect(origin: .zero, size: size))
+        borderColor.setFill()
+        path.fill()
+        
+        // Dibujar la imagen
+        image.draw(in: rect)
+        
+        // Obtener la imagen con el borde
+        let borderedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return borderedImage ?? image
     }
 }
 

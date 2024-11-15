@@ -36,6 +36,7 @@
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
 		9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */; };
+		916724962CE70EFE00D5DAFE /* SwiftNFC in Frameworks */ = {isa = PBXBuildFile; productRef = 916724952CE70EFE00D5DAFE /* SwiftNFC */; };
 		917B08FE2CE2A2C900E7A9DB /* NFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B08FD2CE2A2C900E7A9DB /* NFCReader.swift */; };
 		9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9188A6E82CCC5AC6008ADE1E /* Quiz.swift */; };
 		919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A4F372CC6F31700532171 /* VisitaButton.swift */; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916724962CE70EFE00D5DAFE /* SwiftNFC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +280,9 @@
 				Base,
 			);
 			mainGroup = 2C5D29912CBDD6E800EB3DB2;
+			packageReferences = (
+				916724942CE70EFE00D5DAFE /* XCRemoteSwiftPackageReference "SwiftNFC" */,
+			);
 			productRefGroup = 2C5D299B2CBDD6E800EB3DB2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -468,7 +473,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FBFGPPRU68;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
@@ -487,7 +492,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTYY";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -505,7 +510,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FBFGPPRU68;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
@@ -524,7 +529,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTYY";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -555,6 +560,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		916724942CE70EFE00D5DAFE /* XCRemoteSwiftPackageReference "SwiftNFC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1998code/SwiftNFC";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		916724952CE70EFE00D5DAFE /* SwiftNFC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 916724942CE70EFE00D5DAFE /* XCRemoteSwiftPackageReference "SwiftNFC" */;
+			productName = SwiftNFC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C5D29922CBDD6E800EB3DB2 /* Project object */;
 }

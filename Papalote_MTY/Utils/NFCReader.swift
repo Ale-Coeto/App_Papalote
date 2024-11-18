@@ -8,99 +8,43 @@
 import CoreNFC
 import Combine
 
-class NFCReader: NSObject, ObservableObject, NFCTagReaderSessionDelegate {
-    @Published var tagData: String?
-    private var readerSession: NFCTagReaderSession?
-    var onTagRead: ((String) -> Void)?
-    
-    func startReading(completion: @escaping (String) -> Void) {
-        self.onTagRead = completion
-        guard NFCTagReaderSession.readingAvailable else {
-            print("NFC is not available on this device")
-            return
-        }
-        
-        readerSession = NFCTagReaderSession(pollingOption: [.iso14443], delegate: self)
-        readerSession?.begin()
+class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
+    var session: NFCNDEFReaderSession?
+    var onTagRead: ((NFCTag) -> Void)?
+
+    func startReading(onTagRead: @escaping (NFCTag) -> Void) {
+        self.onTagRead = onTagRead
+        session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
+        session?.begin()
     }
 
-    func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
-        if let tag = tags.first {
-            session.connect(to: tag) { (error) in
-                if let error = error {
-                    print("Error connecting to tag: \(error)")
-                    session.invalidate(errorMessage: "Connection failed")
-                } else {
-                    switch tag {
-                    case .iso7816(let tag):
-                        self.readNDEF(tag: tag as! NFCISO7816Tag, session: session)
-                    case .iso15693(let tag):
-                        self.readNDEF(tag: tag as! NFCISO15693Tag, session: session)
-                    case .miFare(let tag):
-                        self.readNDEF(tag: tag as! NFCMiFareTag, session: session)
-                    @unknown default:
-                        session.invalidate(errorMessage: "Unsupported tag")
-                    }
-                }
-            }
-        }
+    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
+        print("Session invalidated: \(error.localizedDescription)")
     }
 
-    private func readNDEF(tag: NFCNDEFTag, session: NFCTagReaderSession) {
-        tag.queryNDEFStatus { (status, capacity, error) in
-            if let error = error {
-                print("Error querying NDEF status: \(error)")
-                session.invalidate(errorMessage: "Failed to query NDEF status")
-                return
-            }
-
-            guard status == .readWrite || status == .readOnly else {
-                session.invalidate(errorMessage: "Tag is not NDEF formatted")
-                return
-            }
-
-            tag.readNDEF { (message, error) in
-                if let error = error {
-                    print("Error reading NDEF message: \(error)")
-                    session.invalidate(errorMessage: "Failed to read NDEF message")
-                    return
-                }
-
-                if let message = message {
-                    DispatchQueue.main.async {
-                        self.tagData = self.parseNDEFMessage(message)
-                    }
-                }
-                session.invalidate()
-            }
-        }
-    }
-
-        private func parseNDEFMessage(_ message: NFCNDEFMessage) -> String {
-        var result = ""
+    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+        guard let message = messages.first else { return }
         for record in message.records {
-            if record.typeNameFormat == .nfcWellKnown, let type = String(data: record.type, encoding: .utf8), type == "T" {
-                let payload = record.payload
-                let statusByte = payload.first!
-                let languageCodeLength = Int(statusByte & 0x3F)
-                let text = String(data: payload.advanced(by: 1 + languageCodeLength), encoding: .utf8) ?? ""
-                result += text
+            if let jsonString = String(data: record.payload, encoding: .utf8) {
+                print("JSON String: \(jsonString)") // Print the JSON string
+                if let tag = parseJSON(jsonString: jsonString) {
+                    DispatchQueue.main.async {
+                        self.onTagRead?(tag)
+                    }
+                }
             }
         }
-        
-        DispatchQueue.main.async {
-            self.tagData = result
-            self.onTagRead?(result)
+    }
+
+    private func parseJSON(jsonString: String) -> NFCTag? {
+        let data = jsonString.data(using: .utf8)!
+        do {
+            let decoder = JSONDecoder()
+            let tag = try decoder.decode(NFCTag.self, from: data)
+            return tag
+        } catch {
+            print("Failed to decode JSON: \(error.localizedDescription)")
+            return nil
         }
-        
-        return result
-    }
-
-    func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
-        print("NFC Reader session became active")
-    }
-
-    func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
-        print("NFC Reader session invalidated with error: \(error)")
     }
 }

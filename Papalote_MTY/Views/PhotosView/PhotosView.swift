@@ -8,7 +8,6 @@ import SwiftUI
 import SwiftData
 import UIKit
 import Photos
-
 struct PhotosView: View {
     let visita: Visita
     @Query var photos: [Foto]
@@ -101,6 +100,7 @@ struct ShareSheetView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var isActivityViewPresented = false
+    @State private var imageWithBorder: UIImage?
     
     var body: some View {
         VStack(spacing: 16) {
@@ -111,7 +111,15 @@ struct ShareSheetView: View {
                 .padding(.top)
             
             Spacer() // Espacio entre el título y la imagen
-            
+            /*if let validImage = imageWithBorder {
+                Image(uiImage: validImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 300)
+                    .padding()
+                    .cornerRadius(50)
+                    .shadow(radius: 10)
+            }*/
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -121,7 +129,11 @@ struct ShareSheetView: View {
                 .cornerRadius(12)
                 .shadow(radius: 10)
             
+            
             Button(action: {
+                // Crear imagen con borde
+                imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)
+                
                 // Abre el ActivityViewController
                 isActivityViewPresented = true
             }) {
@@ -137,7 +149,7 @@ struct ShareSheetView: View {
             }
             .padding(.top, 20)
             .sheet(isPresented: $isActivityViewPresented) {
-                ActivityViewController(activityItems: [image])
+                ActivityViewController(activityItems: [imageWithBorder])
                     .presentationDetents([.medium, .large])
             }
 
@@ -149,6 +161,30 @@ struct ShareSheetView: View {
         .cornerRadius(20)
         .padding(.horizontal)
     }
+    // Función para agregar el borde a la imagen
+    /*private func addBorderToImage(_ image: UIImage, borderColor: UIColor, borderWidth: CGFloat, cornerRadius: CGFloat) -> UIImage {
+        let size = CGSize(width: image.size.width + 2 * borderWidth, height: image.size.height + 2 * borderWidth)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        
+        let rect = CGRect(origin: CGPoint(x: borderWidth, y: borderWidth), size: image.size)
+        let borderRect = CGRect(origin: .zero, size: size)
+        
+        // Draw rounded border
+        let path = UIBezierPath(roundedRect: borderRect, cornerRadius: cornerRadius)
+        borderColor.setFill()
+        path.fill()
+        
+        // Draw the image inside the rounded border
+        let imagePath = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius - borderWidth)
+        imagePath.addClip()
+        image.draw(in: rect)
+        
+        let borderedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return borderedImage ?? image
+    }*/
+
 }
 
 // Wrapper para UIActivityViewController

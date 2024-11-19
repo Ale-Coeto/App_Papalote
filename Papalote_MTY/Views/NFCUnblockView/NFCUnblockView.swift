@@ -72,14 +72,23 @@ struct NFCUnblockView: View {
                                 .foregroundStyle(Color.white)
                         }
                     }
+                    Button("Saltar") {
+                        Tag.scanned = true
+                        updateScannedState()
+                    }
                     Spacer()
                 }
                 .navigationDestination(isPresented: $Tag.scanned) {
                     StartQuizView(visita: visita)
                 }
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
+    private func updateScannedState() {
+            // This method is used to trigger a state update
+            Tag = NFCTag(id: Tag.id, tagName: Tag.tagName, date: Tag.date, scanned: Tag.scanned)
+        }
 }
 
 #Preview {

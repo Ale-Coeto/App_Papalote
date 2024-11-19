@@ -36,7 +36,7 @@ struct VisitsView: View {
             }
             .navigationDestination(isPresented: $shouldNavigateToNFCUnblock) {
                 if let visit = newVisit {
-                    WelcomeView(visit: visit)
+                    WelcomeView(visita: visit)
                 }
             }
         }
@@ -119,7 +119,7 @@ struct UserWithVisits: View {
                     ForEach(visitas.sorted(by: { $0.id < $1.id })) { visita in
                         NavigationLink(destination: {
                             if visita.orden == "" {
-                                NFCUnblockView(visita: visita)
+                                WelcomeBackView(visita: visita)
                             } else {
                                 MainView(visita: visita)
                             }
@@ -158,7 +158,7 @@ struct UserWithVisits: View {
             }
             .navigationDestination(isPresented: $shouldNavigate) {
                 if let visit = newVisit {
-                    WelcomeBackView(visit: visit)
+                    WelcomeBackView(visita: visit)
                 }
             }
         }

@@ -13,7 +13,7 @@ struct VisitsView: View {
     @Query private var visitas: [Visita]
     @State private var nextNumber: Int = 1
     @State private var newVisit: Visita?
-    @State private var shouldNavigateToStartQuiz = false
+    @State private var shouldNavigateToNFCUnblock = false
     
     var body: some View {
         NavigationStack {
@@ -22,7 +22,7 @@ struct VisitsView: View {
                     .ignoresSafeArea()
                 VStack {
                     if visitas.isEmpty {
-                        NoVisitsView(nextNumber: $nextNumber, context: context, newVisit: $newVisit, shouldNavigateToStartQuiz: $shouldNavigateToStartQuiz)
+                        NoVisitsView(nextNumber: $nextNumber, context: context, newVisit: $newVisit, shouldNavigateToNFCUnblock: $shouldNavigateToNFCUnblock)
                     } else {
                         UserWithVisits(nextNumber: $nextNumber, context: context)
                     }
@@ -34,9 +34,9 @@ struct VisitsView: View {
                     nextNumber = maxId + 1
                 }
             }
-            .navigationDestination(isPresented: $shouldNavigateToStartQuiz) {
+            .navigationDestination(isPresented: $shouldNavigateToNFCUnblock) {
                 if let visit = newVisit {
-                    WelcomeView(visit: visit)
+                    WelcomeView(visita: visit)
                 }
             }
         }
@@ -47,7 +47,7 @@ struct NoVisitsView: View {
     @Binding var nextNumber: Int
     var context: ModelContext
     @Binding var newVisit: Visita?
-    @Binding var shouldNavigateToStartQuiz: Bool
+    @Binding var shouldNavigateToNFCUnblock: Bool
     
     var body: some View {
         VStack {
@@ -71,7 +71,7 @@ struct NoVisitsView: View {
             
             Button("Primera visita") {
                 addNewVisit()
-                shouldNavigateToStartQuiz = true
+                shouldNavigateToNFCUnblock = true
             }
             .font(Font.custom("VagRoundedBold", size: 46))
             .foregroundStyle(Color.white)
@@ -119,7 +119,7 @@ struct UserWithVisits: View {
                     ForEach(visitas.sorted(by: { $0.id < $1.id })) { visita in
                         NavigationLink(destination: {
                             if visita.orden == "" {
-                                StartQuizView(visita: visita)
+                                WelcomeBackView(visita: visita)
                             } else {
                                 MainView(visita: visita)
                             }
@@ -158,7 +158,7 @@ struct UserWithVisits: View {
             }
             .navigationDestination(isPresented: $shouldNavigate) {
                 if let visit = newVisit {
-                    WelcomeBackView(visit: visit)
+                    WelcomeBackView(visita: visit)
                 }
             }
         }

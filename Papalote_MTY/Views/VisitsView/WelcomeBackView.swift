@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct WelcomeBackView: View {
-    var visit: Visita
-    @State private var shouldNavigateToStartQuiz = false
+    var visita: Visita
+    @State private var shouldNavigate = false
     @State private var textAnimation = false
     
     var body: some View {
@@ -39,11 +39,11 @@ struct WelcomeBackView: View {
             textAnimation = true
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                shouldNavigateToStartQuiz = true
+                shouldNavigate = true
             }
         }
-        .navigationDestination(isPresented: $shouldNavigateToStartQuiz) {
-            StartQuizView(visita: visit)
+        .navigationDestination(isPresented: $shouldNavigate) {
+            NFCUnblockView(visita: visita)
         }
         .navigationBarBackButtonHidden(true)
         }
@@ -52,5 +52,5 @@ struct WelcomeBackView: View {
 }
 
 #Preview {
-    WelcomeBackView(visit: Visita(id: 1, date: Date(), orden: ""))
+    WelcomeBackView(visita: Visita(id: 1, date: Date(), orden: ""))
 }

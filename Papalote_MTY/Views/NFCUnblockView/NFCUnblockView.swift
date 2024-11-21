@@ -7,16 +7,26 @@
 
 import SwiftUI
 import SwiftData
+import SimpleToast
 
 struct NFCUnblockView: View {
     @StateObject var NFCR = NFCReader()
+    @StateObject var tagsList = NFCTagsList()
     @State private var hasAccess = false
     let visita: Visita
     @State var Tag: NFCTag = NFCTag(id: 0, tagName: "", date: nil, scanned: false)
     
+    @State private var showToast = false
+    @State private var toastMessage = ""
+    @State private var isCorrect = false
+    
+    private let toastOptions = SimpleToastOptions(
+        hideAfter: 3,
+        animation: .bouncy
+    )
 
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 Color.AppColors.FondoAzulClaro
                     .ignoresSafeArea()
@@ -32,10 +42,26 @@ struct NFCUnblockView: View {
                     // Butterfly button to start scanning
                     Button {
                         NFCR.startReading { tag in
-                            //Create the NFCTag object using the current date and changing the scanned value to true
+                            // Create the NFCTag object using the current date and changing the scanned value to true
+                            Tag = NFCTag(id: tag.id, tagName: tag.tagName, date: Date(), scanned: false)
+                            tagsList.addTag(Tag)
                             
-                            //Date() gets the correct date and time but time is in UTC
-                            Tag = NFCTag(id: tag.id, tagName: tag.tagName, date: Date(), scanned: true)
+                            // Check if the Tag.id is equal to 1
+                            if Tag.id == 1 {
+                                // Set scanned to true
+                                Tag.scanned = true
+                                updateScannedState()
+                                
+                                // Show success toast
+                                toastMessage = "Tag escaneado correctamente"
+                                isCorrect = true
+                            } else {
+                                // Show error toast
+                                toastMessage = "Tag incorrecto"
+                                isCorrect = false
+                            }
+                            showToast = true
+                            hideToastAfterDelay()
                         }
                     } label: {
                         if let filePath = Bundle.main.path(forResource: "LogoPapaloteVerde", ofType: "png"),
@@ -54,12 +80,28 @@ struct NFCUnblockView: View {
                         .frame(maxWidth: .infinity)
                     Spacer()
                     // Escanear button to start scanning
-                    Button{
+                    Button {
                         NFCR.startReading { tag in
-                            //Create the NFCTag object using the current date and changing the scanned value to true
+                            // Create the NFCTag object using the current date and changing the scanned value to true
+                            Tag = NFCTag(id: tag.id, tagName: tag.tagName, date: Date(), scanned: false)
+                            tagsList.addTag(Tag)
                             
-                            //Date() gets the correct date and time but time is in UTC
-                            Tag = NFCTag(id: tag.id, tagName: tag.tagName, date: Date(), scanned: true)
+                            // Check if the Tag.id is equal to 1
+                            if Tag.id == 1 {
+                                // Set scanned to true
+                                Tag.scanned = true
+                                updateScannedState()
+                                
+                                // Show success toast
+                                toastMessage = "Tag escaneado correctamente"
+                                isCorrect = true
+                            } else {
+                                // Show error toast
+                                toastMessage = "Tag incorrecto"
+                                isCorrect = false
+                            }
+                            showToast = true
+                            hideToastAfterDelay()
                         }
                     } label: {
                         ZStack {
@@ -84,11 +126,27 @@ struct NFCUnblockView: View {
             }
             .navigationBarBackButtonHidden(true)
         }
-    }
-    private func updateScannedState() {
-            // This method is used to trigger a state update
-            Tag = NFCTag(id: Tag.id, tagName: Tag.tagName, date: Tag.date, scanned: Tag.scanned)
+        .simpleToast(isPresented: $showToast, options: toastOptions) {
+            Label(toastMessage, systemImage: isCorrect ? "checkmark.circle" : "xmark.circle")
+                .padding()
+                .background(isCorrect ? Color.green : Color.red)
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
         }
+    }
+    
+    private func hideToastAfterDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            withAnimation {
+                showToast = false
+            }
+        }
+    }
+    
+    private func updateScannedState() {
+        // This method is used to trigger a state update
+        Tag = NFCTag(id: Tag.id, tagName: Tag.tagName, date: Tag.date, scanned: Tag.scanned)
+    }
 }
 
 #Preview {

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 class NFCTag: Identifiable, Codable {
     var id: Int

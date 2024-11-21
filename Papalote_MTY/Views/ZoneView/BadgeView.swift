@@ -148,7 +148,7 @@ struct BadgeView: View {
         imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png",
         descripcion: "Insignia por promover acciones ecológicas",
         completado: false,
-        idNFC: 1
+        idNFC: "1"
     )
     BadgeView(insignia: sampleInsignia, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), zonaColor: Color.gray)
 }

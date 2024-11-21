@@ -199,7 +199,7 @@ struct ZoneView: View {
         imagen: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-green-eco-friendly-badge-design-png-image_8476472.png",
         descripcion: "no_descripcion",
         completado: false,
-        idNFC: 1
+        idNFC: "1"
     )]
     let samplePhoto = [Foto(
         id: 1,
@@ -209,5 +209,5 @@ struct ZoneView: View {
         completado: false
     )]
     ZoneView(zona: sampleZona, exhibiciones: sampleExhibition, insignias: sampleInsignia, fotos: samplePhoto, visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self, FetchedDate.self], inMemory: true)
 }

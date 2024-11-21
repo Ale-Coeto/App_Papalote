@@ -45,5 +45,5 @@ struct BadgesView: View {
 
 #Preview {
     BadgesView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
-        .modelContainer(for: [Zona.self, Evento.self, InsigniaObtenida.self, Insignia.self, Visita.self], inMemory: true)
+        .modelContainer(for: [Zona.self, Evento.self, InsigniaObtenida.self, Insignia.self, Visita.self, FetchedDate.self], inMemory: true)
 }

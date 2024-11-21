@@ -215,9 +215,6 @@ struct ShareSheetView: View {
     }
 
     var body: some View {
-        //let imageWithBorder = image
-        /*addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)*/
-        
         VStack(spacing: 16) {
             Text("Foto tomada en \(zone)")
                 .font(Font.custom("VagRoundedBold", size: 48))

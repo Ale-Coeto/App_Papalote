@@ -93,149 +93,6 @@ struct PhotosView: View {
 }
 
 // Modifica ShareSheetView para usar UIActivityViewController
-/*struct ShareSheetView: View {
-    let image: UIImage
-    let zone: String
-    let zoneColor: Color
-    
-    @Environment(\.presentationMode) var presentationMode
-    @State private var isActivityViewPresented = false
-    
-    var body: some View {
-        //let imageWithBorder = image
-        /*addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)*/
-        
-        VStack(spacing: 16) {
-            // Título en la parte superior
-            Text("Foto tomada en \(zone)")
-                .font(Font.custom("VagRoundedBold", size: 48))
-                .fontWeight(.bold)
-                .padding(.top)
-            
-            Spacer() // Espacio entre el título y la imagen
-            /*if let validImage = imageWithBorder {
-                Image(uiImage: validImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 300)
-                    .padding()
-                    .cornerRadius(50)
-                    .shadow(radius: 10)
-            }*/
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 300)
-                .padding()
-                .background(zoneColor)
-                .cornerRadius(12)
-                .shadow(radius: 10)
-            
-            
-            Button(action: {
-                
-                /*imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)
-                    if imageWithBorder != nil {
-                        print("entered the button and image with border was not nil")
-                        isActivityViewPresented = true
-                    } else {
-                        print("Image with border is nil!")
-                    }*/
-                
-                // Crear imagen con borde
-                /*imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)*/
-                
-                // Abre el ActivityViewController
-                isActivityViewPresented = true
-            }) {
-                Text("Compartir")
-                    .font(Font.custom("VagRoundedBold", size: 24))
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 15)
-                    .background(zoneColor)
-                    .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-            }
-            .padding(.top, 20)
-            .sheet(isPresented: $isActivityViewPresented) {
-                /*if let validImage = imageWithBorder{
-                    ActivityViewController(activityItems: [validImage])
-                        .presentationDetents([.medium, .large])
-                }*/
-                ActivityViewController(activityItems: [image])
-                    .presentationDetents([.medium, .large])
-            }
-
-
-            Spacer()
-        }
-        .padding()
-        .background(.white)
-        .cornerRadius(20)
-        .padding(.horizontal)
-        .onAppear{
-            /*imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)*/
-            /*print("finished")
-            print("finished, imageWithBorder: \(String(describing: imageWithBorder))")*/
-        }
-    }
-}*/
-
-/*struct ShareSheetView: View {
-    let image: UIImage
-    let zone: String
-    let zoneColor: Color
-
-    @State private var isActivityViewPresented = false
-
-    var body: some View {
-        VStack(spacing: 16) {
-            Text("Foto tomada en \(zone)")
-                .font(Font.custom("VagRoundedBold", size: 48))
-                .fontWeight(.bold)
-                .padding(.top)
-
-            Spacer()
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 300)
-                .padding()
-                .background(zoneColor)
-                .cornerRadius(12)
-                .shadow(radius: 10)
-
-            Button(action: {
-                isActivityViewPresented = true
-            }) {
-                Text("Compartir")
-                    .font(Font.custom("VagRoundedBold", size: 24))
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 15)
-                    .background(zoneColor)
-                    .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-            }
-            .padding(.top, 20)
-            .sheet(isPresented: $isActivityViewPresented) {
-                ActivityViewController(activityItems: [image])
-                    .presentationDetents([.medium, .large])
-            }
-
-            Spacer()
-        }
-        .padding()
-        .background(.white)
-        .cornerRadius(20)
-        .padding(.horizontal)
-    }
-}*/
-
-import SwiftUI
 
 struct ShareSheetView: View {
     let image: UIImage
@@ -245,13 +102,18 @@ struct ShareSheetView: View {
     @State private var isActivityViewPresented = false
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
+            Spacer()
             Text("Foto tomada en \(zone)")
-                .font(Font.custom("VagRoundedBold", size: 48))
+                .font(Font.custom("VagRoundedBold", size: 40))
                 .fontWeight(.bold)
                 .padding(.top)
 
-            Spacer()
+            //Spacer()
+            Divider()
+                .frame(minHeight: 5)
+                .background(zoneColor)
+            
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)

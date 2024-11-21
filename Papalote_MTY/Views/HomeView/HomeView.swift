@@ -24,26 +24,34 @@ struct HomeView: View {
         var body: some View {
         // Use the sorting function from ZonaSorting.swift
         let sortedZonas = sortZonasByOrden(zonas: zonas, orden: visita.orden)
+            
+            let sortedEventos = eventosEspeciales.sorted {
+                if $0.fechaInicio == $1.fechaInicio {
+                    return $0.id < $1.id
+                }
+                return $0.fechaInicio < $1.fechaInicio
+            }
+            
         NavigationStack {
             HomeLayoutView(title: "Papalote MTY")
                 .overlay(
                     VStack {
                         ZStack {
-                            ForEach(0..<eventosEspeciales.count, id: \.self) { index in
+                            ForEach(0..<sortedEventos.count, id: \.self) { index in
                                 ZStack {
                                     // Main Card Content
                                     VStack {
                                         Text("Evento de tiempo Limitado!")
                                             .font(Font.custom("VagRounded-Light", size: 18))
                                             .foregroundColor(.gray)
-                                        Text(eventosEspeciales[index].nombre)
+                                        Text(sortedEventos[index].nombre)
                                             .font(Font.custom("VagRounded-Light", size: 22))
                                             .bold()
                                             .foregroundColor(.black)
-                                        Text(eventosEspeciales[index].descripcion)
+                                        Text(sortedEventos[index].descripcion)
                                             .font(Font.custom("VagRounded-Light", size: 16))
                                             .foregroundColor(.gray)
-                                        Text("Solo disponible hasta \(formattedDate(eventosEspeciales[index].fechaFin))")
+                                        Text("Solo disponible hasta \(formattedDate(sortedEventos[index].fechaFin))")
                                             .font(Font.custom("VagRounded-Light", size: 14))
                                             .foregroundColor(.red)
                                             .padding(.top, 5)
@@ -62,7 +70,7 @@ struct HomeView: View {
                                     
                                     // Navigation handling
                                     NavigationLink(
-                                        destination: SpecialEventView(evento: eventosEspeciales[index], visita: visita),
+                                        destination: SpecialEventView(evento: sortedEventos[index], visita: visita),
                                         isActive: $shouldNavigateArray[index]  // Bind each NavigationLink to the corresponding flag
                                     ) {
                                         EmptyView()
@@ -81,7 +89,7 @@ struct HomeView: View {
                         .gesture(
                             DragGesture()
                                 .onChanged { value in
-                                    shouldNavigateArray = Array(repeating: false, count: eventosEspeciales.count)  // Reset all navigation flags during drag
+                                    shouldNavigateArray = Array(repeating: false, count: sortedEventos.count)  // Reset all navigation flags during drag
                                     dragOffset = value.translation.width
                                 }
                                 .onEnded { value in
@@ -90,7 +98,7 @@ struct HomeView: View {
                                         if value.translation.width > threshold {
                                             currentIndex = max(currentIndex - 1, 0)
                                         } else if value.translation.width < -threshold {
-                                            currentIndex = min(currentIndex + 1, eventosEspeciales.count - 1)
+                                            currentIndex = min(currentIndex + 1, sortedEventos.count - 1)
                                         }
                                         dragOffset = 0
                                     }

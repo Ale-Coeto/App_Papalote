@@ -25,8 +25,7 @@ struct BadgeScrollView: View {
         VStack(alignment: .leading, spacing: 10) {
             VStack(alignment: .leading) {
                 Text(isEvento ? (evento?.nombre ?? "Evento") : (zona?.nombre ?? "Zona"))
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(.gray)
+                    .font(Font.custom("VagRoundedBold", size: 20))
                     .padding([.top, .leading, .trailing])
 
                 ScrollView(.horizontal, showsIndicators: true) {

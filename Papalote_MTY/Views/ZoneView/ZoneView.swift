@@ -26,7 +26,9 @@ struct ZoneView: View {
     var sortedInsignias: [Insignia] {
         insignias.sorted(by: { $0.id < $1.id })
     }
-
+    var sortedFotos: [Foto]{
+        fotos.sorted(by: { $0.id < $1.id })
+    }
     var body: some View {
         NavigationStack {
             HomeLayoutView(title: zona.nombre, headerColor: Color(hex: zona.color))
@@ -96,7 +98,7 @@ struct ZoneView: View {
                                                         .clipShape(Circle())
                                                         .overlay {
                                                             // Check if insignia is in `insigniasObtenidas` for this `visita`
-                                                            let isCompleted = insigniasObtenidas.contains {
+                                                           let isCompleted = insigniasObtenidas.contains {
                                                                 $0.id == insignia.id && $0.visitaId == visita.id
                                                             }
                                                             Circle()
@@ -126,9 +128,9 @@ struct ZoneView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 ScrollView(.horizontal, showsIndicators: true) {
                                     HStack(spacing: 40) {
-                                        ForEach(fotos.sorted(by: { $0.id < $1.id }), id: \.self.id) { foto in
+                                        ForEach(sortedFotos, id: \.self.id) { foto in
                                             NavigationLink {
-                                                PhotoView(zonaColor: Color(hex: zona.color), foto: foto)
+                                                PhotoView(zonaColor: Color(hex: zona.color), zonaName: zona.nombre, foto: foto)
                                             } label: {
                                                 if let imageData = foto.imagen, let image = UIImage(data: imageData) {
                                                     Image(uiImage: image)

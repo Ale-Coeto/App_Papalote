@@ -7,15 +7,30 @@
 
 import SwiftUI
 import SwiftData
+import SimpleToast
 
 struct BadgeView: View {
     let insignia: Insignia
     let visita: Visita
-    var zonaColor : Color 
+    var zonaColor : Color
+    
+    @StateObject var NFCR = NFCReader()
+    @StateObject var tagsList = NFCTagsList()
+    @State var Tag: NFCTag = NFCTag(id: 0, tagName: "", date: nil, scanned: false)
+    @State var showPopup = false
     
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     @Query private var insigniasObtenidas: [InsigniaObtenida]
+    
+    @State var showToast: Bool = false
+   @State private var toastMessage = ""
+   @State private var isCorrect = false
+    
+    private let toastOptions = SimpleToastOptions(
+        hideAfter: 3,
+        animation: .bouncy
+    )
     
     var body: some View {
         VStack(spacing: 20) {
@@ -24,7 +39,7 @@ struct BadgeView: View {
                 .multilineTextAlignment(.center)
                 .fontWeight(.bold)
                 .padding(.top, 20)
-    
+            
             Divider()
                 .frame(minHeight: 5)
                 .background(zonaColor)
@@ -48,28 +63,49 @@ struct BadgeView: View {
                 .cornerRadius(12)
             
             Button {
-                // Check if the insignia has already been obtained for the current visita
-                if !insigniasObtenidas.contains(where: { $0.id == insignia.id && $0.visitaId == visita.id }) {
-                    // Create a new InsigniaObtenida instance
-                    let newInsigniaObtenida = InsigniaObtenida(id: insignia.id, visitaId: visita.id)
+                NFCR.startReading { tag in
+                    // Create the NFCTag object using the current date and changing the scanned value to true
+                    Tag = NFCTag(id: tag.id, tagName: tag.tagName, date: Date(), scanned: true)
+                    tagsList.addTag(Tag)
                     
-                    // Add it to the context
-                    context.insert(newInsigniaObtenida)
-                    
-                    // Save the context (if applicable in your environment)
-                    do {
-                        try context.save()
-                        // Dismiss the BadgeView after saving
-                        dismiss() // Dismisses the view
-                    } catch {
-                        print("Error saving new InsigniaObtenida: \(error)")
+                    // Check if the scanned tag matches the expected NFCTag ID
+                    if Tag.id == insignia.idNFC {
+                        // Check if the insignia has already been obtained for the current visita
+                        if !insigniasObtenidas.contains(where: { $0.id == insignia.id && $0.visitaId == visita.id }) {
+                            // Create a new InsigniaObtenida instance
+                            let newInsigniaObtenida = InsigniaObtenida(id: insignia.id, visitaId: visita.id)
+                            
+                            // Add it to the context
+                            context.insert(newInsigniaObtenida)
+                            
+                            // Save the context (if applicable in your environment)
+                            do {
+                                try context.save()
+                                // Dismiss the BadgeView after saving
+                                toastMessage = "Obtuviste la insignia"
+                                isCorrect = true
+                                showToast = true
+                                hideToastAfterDelay()
+                            } catch {
+                                print("Error saving new InsigniaObtenida: \(error)")
+                            }
+                        } else {
+                            // Show already obtained toast
+                            toastMessage = "Insignia ya obtenida"
+                            isCorrect = true
+                            showToast = true
+                            hideToastAfterDelay()
+                        }
+                    } else {
+                        print("Scanned NFC tag does not match the expected ID.")
+                        toastMessage = "Tag incorrecto"
+                        isCorrect = false
+                        showToast = true
+                        hideToastAfterDelay()
                     }
-                } else {
-                    // Dismiss even if insignia is already obtained
-                    dismiss() // Dismisses the view
                 }
             } label: {
-                Text("Completar")
+                Text("Escanear")
                     .font(Font.custom("VagRoundedBold", size: 24))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -83,7 +119,24 @@ struct BadgeView: View {
         }
         .padding()
         .padding(.horizontal)
+        .simpleToast(isPresented: $showToast, options: toastOptions) {
+            Label(toastMessage, systemImage: isCorrect ? "checkmark.circle" : "xmark.circle")
+                .padding()
+                .background(isCorrect ? Color.green : Color.red)
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
+                .padding(.top, 30)
+        }
     }
+    private func hideToastAfterDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            withAnimation {
+                showToast = false
+            }
+            dismiss()
+        }
+    }
+    
 }
 
 #Preview {

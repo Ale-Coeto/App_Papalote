@@ -38,7 +38,7 @@ struct HomeLayoutView: View {
                     // Align the title to the top within the ZStack
                     Text(title)
                         .foregroundColor(.white)
-                        .font(.title)
+                        .font(Font.custom("VagRoundedBold", size: 32))
                         .fontWeight(.semibold)
                         .padding(.top, -30) // Adjust the top padding as needed
                 }

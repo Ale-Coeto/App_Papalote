@@ -15,6 +15,7 @@ struct MockDataManager {
         let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
         let existingFotoIDs = existingFotos?.map { $0.id } ?? []
 
+
         var fotos: [Foto] = []
 
         let totalZonas = 6  // Total number of zonas

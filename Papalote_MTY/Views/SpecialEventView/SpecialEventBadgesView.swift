@@ -20,7 +20,7 @@ struct SpecialEventBadgesView: View {
                 VStack {
                     // Title for the Event
                     Text("Gana insignias de tiempo limitado!")
-                        .font(.title3)
+                        .font(Font.custom("VagRounded-Light", size: 20))
                         .padding(.top)
                         .padding(.bottom)
                     
@@ -54,7 +54,7 @@ struct SpecialEventBadgesView: View {
                                     
                                     // Fixed height for the text area to align it consistently
                                     Text(insignia.nombre)
-                                        .font(.caption.bold())
+                                        .font(Font.custom("VagRoundedBold", size: 14))
                                         .multilineTextAlignment(.center)
                                         .frame(height: 31) // Fixed height for text
                                         .lineLimit(2) // Limit to 2 lines, adjust if needed

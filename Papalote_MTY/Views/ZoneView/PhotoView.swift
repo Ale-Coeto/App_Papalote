@@ -90,8 +90,41 @@ struct PhotoView: View {
         }
     }
     func savePhotoToDatabase(photo: UIImage) {
-        guard let data = photo.jpegData(compressionQuality: 0.6) else { return }
+        let borderedPhoto = addBorderToImage(photo, zonaColor: zonaColor)
+        
+        if let jpegData = borderedPhoto.jpegData(compressionQuality: 0.1) {
+                print("JPEG Data Information:")
+                print("Data length: \(jpegData.count) bytes")
+                print("MIME type: image/jpeg")
+                
+                // Optional: print first few bytes as hex for deeper inspection
+                let hexString = jpegData.prefix(20).map { String(format: "%02x", $0) }.joined()
+                print("First 20 bytes (hex): \(hexString)")
+                
+                foto.imagen = jpegData
+            } else {
+                print("Failed to convert to JPEG")
+            }
+       // let borderedPhoto = photo
+        if let jpegData = photo.jpegData(compressionQuality: 0.6) {
+                print("JPEG Data Information 2:")
+                print("Data length 2: \(jpegData.count) bytes")
+                print("MIME type: image/jpeg")
+                
+                // Optional: print first few bytes as hex for deeper inspection
+                let hexString = jpegData.prefix(20).map { String(format: "%02x", $0) }.joined()
+                print("First 20 bytes (hex): \(hexString)")
+                
+                foto.imagen = jpegData
+            } else {
+                print("Failed to convert to JPEG")
+            }
+        
+        guard let data = borderedPhoto.jpegData(compressionQuality: 0.1) else { return }
         foto.imagen = data
+        
+        print("this is the data")
+        print(data)
         do {
             try context.save()
         } catch {

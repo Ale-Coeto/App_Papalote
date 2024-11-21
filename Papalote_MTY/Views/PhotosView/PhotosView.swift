@@ -38,7 +38,7 @@ struct PhotosView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .clipped()
-                                    .shadow(radius: 5)
+                                    //.shadow(radius: 5)
                                     .onTapGesture {
                                         // Set the selected photo, zone, and present the share sheet
                                         selectedPhotoImage = uiImage
@@ -93,16 +93,18 @@ struct PhotosView: View {
 }
 
 // Modifica ShareSheetView para usar UIActivityViewController
-struct ShareSheetView: View {
+/*struct ShareSheetView: View {
     let image: UIImage
     let zone: String
     let zoneColor: Color
     
     @Environment(\.presentationMode) var presentationMode
     @State private var isActivityViewPresented = false
-    @State private var imageWithBorder: UIImage?
     
     var body: some View {
+        //let imageWithBorder = image
+        /*addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)*/
+        
         VStack(spacing: 16) {
             // Título en la parte superior
             Text("Foto tomada en \(zone)")
@@ -131,8 +133,17 @@ struct ShareSheetView: View {
             
             
             Button(action: {
+                
+                /*imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)
+                    if imageWithBorder != nil {
+                        print("entered the button and image with border was not nil")
+                        isActivityViewPresented = true
+                    } else {
+                        print("Image with border is nil!")
+                    }*/
+                
                 // Crear imagen con borde
-                imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)
+                /*imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)*/
                 
                 // Abre el ActivityViewController
                 isActivityViewPresented = true
@@ -149,7 +160,11 @@ struct ShareSheetView: View {
             }
             .padding(.top, 20)
             .sheet(isPresented: $isActivityViewPresented) {
-                ActivityViewController(activityItems: [imageWithBorder])
+                /*if let validImage = imageWithBorder{
+                    ActivityViewController(activityItems: [validImage])
+                        .presentationDetents([.medium, .large])
+                }*/
+                ActivityViewController(activityItems: [image])
                     .presentationDetents([.medium, .large])
             }
 
@@ -160,32 +175,214 @@ struct ShareSheetView: View {
         .background(.white)
         .cornerRadius(20)
         .padding(.horizontal)
+        .onAppear{
+            /*imageWithBorder = addBorderToImage(image, borderColor: UIColor(zoneColor), borderWidth: 200, cornerRadius: 150)*/
+            /*print("finished")
+            print("finished, imageWithBorder: \(String(describing: imageWithBorder))")*/
+        }
     }
-    // Función para agregar el borde a la imagen
-    /*private func addBorderToImage(_ image: UIImage, borderColor: UIColor, borderWidth: CGFloat, cornerRadius: CGFloat) -> UIImage {
-        let size = CGSize(width: image.size.width + 2 * borderWidth, height: image.size.height + 2 * borderWidth)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        
-        let rect = CGRect(origin: CGPoint(x: borderWidth, y: borderWidth), size: image.size)
-        let borderRect = CGRect(origin: .zero, size: size)
-        
-        // Draw rounded border
-        let path = UIBezierPath(roundedRect: borderRect, cornerRadius: cornerRadius)
-        borderColor.setFill()
-        path.fill()
-        
-        // Draw the image inside the rounded border
-        let imagePath = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius - borderWidth)
-        imagePath.addClip()
-        image.draw(in: rect)
-        
-        let borderedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return borderedImage ?? image
-    }*/
+}*/
 
+/*struct ShareSheetView: View {
+    let image: UIImage
+    let zone: String
+    let zoneColor: Color
+
+    @State private var isActivityViewPresented = false
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("Foto tomada en \(zone)")
+                .font(Font.custom("VagRoundedBold", size: 48))
+                .fontWeight(.bold)
+                .padding(.top)
+
+            Spacer()
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 300)
+                .padding()
+                .background(zoneColor)
+                .cornerRadius(12)
+                .shadow(radius: 10)
+
+            Button(action: {
+                isActivityViewPresented = true
+            }) {
+                Text("Compartir")
+                    .font(Font.custom("VagRoundedBold", size: 24))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 15)
+                    .background(zoneColor)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+            }
+            .padding(.top, 20)
+            .sheet(isPresented: $isActivityViewPresented) {
+                ActivityViewController(activityItems: [image])
+                    .presentationDetents([.medium, .large])
+            }
+
+            Spacer()
+        }
+        .padding()
+        .background(.white)
+        .cornerRadius(20)
+        .padding(.horizontal)
+    }
+}*/
+
+import SwiftUI
+
+struct ShareSheetView: View {
+    let image: UIImage
+    let zone: String
+    let zoneColor: Color
+
+    @State private var isActivityViewPresented = false
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("Foto tomada en \(zone)")
+                .font(Font.custom("VagRoundedBold", size: 48))
+                .fontWeight(.bold)
+                .padding(.top)
+
+            Spacer()
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 300)
+                .padding()
+                //.background(zoneColor)
+                //.cornerRadius(12)
+                //.shadow(radius: 10)
+
+            Button(action: {
+                isActivityViewPresented = true
+            }) {
+                Text("Compartir")
+                    .font(Font.custom("VagRoundedBold", size: 24))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 15)
+                    .background(zoneColor)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+            }
+            .padding(.top, 20)
+            .sheet(isPresented: $isActivityViewPresented) {
+                // Convert the UIImage to JPEG data
+                if let jpegData = image.jpegData(compressionQuality: 0.8) {
+                    ActivityViewController(activityItems: [jpegData])
+                        .presentationDetents([.medium, .large])
+                }
+            }
+
+            Spacer()
+        }
+        .padding()
+        .background(.white)
+        .cornerRadius(20)
+        .padding(.horizontal)
+    }
 }
+
+
+
+
+
+
+import SwiftUI
+import UIKit
+/*
+struct ShareSheetView: View {
+    let image: UIImage
+    let zone: String
+    let zoneColor: Color
+    
+    @Environment(\.presentationMode) var presentationMode
+    @State private var isActivityViewPresented = false
+    
+    // Method to share the image (JPEG conversion included)
+    func shareImageViaWhatsApp(image: UIImage) {
+        // Convert the UIImage to JPEG data
+        if let imageData = image.jpegData(compressionQuality: 1.0) {
+            // Create the items array with the JPEG data
+            let items: [Any] = [imageData]
+            
+            // Create the UIActivityViewController
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            
+            // Exclude certain activity types (optional)
+            ac.excludedActivityTypes = [
+                UIActivity.ActivityType.print,
+                UIActivity.ActivityType.postToWeibo,
+                UIActivity.ActivityType.copyToPasteboard,
+                UIActivity.ActivityType.addToReadingList,
+                UIActivity.ActivityType.postToVimeo
+            ]
+            
+            // Present the activity view controller
+            if let rootVC = UIApplication.shared.windows.first?.rootViewController {
+                rootVC.present(ac, animated: true)
+            }
+        } else {
+            print("Failed to convert image to JPEG data")
+        }
+    }
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("Foto tomada en \(zone)")
+                .font(Font.custom("VagRoundedBold", size: 48))
+                .fontWeight(.bold)
+                .padding(.top)
+            
+            Spacer()
+            
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 300)
+                .padding()
+                .background(zoneColor)
+                .cornerRadius(12)
+                .shadow(radius: 10)
+            
+            Button(action: {
+                // Call the share method when the button is pressed
+                shareImageViaWhatsApp(image: image)
+            }) {
+                Text("Compartir")
+                    .font(Font.custom("VagRoundedBold", size: 24))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 15)
+                    .background(zoneColor)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+            }
+            .padding(.top, 20)
+
+            Spacer()
+        }
+        .padding()
+        .background(.white)
+        .cornerRadius(20)
+        .padding(.horizontal)
+    }
+}
+
+*/
+
+
+
 
 // Wrapper para UIActivityViewController
 struct ActivityViewController: UIViewControllerRepresentable {
@@ -193,12 +390,53 @@ struct ActivityViewController: UIViewControllerRepresentable {
     var applicationActivities: [UIActivity]? = nil
 
     func makeUIViewController(context: Context) -> UIActivityViewController {
+        print("did enter ActivityViewController")
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
         return controller
     }
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
+
+
+
+/*struct ActivityViewController: UIViewControllerRepresentable {
+    var activityItems: [Any]
+    var applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        print("Entering ActivityViewController")
+        let controller = UIActivityViewController(
+            activityItems: activityItems,
+            applicationActivities: applicationActivities
+        )
+        
+        // Optional: Handle completion
+        controller.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+            if let error = error {
+                print("Share error: \(error.localizedDescription)")
+            }
+        }
+        
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}*/
+
+// In ShareSheetView
+/*.sheet(isPresented: $isActivityViewPresented) {
+    // Convert to CGImage or create a new UIImage to ensure compatibility
+    if let cgImage = image.cgImage {
+        let processedImage = UIImage(cgImage: cgImage)
+        ActivityViewController(activityItems: [processedImage])
+            .presentationDetents([.medium, .large])
+    }
+}*/
+
+
+
+
 
 
 #Preview {

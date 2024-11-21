@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct PopUpTagCorrectoIncorrecto: View {
-    var message : String = "Oh oh, parece que no es la insignia correcta. Sigue buscando para encontrarla."
-    var isCorrect : Bool = false
+    var messageCorrect : String = "¡Tag Incorrecto!"
+    var messageIncorect : String = "¡Tag Correcto!"
+    var isCorrect : Bool
+    var Tag : NFCTag
     var body: some View {
         HStack {
-            Text(message)
+            Text(isCorrect ? messageIncorect : messageCorrect)
                 .font(Font.custom("VagRoundedBold", size: 18))
                 .foregroundColor(.white)
                 .padding()
@@ -27,5 +29,5 @@ struct PopUpTagCorrectoIncorrecto: View {
 }
 
 #Preview {
-    PopUpTagCorrectoIncorrecto()
+    PopUpTagCorrectoIncorrecto(isCorrect: true, Tag: NFCTag(id: 1, tagName: "Hola", date: Date(), scanned: true))
 }

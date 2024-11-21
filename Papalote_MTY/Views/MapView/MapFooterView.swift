@@ -13,6 +13,7 @@ struct MapFooterView: View {
     var body: some View {
         HStack {
             Text("Pisos:")
+                .font(Font.custom("VagRounded-Light", size: 18))
                 .padding(.trailing,5)
             HStack {
                 Button() {

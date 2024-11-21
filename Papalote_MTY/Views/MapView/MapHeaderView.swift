@@ -20,7 +20,7 @@ struct MapHeaderView: View {
                 
                 HStack {
                     Text("Piso \(mapViewModel.selectedFloor)")
-                        .font(.title2)
+                        .font(Font.custom("VagRounded-Light", size: 22))
                         .fontWeight(.semibold)
                         .padding(.horizontal)
                         .foregroundStyle(.white)

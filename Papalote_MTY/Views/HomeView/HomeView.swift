@@ -34,17 +34,17 @@ struct HomeView: View {
                                     // Main Card Content
                                     VStack {
                                         Text("Evento de tiempo Limitado!")
-                                            .font(.headline)
+                                            .font(Font.custom("VagRounded-Light", size: 18))
                                             .foregroundColor(.gray)
                                         Text(eventosEspeciales[index].nombre)
-                                            .font(.title3)
+                                            .font(Font.custom("VagRounded-Light", size: 22))
                                             .bold()
                                             .foregroundColor(.black)
                                         Text(eventosEspeciales[index].descripcion)
-                                            .font(.subheadline)
+                                            .font(Font.custom("VagRounded-Light", size: 16))
                                             .foregroundColor(.gray)
                                         Text("Solo disponible hasta \(formattedDate(eventosEspeciales[index].fechaFin))")
-                                            .font(.footnote)
+                                            .font(Font.custom("VagRounded-Light", size: 14))
                                             .foregroundColor(.red)
                                             .padding(.top, 5)
                                     }
@@ -117,6 +117,7 @@ struct HomeView: View {
                                             .frame(minHeight: 50)
                                         HStack {
                                             Text(zona.nombre)
+                                                .font(Font.custom("VagRoundedBold", size: 22))
                                                 .foregroundStyle(.white)
                                                 .padding(.leading)
                                             Spacer()
@@ -157,10 +158,10 @@ struct EventDetailView: View {
     var body: some View {
         VStack {
             Text(evento.nombre)
-                .font(.largeTitle)
+                .font(Font.custom("VagRounded-Light", size: 34))
                 .padding()
             Text(evento.descripcion)
-                .font(.body)
+                .font(Font.custom("VagRounded-Light", size: 18))
                 .padding()
         }
         .navigationTitle("Evento Especial")

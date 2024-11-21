@@ -12,7 +12,8 @@ struct PhotoView: View {
     @State private var selectedImage: UIImage?
     @State private var showCamera = false
     @State private var showAlert = false
-    var zonaColor : Color 
+    var zonaColor : Color
+    let zonaName: String
     let foto: Foto
 
     private var fotoNumero: String {
@@ -90,9 +91,9 @@ struct PhotoView: View {
         }
     }
     func savePhotoToDatabase(photo: UIImage) {
-        let borderedPhoto = addBorderToImage(photo, zonaColor: zonaColor)
+        //let borderedPhoto = addBorderToImage(photo, zonaColor: zonaColor, zona: zonaName)
         
-        if let jpegData = borderedPhoto.jpegData(compressionQuality: 0.1) {
+        /*if let jpegData = borderedPhoto.jpegData(compressionQuality: 0.1) {
                 print("JPEG Data Information:")
                 print("Data length: \(jpegData.count) bytes")
                 print("MIME type: image/jpeg")
@@ -118,9 +119,9 @@ struct PhotoView: View {
                 foto.imagen = jpegData
             } else {
                 print("Failed to convert to JPEG")
-            }
+            }*/
         
-        guard let data = borderedPhoto.jpegData(compressionQuality: 0.1) else { return }
+        guard let data = photo.jpegData(compressionQuality: 0.1) else { return }
         foto.imagen = data
         
         print("this is the data")
@@ -142,6 +143,6 @@ struct PhotoView: View {
         imagen: nil,
         completado: false
     )
-    PhotoView(zonaColor: Color.green, foto: samplePhoto)
+    PhotoView(zonaColor: Color.green, zonaName: "Pertenezco", foto: samplePhoto)
 }
 

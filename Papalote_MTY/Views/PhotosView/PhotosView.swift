@@ -18,26 +18,35 @@ struct PhotosView: View {
     @State private var isShareSheetPresented: Bool = false
     @State private var selectedPhotoImage: UIImage? = nil
     @State private var selectedPhotoZone: String = ""
-    
     var body: some View {
         VStack {
             HomeLayoutView(title: "Àlbum de fotos")
                 .overlay(
             ScrollView {
                 LazyVGrid(columns: [
-                    GridItem(.flexible(minimum: 100, maximum: 200), spacing: 8),
-                    GridItem(.flexible(minimum: 100, maximum: 200), spacing: 8),
-                    GridItem(.flexible(minimum: 100, maximum: 200), spacing: 8)
-                ], spacing: 8) {
+                    GridItem(.flexible(minimum: 100, maximum: 110), spacing: 20),
+                    GridItem(.flexible(minimum: 100, maximum: 110), spacing: 20),
+                    GridItem(.flexible(minimum: 100, maximum: 110), spacing: 20)
+                ], spacing: 20) {
                     // Filter and display images
-                    ForEach(photos.filter { $0.imagen != nil && $0.idVisita == visita.id }
-                        .sorted(by: { $0.idZona < $1.idZona })) { photo in
-                            if let imageData = photo.imagen, let uiImage = UIImage(data: imageData) {
-                                // Display the image without rounded corners
+                    
+                    ForEach(photos.filter { $0.imagen != nil && $0.idVisita == visita.id }.sorted(by: { $0.idZona < $1.idZona })) { photo in
+                            if let imageData = photo.imagen, let uiImage = UIImage(data: imageData),
+                               let zona = zonas.first(where: { $0.id == photo.idZona })
+                               
+                            {
+                                let zoneColor = Color(hex: zona.color)
                                 Image(uiImage: uiImage)
+                                    //.background(.black)
                                     .resizable()
-                                    .aspectRatio(contentMode: .fill)
+                                    //.aspectRatio(contentMode: .fill)
                                     .clipped()
+                                    .overlay(           // Use overlay for the border with rounded corners
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(zoneColor, lineWidth: 10)  // Border color and width
+                                        )
+                                    .aspectRatio(contentMode: .fill)
+                                    .shadow(radius: 2)
                                     //.shadow(radius: 5)
                                     .onTapGesture {
                                         // Set the selected photo, zone, and present the share sheet
@@ -51,7 +60,7 @@ struct PhotosView: View {
                 }
                 .padding(8)
             }
-                .padding(.top, 40)
+                .padding(.top, 50)
                 )
         }
         .sheet(isPresented: Binding<Bool>(
@@ -98,9 +107,11 @@ struct ShareSheetView: View {
     let image: UIImage
     let zone: String
     let zoneColor: Color
-
+    
     @State private var isActivityViewPresented = false
-
+    
+    @State var borderedImage: UIImage?
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer()
@@ -114,14 +125,16 @@ struct ShareSheetView: View {
                 .frame(minHeight: 5)
                 .background(zoneColor)
             
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 300)
-                .padding()
-                //.background(zoneColor)
-                //.cornerRadius(12)
-                //.shadow(radius: 10)
+            if let borderedImage = borderedImage{
+                Image(uiImage: borderedImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 300)
+                    .padding()
+                    //.background(zoneColor)
+                    //.cornerRadius(12)
+                    //.shadow(radius: 10)
+            }
 
             Button(action: {
                 isActivityViewPresented = true
@@ -139,7 +152,7 @@ struct ShareSheetView: View {
             .padding(.top, 20)
             .sheet(isPresented: $isActivityViewPresented) {
                 // Convert the UIImage to JPEG data
-                if let jpegData = image.jpegData(compressionQuality: 0.8) {
+                if let jpegData = borderedImage?.jpegData(compressionQuality: 0.8) {
                     ActivityViewController(activityItems: [jpegData])
                         .presentationDetents([.medium, .large])
                 }
@@ -151,6 +164,9 @@ struct ShareSheetView: View {
         .background(.white)
         .cornerRadius(20)
         .padding(.horizontal)
+        .onAppear{
+            borderedImage = addBorderToImage(image, zonaColor: zoneColor, zona: zone)
+        }
     }
 }
 

@@ -222,7 +222,7 @@ struct QuizCompletedView: View {
         answers: .constant([2: 0])
     )
     .modelContainer(
-        for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self],
+        for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, FetchedDate.self],
         inMemory: true
     )
 }

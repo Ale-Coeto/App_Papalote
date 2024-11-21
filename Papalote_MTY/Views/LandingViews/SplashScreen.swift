@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SplashScreen<NextView: View>: View {
-    
+
     @State private var scale: CGFloat = 1.0
     @State var isActive: Bool = false
     @State var splasherText: String
+    @Environment(\.modelContext)private var context
     
     let nextView: () -> NextView
     
@@ -43,13 +44,13 @@ struct SplashScreen<NextView: View>: View {
                         Animation.linear(duration: 1).repeatForever(autoreverses: true)
                     ) {
                         scale = 1.1
-                    }
+                    } 
                 }
             }
         }
         .onAppear{
-            //Harcoded load time
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            Task.detached {
+                await BigDataManager.addBigData(to: context)
                 withAnimation {
                     self.isActive = true
                 }
@@ -61,5 +62,5 @@ struct SplashScreen<NextView: View>: View {
 
 #Preview {
     SplashScreen(splasherText: "Welcome to Papalote MTY", nextView: { LandingView() })
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self, FetchedDate.self], inMemory: true)
 }

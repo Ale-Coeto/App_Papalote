@@ -16,14 +16,14 @@ struct MainView: View {
     var body: some View {
         NavigationView(visita: visita)
             .onAppear{
-                MockDataManager.addMockData(to: context)
+               MockDataManager.addMockData(to: context)
             }
     }
 }
 
 #Preview {
     MainView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Pequeños Expreso"))
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self, FetchedDate.self], inMemory: true)
 }
 
 

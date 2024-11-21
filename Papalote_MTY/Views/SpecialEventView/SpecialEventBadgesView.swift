@@ -81,5 +81,5 @@ struct SpecialEventBadgesView: View {
     let sampleVisita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
     
     SpecialEventBadgesView(evento: sampleEvento, visita: sampleVisita)
-        .modelContainer(for: [Insignia.self, InsigniaObtenida.self], inMemory: true)
+        .modelContainer(for: [Insignia.self, InsigniaObtenida.self, FetchedDate.self], inMemory: true)
 }

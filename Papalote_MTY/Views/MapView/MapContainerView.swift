@@ -64,5 +64,5 @@ struct MapContainerView: View {
 
 #Preview {
     MapContainerView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"), mapViewModel: MapViewModel())
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, Pin.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, Pin.self, FetchedDate.self], inMemory: true)
 }

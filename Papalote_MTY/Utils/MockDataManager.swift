@@ -56,11 +56,13 @@ struct MockDataManager {
             addLocalData(to: context)
         }
         
+        // Literalmente Solo borraba todos los eventos jajaj
+        /*
         let existingEventos = try? context.fetch(FetchDescriptor<Evento>())
         existingEventos?.forEach { context.delete($0) }
-
+         */
     }
-
+    //static func addMockData(to context: ModelContext){}
     static func addLocalData(to context: ModelContext) {
         let zonas = hardCodedZones()
         let eventos = hardCodedEvents()

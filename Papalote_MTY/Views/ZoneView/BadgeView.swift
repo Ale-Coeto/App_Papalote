@@ -69,7 +69,7 @@ struct BadgeView: View {
                     tagsList.addTag(Tag)
                     
                     // Check if the scanned tag matches the expected NFCTag ID
-                    if Tag.id == insignia.idNFC {
+                    if Tag.id == Int(insignia.idNFC) {
                         // Check if the insignia has already been obtained for the current visita
                         if !insigniasObtenidas.contains(where: { $0.id == insignia.id && $0.visitaId == visita.id }) {
                             // Create a new InsigniaObtenida instance

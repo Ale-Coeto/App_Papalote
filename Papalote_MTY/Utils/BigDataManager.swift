@@ -223,7 +223,7 @@ func sendMuseumEntranceRequest(isEntrance: Bool) async throws {
         throw URLError(.badServerResponse)
     }
     // Handle the response data if needed
-    print("Visit request sent successfully")
+    print("Museum Entrance sent successfully")
 }
 
 

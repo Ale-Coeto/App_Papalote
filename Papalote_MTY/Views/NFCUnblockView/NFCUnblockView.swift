@@ -59,7 +59,7 @@ struct NFCUnblockView: View {
                                 // Show success toast
                                 toastMessage = "Tag escaneado correctamente"
                                 isCorrect = true
-                                
+                                updateScannedState(for: Tag)
                             } else {
                                 // Show error toast
                                 toastMessage = "Tag incorrecto"
@@ -67,7 +67,6 @@ struct NFCUnblockView: View {
                             }
                             showToast = true
                             hideToastAfterDelay()
-                            updateScannedState(for: Tag)
                         }
                     } label: {
                         if let filePath = Bundle.main.path(forResource: "LogoPapaloteVerde", ofType: "png"),
@@ -92,6 +91,7 @@ struct NFCUnblockView: View {
                             Tag = NFCTag(id: tag.id, tagName: tag.tagName, date: Date(), scanned: false)
                             tagsList.addTag(Tag)
                             
+                            
                             // Check if the Tag.id is equal to 1
                             if Tag.id == 1 {
                                 // Send Entrance time to web
@@ -105,6 +105,7 @@ struct NFCUnblockView: View {
                                 // Show success toast
                                 toastMessage = "Tag escaneado correctamente"
                                 isCorrect = true
+                                updateScannedState(for: Tag)
                                 
                             } else {
                                 // Show error toast
@@ -113,7 +114,6 @@ struct NFCUnblockView: View {
                             }
                             showToast = true
                             hideToastAfterDelay()
-                            updateScannedState(for: Tag)
                         }
                     } label: {
                         ZStack {

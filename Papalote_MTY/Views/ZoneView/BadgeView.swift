@@ -145,10 +145,6 @@ struct BadgeView: View {
             dismiss()
         }
     }
-    
-    //Calling POST method to save ZoneVisit
-    
-    
 }
 
 #Preview {

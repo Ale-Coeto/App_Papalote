@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct StartQuizView: View {
     @State var isAlertOn: Bool = false
     let visita: Visita
     @State var isSkipping: Bool = false
     
+    @State var showToast: Bool = true
+        
+        private let toastOptions = SimpleToastOptions(
+            hideAfter: 3,
+            animation: .bouncy
+        )
     
     var body: some View {
         NavigationStack{
@@ -68,9 +75,26 @@ struct StartQuizView: View {
             .navigationDestination(isPresented: $isSkipping) {
                 MainView(visita: visita)
             }
+            .simpleToast(isPresented: $showToast, options: toastOptions) {
+                Label("Aplicación desbloqueada", systemImage: "checkmark.circle")
+                    .padding()
+                    .background(Color.green)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                    .padding(.top, 30)
+            }
         }
         .navigationBarBackButtonHidden(true)
     }
+    
+    private func hideToastAfterDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            withAnimation {
+                showToast = false
+            }
+        }
+    }
+
 }
 
 

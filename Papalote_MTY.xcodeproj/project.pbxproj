@@ -32,6 +32,7 @@
 		454995AE2CD02D7500D8E464 /* ExhibicionObtenida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */; };
 		456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456680D32CC38DD200D88681 /* BadgeScrollView.swift */; };
 		4578281B2CEC691800B24910 /* AddBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */; };
+		457ED74C2CF294E600C1C513 /* ScheduleVisitFeedbackNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */; };
 		45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */; };
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
@@ -77,6 +78,7 @@
 		454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibicionObtenida.swift; sourceTree = "<group>"; };
 		456680D32CC38DD200D88681 /* BadgeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeScrollView.swift; sourceTree = "<group>"; };
 		4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBackgroundImage.swift; sourceTree = "<group>"; };
+		457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVisitFeedbackNotification.swift; sourceTree = "<group>"; };
 		45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortZonasByOrden.swift; sourceTree = "<group>"; };
 		55056AB12CC4604200469742 /* Foto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		2CD2B34F2CBECE3C004BBE01 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */,
 				4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */,
 				454994972CCDC94300D8E464 /* InstagramSharingUtils.swift */,
 				45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */,
@@ -351,6 +354,7 @@
 				912A8DC02CEE8121005455A2 /* PopUpTagCorrectoIncorrecto.swift in Sources */,
 				55056AB22CC4604200469742 /* Foto.swift in Sources */,
 				4519DFDE2CC339BB00DF6E7F /* Insignia.swift in Sources */,
+				457ED74C2CF294E600C1C513 /* ScheduleVisitFeedbackNotification.swift in Sources */,
 				2C5D29A02CBDD6E800EB3DB2 /* MainView.swift in Sources */,
 				9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */,
 				2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */,

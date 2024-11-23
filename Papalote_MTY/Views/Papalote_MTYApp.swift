@@ -7,10 +7,12 @@
 
 import SwiftUI
 import SwiftData
+import UIKit
 
 @main
 struct Papalote_MTYApp: App {
     @Environment(\.modelContext) private var context
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     var body: some Scene {
         WindowGroup {
             SplashScreen(splasherText: " ") {

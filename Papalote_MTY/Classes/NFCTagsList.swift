@@ -35,7 +35,6 @@ class NFCTagsList: ObservableObject {
     
     func addTag(_ tag: NFCTag) {
         tags.append(tag)
-        printTagsList()
     }
     
     private func printTagsList() {

@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import SimpleToast
 
+
 struct BadgeView: View {
     let insignia: Insignia
     let visita: Visita
@@ -86,6 +87,14 @@ struct BadgeView: View {
                                 isCorrect = true
                                 showToast = true
                                 hideToastAfterDelay()
+                            Task {
+                                do {
+                                    try await sendZoneVisitRequest(exhibitionId: insignia.idNFC)
+                                } catch {
+                                    print("Failed to send visit request: \(error)")
+                                }
+                            }
+                                
                             } catch {
                                 print("Error saving new InsigniaObtenida: \(error)")
                             }
@@ -136,6 +145,9 @@ struct BadgeView: View {
             dismiss()
         }
     }
+    
+    //Calling POST method to save ZoneVisit
+    
     
 }
 

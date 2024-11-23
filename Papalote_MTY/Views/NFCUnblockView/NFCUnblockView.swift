@@ -48,13 +48,18 @@ struct NFCUnblockView: View {
                             
                             // Check if the Tag.id is equal to 1
                             if Tag.id == 1 {
-                                // Set scanned to true
-                                Tag.scanned = true
-                                updateScannedState()
-                                
+                                // Send Entrance time to web
+                                Task {
+                                    do {
+                                        try await sendMuseumEntranceRequest(isEntrance: true)
+                                    } catch {
+                                        print("Failed to send MuseumEntrance request: \(error)")
+                                    }
+                                }
                                 // Show success toast
                                 toastMessage = "Tag escaneado correctamente"
                                 isCorrect = true
+                                
                             } else {
                                 // Show error toast
                                 toastMessage = "Tag incorrecto"
@@ -62,6 +67,7 @@ struct NFCUnblockView: View {
                             }
                             showToast = true
                             hideToastAfterDelay()
+                            updateScannedState(for: Tag)
                         }
                     } label: {
                         if let filePath = Bundle.main.path(forResource: "LogoPapaloteVerde", ofType: "png"),
@@ -88,13 +94,18 @@ struct NFCUnblockView: View {
                             
                             // Check if the Tag.id is equal to 1
                             if Tag.id == 1 {
-                                // Set scanned to true
-                                Tag.scanned = true
-                                updateScannedState()
-                                
+                                // Send Entrance time to web
+                                Task {
+                                    do {
+                                        try await sendMuseumEntranceRequest(isEntrance: true)
+                                    } catch {
+                                        print("Failed to send MuseumEntrance request: \(error)")
+                                    }
+                                }
                                 // Show success toast
                                 toastMessage = "Tag escaneado correctamente"
                                 isCorrect = true
+                                
                             } else {
                                 // Show error toast
                                 toastMessage = "Tag incorrecto"
@@ -102,6 +113,7 @@ struct NFCUnblockView: View {
                             }
                             showToast = true
                             hideToastAfterDelay()
+                            updateScannedState(for: Tag)
                         }
                     } label: {
                         ZStack {
@@ -115,8 +127,7 @@ struct NFCUnblockView: View {
                         }
                     }
                     Button("Saltar") {
-                        Tag.scanned = true
-                        updateScannedState()
+                        updateScannedState(for: Tag)
                     }
                     Spacer()
                 }
@@ -143,9 +154,9 @@ struct NFCUnblockView: View {
         }
     }
     
-    private func updateScannedState() {
+    private func updateScannedState(for tag: NFCTag) {
         // This method is used to trigger a state update
-        Tag = NFCTag(id: Tag.id, tagName: Tag.tagName, date: Tag.date, scanned: Tag.scanned)
+        Tag = NFCTag(id: tag.id, tagName: tag.tagName, date: tag.date, scanned: true)
     }
 }
 

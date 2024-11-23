@@ -136,10 +136,42 @@ struct HomeView: View {
                                                         CustomRoundedRectangle(topLeftRadius: 0, topRightRadius: 10, bottomLeftRadius: 0, bottomRightRadius: 10)
                                                             .fill(.white)
                                                             .frame(width: 80)
-                                                        Image(zona.logo)
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fit)
-                                                            .padding(10)
+                                                        Group {
+                                                            if let localImage = UIImage(named: zona.logo) {
+                                                                        // Use the local image
+                                                                        Image(uiImage: localImage)
+                                                                            .resizable()
+                                                                            .aspectRatio(contentMode: .fit)
+                                                                            .padding(10)
+                                                            } else if let url = URL(string: zona.logo) {
+                                                                        // Use the remote image with AsyncImage
+                                                                        AsyncImage(url: url) { phase in
+                                                                            switch phase {
+                                                                            case .empty:
+                                                                                ProgressView() // Show a loading indicator
+                                                                            case .success(let image):
+                                                                                image
+                                                                                    .resizable()
+                                                                                    .aspectRatio(contentMode: .fit)
+                                                                                    .padding(10)
+                                                                            case .failure:
+                                                                                Image(systemName: "photo") // Fallback image
+                                                                                    .resizable()
+                                                                                    .aspectRatio(contentMode: .fit)
+                                                                                    .padding(10)
+                                                                            @unknown default:
+                                                                                EmptyView()
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        // Fallback for invalid paths
+                                                                        Image(systemName: "photo")
+                                                                            .resizable()
+                                                                            .aspectRatio(contentMode: .fit)
+                                                                            .padding(10)
+                                                                    }
+                                                                }
+
                                                     }
                                                 }
                                             }
@@ -155,7 +187,10 @@ struct HomeView: View {
                 )
         }
         .onAppear {
+            print("this is zonas before mock data manager")
+            print(zonas)
             MockDataManager.addMockData(to: context)
+            print("this is zonas after")
         }
     }
 }

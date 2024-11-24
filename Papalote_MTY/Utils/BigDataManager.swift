@@ -305,3 +305,5 @@ func fetchExhibitions() async throws -> [Exhibicion] {
         throw error
     }
 }
+
+

@@ -31,6 +31,7 @@ struct MapView: View {
                     
                 }
                     .padding(.top, 34)
+                    
             )
     }
     
@@ -40,5 +41,5 @@ struct MapView: View {
 
 #Preview {
     MapView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, FetchedDate.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, FetchedDate.self, Pin.self], inMemory: true)
 }

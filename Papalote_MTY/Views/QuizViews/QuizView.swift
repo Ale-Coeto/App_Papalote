@@ -47,8 +47,10 @@ struct QuizView: View {
                             .foregroundStyle(Color.white)
                             .shadow(radius: 5)
                         Text(currentQuestion?.pregunta ?? "Loading question...")
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, 25)
                             .font(Font.custom("VagRounded-Light", size: 20))
+                        
+                        
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity) // This ensures the text takes full width
                             .padding(.top, 5) // Start from the top with padding

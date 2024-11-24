@@ -19,7 +19,7 @@ struct MapContainerView: View {
     
     @ObservedObject var mapViewModel: MapViewModel
 
-    let mapSize = CGSize(width: 1200, height: 800)
+//    let mapSize = CGSize(width: 1474, height: 1322)
 
     
     var body: some View {
@@ -27,23 +27,73 @@ struct MapContainerView: View {
                 
                 ScrollView([.horizontal, .vertical], showsIndicators: false) {
                     ZStack {
-                        mapViewModel.mapImages[mapViewModel.selectedFloor-1]
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: mapSize.width * mapViewModel.scale, height: mapSize.height * mapViewModel.scale)
-                            .gesture(
-                                MagnificationGesture()
-                                    .onChanged { value in
-                                        mapViewModel.scale = value
-                                    }
-                            )
+//                       GeometryReader { geometry in
+//                        let containerWidth = geometry.size.width
+//                        let containerHeight = geometry.size.height
+//                        
+//                        // Calculate the dynamic size of the image
+//                        let imageWidth = containerWidth * mapViewModel.scale
+//                        let imageHeight = containerHeight * mapViewModel.scale
 
-                        ForEach(pines, id: \.self.id) { pin in
-                            let x = pin.x * mapViewModel.scale
-                            let y = pin.y * mapViewModel.scale
-                            
-                            PinView(pin: pin, show: pin.floor == mapViewModel.selectedFloor, mapViewModel: mapViewModel, zonas: zonas, exhibiciones: exhibiciones, insignias: insignias, fotos: fotos)
-                                    .position(x:x, y:y)
+//                        let uiImage = UIImage(named: "MapaA")!
+//                        let naturalWidth = uiImage.size.width
+//                        let naturalHeight = uiImage.size.height
+//                        let aspectRatio = naturalWidth / naturalHeight
+////                        print(naturalWidth)
+//
+//                        Image("MapaA")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: naturalWidth * mapViewModel.scale, height: naturalHeight * mapViewModel.scale)
+//                        Text("\(naturalHeight)")
+//                            .gesture(
+//                                MagnificationGesture()
+//                                    .onChanged { value in
+//                                        mapViewModel.scale = max(0.5, min(3.0, mapViewModel.scale * value))
+//                                    }
+//                            )
+//                            .background(Color.blue)
+                        
+                        if let w = mapViewModel.dimensions[mapViewModel.selectedFloor - 1]?.width,
+                           let h = mapViewModel.dimensions[mapViewModel.selectedFloor - 1]?.height {
+                            mapViewModel.mapImages[mapViewModel.selectedFloor-1]
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: w * mapViewModel.scale, height: h * mapViewModel.scale) // Explicitly set size
+                                .gesture(
+                                    MagnificationGesture()
+                                        .onChanged { value in
+                                            mapViewModel.scale = mapViewModel.scale * value // Clamp scale between 0.5 and 3.0
+                                            print("Scale: \(mapViewModel.scale)")
+                                        }
+                                )
+                                .background(.blue) // For debugging purposes
+                        }
+                        
+                        
+                        
+                        
+                        
+                        if let w = mapViewModel.dimensions[mapViewModel.selectedFloor - 1]?.width,
+                           let h = mapViewModel.dimensions[mapViewModel.selectedFloor - 1]?.height {
+                            ForEach(pines, id: \.self.id) { pin in
+                                // Calculate pin positions based on percentage and scale
+                                let x = (pin.x / 100) * w * mapViewModel.scale
+                                let y = (pin.y / 100) * h * mapViewModel.scale
+                                
+                                PinView(
+                                    pin: pin,
+                                    show: pin.floor == mapViewModel.selectedFloor,
+                                    mapViewModel: mapViewModel,
+                                    zonas: zonas,
+                                    exhibiciones: exhibiciones,
+                                    insignias: insignias,
+                                    fotos: fotos
+                                )
+                                .position(x: x, y: y)
+                            }
+                        } else {
+                            Text("Loading dimensions...")
                         }
                     }
                 

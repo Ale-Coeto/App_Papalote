@@ -10,7 +10,7 @@ import SwiftUI
 
 class MapViewModel: ObservableObject {
     @Published var selectedFloor: Int = 1
-    @Published var scale: CGFloat = 0.7
+    @Published var scale: CGFloat = 1
     var zonas: [Zona] = []
     var exhibiciones: [Exhibicion] = []
     var fotos: [Foto] = []
@@ -19,6 +19,28 @@ class MapViewModel: ObservableObject {
     
     
     var mapImages = [Image("MapaA"), Image("Map")]
+    var map1Dimensions: (width: CGFloat, height: CGFloat)? {
+        if let uiImage = UIImage(named: "MapaA") {
+            let naturalWidth = uiImage.size.width
+            let naturalHeight = uiImage.size.height
+            return (width: naturalWidth, height: naturalHeight)
+        }
+        return nil
+    }
+    
+    var map2Dimensions: (width: CGFloat, height: CGFloat)? {
+        if let uiImage = UIImage(named: "MapaB") {
+            let naturalWidth = uiImage.size.width
+            let naturalHeight = uiImage.size.height
+            return (width: naturalWidth, height: naturalHeight)
+        }
+        return nil
+    }
+    
+    var dimensions: [(width: CGFloat, height: CGFloat)?] {
+        [map1Dimensions, map2Dimensions]
+    }
+    
     
     func changeFloor(_ floor: Int) {
         selectedFloor = floor

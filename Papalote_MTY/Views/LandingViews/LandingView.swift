@@ -51,10 +51,21 @@ struct LandingView: View {
             }
         }
     }
+        .onAppear {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                if success {
+                    print("All set for notifications!")
+                } else if let error = error {
+                    print("Authorization failed with error: \(error.localizedDescription)")
+                } else {
+                    print("Authorization denied by user.")
+                }
+            }
+        }
     }
 }
 
 #Preview {
     LandingView()
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self], inMemory: true)
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self, FetchedDate.self], inMemory: true)
 }

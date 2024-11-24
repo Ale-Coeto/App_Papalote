@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct StartQuizView: View {
     @State var isAlertOn: Bool = false
     let visita: Visita
+    @State var isSkipping: Bool = false
+    
+    @State var showToast: Bool = true
+        
+        private let toastOptions = SimpleToastOptions(
+            hideAfter: 3,
+            animation: .bouncy
+        )
+    
     var body: some View {
         NavigationStack{
         ZStack{
@@ -44,24 +54,55 @@ struct StartQuizView: View {
                             .foregroundStyle(Color.init(hex: "#8D9193"))
                             .underline()
                     }
+                    
                 }
                 .padding(.top, -20)
                 .padding(.bottom, 70)
             }
-            
+
         }.ignoresSafeArea()
             .alert(isPresented: $isAlertOn) {
-                Alert(
-                    title: Text("¿Quieres saltar la encuesta?"),
-                    message: Text("Ya no podrás hacer la encuesta en otra ocasión."),
-                    primaryButton: .default(Text("Saltar encuesta"), action: {}),
-                    secondaryButton: .destructive(Text("Regresar"))
+                        Alert(
+                title: Text("¿Quieres saltar la encuesta?"),
+                message: Text("Ya no podrás hacer la encuesta en otra ocasión."),
+                primaryButton: .destructive(Text("Saltar encuesta"), action: {
+                    visita.orden = "Pertenezco Comunico Comprendo Soy Expreso Pequeño"
+                    isSkipping = true
+                }),
+                secondaryButton: .default(Text("Regresar"))
                 )
+            }
+            .navigationDestination(isPresented: $isSkipping) {
+                MainView(visita: visita)
+            }
+            .simpleToast(isPresented: $showToast, options: toastOptions) {
+                Label("Aplicación desbloqueada", systemImage: "checkmark.circle")
+                    .padding()
+                    .background(Color.green)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                    .padding(.top, 30)
             }
         }
         .navigationBarBackButtonHidden(true)
     }
+    
+    private func hideToastAfterDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            withAnimation {
+                showToast = false
+            }
+        }
+    }
+
 }
+
+
+
+
+
+
+
 
 struct ZonasLogos: View {
     var body: some View {

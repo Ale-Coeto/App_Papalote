@@ -31,13 +31,25 @@
 		454994982CCDC94300D8E464 /* InstagramSharingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454994972CCDC94300D8E464 /* InstagramSharingUtils.swift */; };
 		454995AE2CD02D7500D8E464 /* ExhibicionObtenida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */; };
 		456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456680D32CC38DD200D88681 /* BadgeScrollView.swift */; };
+		4578281B2CEC691800B24910 /* AddBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */; };
+		457ED74C2CF294E600C1C513 /* ScheduleVisitFeedbackNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */; };
 		45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */; };
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
 		9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */; };
+		910737792CF1A4F400BA5291 /* MuseumEntrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910737782CF1A4F400BA5291 /* MuseumEntrance.swift */; };
 		9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */; };
+		912A8DBE2CEE69CA005455A2 /* NFCTagsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912A8DBD2CEE69CA005455A2 /* NFCTagsList.swift */; };
+		912A8DC02CEE8121005455A2 /* PopUpTagCorrectoIncorrecto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912A8DBF2CEE8121005455A2 /* PopUpTagCorrectoIncorrecto.swift */; };
+		912A8DC62CEFC9B0005455A2 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 912A8DC52CEFC9B0005455A2 /* SimpleToast */; };
+		912A927C2CF15D1F005455A2 /* ZoneVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912A927B2CF15D1F005455A2 /* ZoneVisit.swift */; };
+		915EE1832CEBEDFB00540698 /* NFCTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915EE1822CEBEDFB00540698 /* NFCTag.swift */; };
+		917B08FE2CE2A2C900E7A9DB /* NFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B08FD2CE2A2C900E7A9DB /* NFCReader.swift */; };
 		9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9188A6E82CCC5AC6008ADE1E /* Quiz.swift */; };
 		919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A4F372CC6F31700532171 /* VisitaButton.swift */; };
+		FB03C1112CE29CEB0099C45D /* BigDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB03C1102CE29CEB0099C45D /* BigDataManager.swift */; };
+		FB03C1492CED451A0099C45D /* FetchedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB03C1482CED450F0099C45D /* FetchedDate.swift */; };
+		FB03C14B2CED4CB80099C45D /* LastUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB03C14A2CED4CB40099C45D /* LastUpdate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,14 +77,26 @@
 		454994972CCDC94300D8E464 /* InstagramSharingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramSharingUtils.swift; sourceTree = "<group>"; };
 		454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibicionObtenida.swift; sourceTree = "<group>"; };
 		456680D32CC38DD200D88681 /* BadgeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeScrollView.swift; sourceTree = "<group>"; };
+		4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBackgroundImage.swift; sourceTree = "<group>"; };
+		457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVisitFeedbackNotification.swift; sourceTree = "<group>"; };
 		45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortZonasByOrden.swift; sourceTree = "<group>"; };
 		55056AB12CC4604200469742 /* Foto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
 		9105D3F62CC1B90200B7CFD5 /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
 		9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Papalote-MTY-Info.plist"; sourceTree = SOURCE_ROOT; };
+		910737782CF1A4F400BA5291 /* MuseumEntrance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumEntrance.swift; sourceTree = "<group>"; };
 		9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZonaResultadoQuiz.swift; sourceTree = "<group>"; };
+		912A8DBD2CEE69CA005455A2 /* NFCTagsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCTagsList.swift; sourceTree = "<group>"; };
+		912A8DBF2CEE8121005455A2 /* PopUpTagCorrectoIncorrecto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpTagCorrectoIncorrecto.swift; sourceTree = "<group>"; };
+		912A927B2CF15D1F005455A2 /* ZoneVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneVisit.swift; sourceTree = "<group>"; };
+		915EE1822CEBEDFB00540698 /* NFCTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCTag.swift; sourceTree = "<group>"; };
+		917B08FC2CE29ED100E7A9DB /* Papalote_MTY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Papalote_MTY.entitlements; sourceTree = "<group>"; };
+		917B08FD2CE2A2C900E7A9DB /* NFCReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCReader.swift; sourceTree = "<group>"; };
 		9188A6E82CCC5AC6008ADE1E /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		919A4F372CC6F31700532171 /* VisitaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitaButton.swift; sourceTree = "<group>"; };
+		FB03C1102CE29CEB0099C45D /* BigDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigDataManager.swift; sourceTree = "<group>"; };
+		FB03C1482CED450F0099C45D /* FetchedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedDate.swift; sourceTree = "<group>"; };
+		FB03C14A2CED4CB40099C45D /* LastUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -87,6 +111,7 @@
 		911D02B92CC2FE4C00A820CF /* LandingViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LandingViews; sourceTree = "<group>"; };
 		9188A7062CCC5D6E008ADE1E /* QuizViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = QuizViews; sourceTree = "<group>"; };
 		919A4F322CC6E73500532171 /* VisitsView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VisitsView; sourceTree = "<group>"; };
+		91EDCBCE2CDAC078009081C6 /* NFCUnblockView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = NFCUnblockView; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				912A8DC62CEFC9B0005455A2 /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +145,7 @@
 		2C5D299C2CBDD6E800EB3DB2 /* Papalote_MTY */ = {
 			isa = PBXGroup;
 			children = (
+				917B08FC2CE29ED100E7A9DB /* Papalote_MTY.entitlements */,
 				9105D4012CC1C32800B7CFD5 /* Papalote-MTY-Info.plist */,
 				9105D3F82CC1BE7B00B7CFD5 /* AssetsExtra */,
 				2CD2B34F2CBECE3C004BBE01 /* Utils */,
@@ -143,6 +170,7 @@
 		2CD2B33F2CBE00CA004BBE01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				91EDCBCE2CDAC078009081C6 /* NFCUnblockView */,
 				454994942CCDADEE00D8E464 /* PhotosView */,
 				45E6BB812CCC6A4D008F39A5 /* SpecialEventView */,
 				9188A7062CCC5D6E008ADE1E /* QuizViews */,
@@ -177,6 +205,7 @@
 				456680D32CC38DD200D88681 /* BadgeScrollView.swift */,
 				919A4F372CC6F31700532171 /* VisitaButton.swift */,
 				2CD8C1C72CC6CB580063E89D /* CircleButtonView.swift */,
+				912A8DBF2CEE8121005455A2 /* PopUpTagCorrectoIncorrecto.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -184,6 +213,8 @@
 		2CD2B34C2CBECCC4004BBE01 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB03C14A2CED4CB40099C45D /* LastUpdate.swift */,
+				FB03C1482CED450F0099C45D /* FetchedDate.swift */,
 				454995AD2CD02D6B00D8E464 /* ExhibicionObtenida.swift */,
 				4519DFE12CC33A0000DF6E7F /* InsigniaObtenida.swift */,
 				4519DFDF2CC339EF00DF6E7F /* Visita.swift */,
@@ -195,6 +226,10 @@
 				9188A6E82CCC5AC6008ADE1E /* Quiz.swift */,
 				9112ED502CCDB57F004D0F33 /* ZonaResultadoQuiz.swift */,
 				2CEB11402CD0C4210073C1C5 /* Pin.swift */,
+				915EE1822CEBEDFB00540698 /* NFCTag.swift */,
+				912A8DBD2CEE69CA005455A2 /* NFCTagsList.swift */,
+				912A927B2CF15D1F005455A2 /* ZoneVisit.swift */,
+				910737782CF1A4F400BA5291 /* MuseumEntrance.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -202,6 +237,8 @@
 		2CD2B34F2CBECE3C004BBE01 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */,
+				4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */,
 				454994972CCDC94300D8E464 /* InstagramSharingUtils.swift */,
 				45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */,
 				4519DFE32CC33A6100DF6E7F /* MockDataManager.swift */,
@@ -209,6 +246,8 @@
 				2CD2B3502CBECE48004BBE01 /* ColorExtension.swift */,
 				2CD2B3562CBED59A004BBE01 /* Constants.swift */,
 				2CD8C2A52CCB5ADF0063E89D /* LocationManager.swift */,
+				FB03C1102CE29CEB0099C45D /* BigDataManager.swift */,
+				917B08FD2CE2A2C900E7A9DB /* NFCReader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -240,6 +279,7 @@
 				911D02B92CC2FE4C00A820CF /* LandingViews */,
 				9188A7062CCC5D6E008ADE1E /* QuizViews */,
 				919A4F322CC6E73500532171 /* VisitsView */,
+				91EDCBCE2CDAC078009081C6 /* NFCUnblockView */,
 			);
 			name = Papalote_MTY;
 			productName = Papalote_MTY;
@@ -270,6 +310,9 @@
 				Base,
 			);
 			mainGroup = 2C5D29912CBDD6E800EB3DB2;
+			packageReferences = (
+				912A8DC42CEFC9B0005455A2 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+			);
 			productRefGroup = 2C5D299B2CBDD6E800EB3DB2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,33 +341,44 @@
 			files = (
 				2CD8C1CA2CC6D1820063E89D /* MapViewModel.swift in Sources */,
 				456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */,
+				4578281B2CEC691800B24910 /* AddBackgroundImage.swift in Sources */,
 				2CA6BB892CC2512F00CD5840 /* Papalote_MTYApp.swift in Sources */,
 				2CA6BB882CC2508800CD5840 /* Papalote-MTY-Info.plist in Sources */,
 				2CEB11412CD0C4210073C1C5 /* Pin.swift in Sources */,
+				912A927C2CF15D1F005455A2 /* ZoneVisit.swift in Sources */,
 				9105D3F72CC1B90200B7CFD5 /* LoopingVideoPlayer.swift in Sources */,
 				2CD2B34E2CBECCD6004BBE01 /* Zona.swift in Sources */,
 				2CD2B3572CBED59A004BBE01 /* Constants.swift in Sources */,
 				4519DFE22CC33A0000DF6E7F /* InsigniaObtenida.swift in Sources */,
+				912A8DBE2CEE69CA005455A2 /* NFCTagsList.swift in Sources */,
+				912A8DC02CEE8121005455A2 /* PopUpTagCorrectoIncorrecto.swift in Sources */,
 				55056AB22CC4604200469742 /* Foto.swift in Sources */,
 				4519DFDE2CC339BB00DF6E7F /* Insignia.swift in Sources */,
+				457ED74C2CF294E600C1C513 /* ScheduleVisitFeedbackNotification.swift in Sources */,
 				2C5D29A02CBDD6E800EB3DB2 /* MainView.swift in Sources */,
 				9188A6E92CCC5AC6008ADE1E /* Quiz.swift in Sources */,
 				2CEA46712CC1C811003C3BF0 /* CustomRoundedRectangle.swift in Sources */,
 				4519DFE42CC33A6100DF6E7F /* MockDataManager.swift in Sources */,
 				2CD2B3512CBECE48004BBE01 /* ColorExtension.swift in Sources */,
 				454994982CCDC94300D8E464 /* InstagramSharingUtils.swift in Sources */,
+				FB03C1492CED451A0099C45D /* FetchedDate.swift in Sources */,
 				454995AE2CD02D7500D8E464 /* ExhibicionObtenida.swift in Sources */,
 				2CD8C1C82CC6CB580063E89D /* CircleButtonView.swift in Sources */,
 				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
 				919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */,
+				FB03C14B2CED4CB80099C45D /* LastUpdate.swift in Sources */,
 				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
 				9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */,
 				45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */,
+				915EE1832CEBEDFB00540698 /* NFCTag.swift in Sources */,
 				2CEA466F2CC1C357003C3BF0 /* TriangleView.swift in Sources */,
 				2CD2B3462CBE01A4004BBE01 /* HomeViewModel.swift in Sources */,
+				917B08FE2CE2A2C900E7A9DB /* NFCReader.swift in Sources */,
 				55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */,
 				4519DFE02CC339EF00DF6E7F /* Visita.swift in Sources */,
+				910737792CF1A4F400BA5291 /* MuseumEntrance.swift in Sources */,
 				2CD8C2A62CCB5ADF0063E89D /* LocationManager.swift in Sources */,
+				FB03C1112CE29CEB0099C45D /* BigDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Papalote_MTY/Papalote_MTY.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Papalote_MTY/Preview Content\"";
@@ -462,20 +517,23 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "This app uses NFC to read data from tags.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires access to your photo library to save and share photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = PapaloteMTY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -488,6 +546,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Papalote_MTY/Papalote_MTY.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -496,20 +555,23 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Papalote-MTY-Info.plist";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "This app uses NFC to read data from tags.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires access to your photo library to save and share photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Papalote-MTY";
+				PRODUCT_BUNDLE_IDENTIFIER = PapaloteMTY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -540,6 +602,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		912A8DC42CEFC9B0005455A2 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		912A8DC52CEFC9B0005455A2 /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 912A8DC42CEFC9B0005455A2 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C5D29922CBDD6E800EB3DB2 /* Project object */;
 }

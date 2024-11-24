@@ -13,14 +13,13 @@ struct SpecialEventBadgesView: View {
     
     @Query var insignias: [Insignia]
     @Query var insigniasObtenidas: [InsigniaObtenida]
-    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
                     // Title for the Event
                     Text("Gana insignias de tiempo limitado!")
-                        .font(.title3)
+                        .font(Font.custom("VagRounded-Light", size: 20))
                         .padding(.top)
                         .padding(.bottom)
                     
@@ -32,7 +31,7 @@ struct SpecialEventBadgesView: View {
                     
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(insignias.filter { $0.idEvento == evento.id }.sorted(by: { $0.id < $1.id }), id: \.self.id) { insignia in
-                            NavigationLink(destination: BadgeView(insignia: insignia, visita: visita)) {
+                            NavigationLink(destination: BadgeView(insignia: insignia, visita: visita, zonaColor: Color.green)) {
                                 VStack {
                                     AsyncImage(url: URL(string: insignia.imagen)) { image in
                                         image
@@ -54,7 +53,7 @@ struct SpecialEventBadgesView: View {
                                     
                                     // Fixed height for the text area to align it consistently
                                     Text(insignia.nombre)
-                                        .font(.caption.bold())
+                                        .font(Font.custom("VagRoundedBold", size: 14))
                                         .multilineTextAlignment(.center)
                                         .frame(height: 31) // Fixed height for text
                                         .lineLimit(2) // Limit to 2 lines, adjust if needed
@@ -81,5 +80,5 @@ struct SpecialEventBadgesView: View {
     let sampleVisita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
     
     SpecialEventBadgesView(evento: sampleEvento, visita: sampleVisita)
-        .modelContainer(for: [Insignia.self, InsigniaObtenida.self], inMemory: true)
+        .modelContainer(for: [Insignia.self, InsigniaObtenida.self, FetchedDate.self], inMemory: true)
 }

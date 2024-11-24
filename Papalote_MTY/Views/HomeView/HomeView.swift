@@ -70,7 +70,7 @@ struct HomeView: View {
                                     
                                     // Navigation handling
                                     NavigationLink(
-                                        destination: SpecialEventView(evento: sortedEventos[index], visita: visita),
+                                        destination: SpecialEventView(evento: sortedEventos[currentIndex], visita: visita),
                                         isActive: $shouldNavigateArray[index]  // Bind each NavigationLink to the corresponding flag
                                     ) {
                                         EmptyView()

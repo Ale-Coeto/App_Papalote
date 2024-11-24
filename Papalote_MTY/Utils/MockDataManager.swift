@@ -113,21 +113,29 @@ struct MockDataManager {
 }
 
 func imageWorkAround(to context: ModelContext, zonas:[Zona]){
+    
+    print("printing out zoneas")
+    
+    for zona in zonas{
+        print("this is zona: ", zona.id, "with name: ", zona.nombre)
+    }
     // START OF IMAGE WORKAROUND
     let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
     let existingFotoIDs = existingFotos?.map { $0.id } ?? []
     
-    var fotoId = 1  // Initialize the fotoId counter
+    //var fotoId = 1  // Initialize the fotoId counter
     let fotosPorZona = 3  // Number of photos per zona
+   
     var fotos: [Foto] = []
     for idVisita in 1...50{
         for zona in zonas{
-            for _ in 0..<3{
+            for index in 0..<fotosPorZona{
+                let fotoId = idVisita * 100000000 +  zona.id * 10000 + index + 1
                 let foto = Foto(
                     id: fotoId, idZona: zona.id, idVisita: idVisita,
                     imagen: nil, completado: false)
                 fotos.append(foto)
-                fotoId += 1
+                //fotoId += 1
             }
         }
     }

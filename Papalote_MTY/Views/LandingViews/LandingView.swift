@@ -51,6 +51,17 @@ struct LandingView: View {
             }
         }
     }
+        .onAppear {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                if success {
+                    print("All set for notifications!")
+                } else if let error = error {
+                    print("Authorization failed with error: \(error.localizedDescription)")
+                } else {
+                    print("Authorization denied by user.")
+                }
+            }
+        }
     }
 }
 

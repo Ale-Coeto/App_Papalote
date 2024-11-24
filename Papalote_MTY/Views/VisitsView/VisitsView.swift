@@ -92,6 +92,7 @@ struct NoVisitsView: View {
         do {
             try context.save()
             newVisit = visit
+            scheduleVisitFeedbackNotification()
         } catch {
             print("Error saving new visit: \(error)")
         }
@@ -172,6 +173,7 @@ struct UserWithVisits: View {
             try context.save()
             newVisit = visit
             shouldNavigate = true
+            scheduleVisitFeedbackNotification()
         } catch {
             print("Error saving new visit: \(error)")
         }

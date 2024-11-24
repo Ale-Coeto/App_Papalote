@@ -44,7 +44,7 @@ class Insignia: Identifiable, Codable{
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
-        idZona = try container.decode(Int.self, forKey: .idZona)
+        idZona = try container.decodeIfPresent(Int.self, forKey: .idZona) ?? -1
         idEvento = try container.decodeIfPresent(Int.self, forKey: .idEvento) ?? -1
         nombre = try container.decode(String.self, forKey: .nombre)
         imagen = try container.decode(String.self, forKey: .imagen)

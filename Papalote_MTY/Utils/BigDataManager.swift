@@ -143,7 +143,9 @@ struct BigDataManager {
             for respuesta in respuestas {
                 context.insert(respuesta)
             }
-                        
+            
+            
+            imageWorkAround(to: context, zonas: zonas)
             do {
                 try context.save()
                 print("Successfully saved the context.")

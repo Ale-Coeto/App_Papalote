@@ -100,6 +100,8 @@ struct MockDataManager {
             context.insert(respuesta)
         }
         
+        imageWorkAround(to: context, zonas: zonas)
+        
         do {
             try context.save()
         } catch {
@@ -108,6 +110,34 @@ struct MockDataManager {
         
     }
 
+}
+
+func imageWorkAround(to context: ModelContext, zonas:[Zona]){
+    // START OF IMAGE WORKAROUND
+    let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
+    let existingFotoIDs = existingFotos?.map { $0.id } ?? []
+    
+    var fotoId = 1  // Initialize the fotoId counter
+    let fotosPorZona = 3  // Number of photos per zona
+    var fotos: [Foto] = []
+    for idVisita in 1...50{
+        for zona in zonas{
+            for _ in 0..<3{
+                let foto = Foto(
+                    id: fotoId, idZona: zona.id, idVisita: idVisita,
+                    imagen: nil, completado: false)
+                fotos.append(foto)
+                fotoId += 1
+            }
+        }
+    }
+    
+    // Add Fotos
+    for foto in fotos {
+        if !existingFotoIDs.contains(foto.id) {
+            context.insert(foto)
+        }
+    }
 }
 
 func hardCodedInsignia() -> [Insignia] {

@@ -13,7 +13,6 @@ struct SpecialEventBadgesView: View {
     
     @Query var insignias: [Insignia]
     @Query var insigniasObtenidas: [InsigniaObtenida]
-    
     var body: some View {
         NavigationStack {
             ScrollView {

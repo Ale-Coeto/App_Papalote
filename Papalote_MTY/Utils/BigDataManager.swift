@@ -41,6 +41,24 @@ struct BigDataManager {
                 succeeded = false
                 print("Failed to fetch eventos: \(error)")
             }
+    
+            let preguntas: [Pregunta]
+            do {
+                preguntas = try await fetchPreguntas()
+            } catch {
+                preguntas = []
+                succeeded = false
+                print("Failed to fetch preguntas: \(error)")
+            }
+            
+            let respuestas: [Respuesta]
+            do {
+                respuestas = try await fetchRespuestas()
+            } catch {
+                respuestas = []
+                succeeded = false
+                print("Failed to fetch respuestas: \(error)")
+            }
             
             let insignias: [Insignia]
             do {
@@ -91,6 +109,12 @@ struct BigDataManager {
             
             let existingPines = try? context.fetch(FetchDescriptor<Pin>())
             existingPines?.forEach { context.delete($0)}
+        
+            let existingPreguntas = try? context.fetch(FetchDescriptor<Pregunta>())
+            existingPreguntas?.forEach { context.delete($0) }
+            
+            let existingRespuestas = try? context.fetch(FetchDescriptor<Respuesta>())
+            existingRespuestas?.forEach { context.delete($0) }
             
             for zona in zonas {
                 context.insert(zona)
@@ -111,6 +135,14 @@ struct BigDataManager {
             for pin in pines {
                 context.insert(pin)
             }
+            
+            for pregunta in preguntas {
+                context.insert(pregunta)
+            }
+            
+            for respuesta in respuestas {
+                context.insert(respuesta)
+            }
                         
             do {
                 try context.save()
@@ -123,17 +155,21 @@ struct BigDataManager {
     
     @MainActor
     static func shouldFetch(to context: ModelContext) async -> Bool {
+        print("📡 Checking if fetch is needed")
         let lastFetch = getLastFetchDate(to: context)
+        print("📅 Last fetch date: \(lastFetch)")
         
-        let lastUpdate: Date
         do {
-            lastUpdate = try await getLastUpdate()
+            let lastUpdate = try await getLastUpdate()
+            print("📅 Last update date: \(lastUpdate)")
+            // Si app data is outdated, the info should be updated
+            let shouldFetch = lastUpdate > lastFetch
+            print("📱 Should fetch new data: \(shouldFetch)")
+            return shouldFetch
         } catch {
-            print("Failed to fetch last update from website. Re-fetching")
-            lastUpdate = Date()
+            print("⚠️ Error checking last update, defaulting to fetch: \(error)")
+            return true
         }
-        // If app data is outdated, the info should be updated
-        return lastUpdate > lastFetch
     }
     
     
@@ -154,26 +190,33 @@ struct BigDataManager {
     }
     
     static func getLastUpdate() async throws -> Date {
+        print("🌐 Fetching last update date from API")
         guard let url = URL(string: "https://papalote-dashboard.vercel.app/api/data?type=lastUpdate") else {
+            print("❌ Invalid URL for last update")
             throw URLError(.badURL)
         }
         
         do {
             let decoder = JSONDecoder()
             let dateFormatter = DateFormatter()
-
+            
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, response) = try await URLSession.shared.data(from: url)
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("🌐 API Response Status: \(httpResponse.statusCode)")
+            }
+            
             let decodedResponse = try decoder.decode(LastUpdate.self, from: data)
+            print("📅 Decoded last update date: \(decodedResponse.date)")
             return decodedResponse.date
         } catch {
-            print("Failed to fetch in getLastUpdate: \(error)")
+            print("❌ Failed to fetch last update: \(error)")
             throw error
         }
-
     }
     
     
@@ -244,6 +287,14 @@ struct ExhibitionResponse: Codable {
     let exhibitions: [Exhibicion]
 }
 
+struct PreguntaResponse: Codable {
+    let questions: [Pregunta]
+}
+
+struct RespuestaResponse: Codable {
+    let answers: [Respuesta]
+}
+
 func fetchZones() async throws -> [Zona] {
     guard let url = URL(string: "https://papalote-dashboard.vercel.app/api/data?type=zones") else {
         throw URLError(.badURL)
@@ -301,6 +352,34 @@ func fetchExhibitions() async throws -> [Exhibicion] {
         let (data, _) = try await URLSession.shared.data(from: url)
         let decodedResponse = try JSONDecoder().decode(ExhibitionResponse.self, from: data)
         return decodedResponse.exhibitions
+    } catch {
+        throw error
+    }
+}
+
+func fetchPreguntas() async throws -> [Pregunta] {
+    guard let url = URL(string: "https://papalote-dashboard.vercel.app/api/data?type=questions") else {
+        throw URLError(.badURL)
+    }
+    
+    do {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decodedResponse = try JSONDecoder().decode(PreguntaResponse.self, from: data)
+        return decodedResponse.questions
+    } catch {
+        throw error
+    }
+}
+
+func fetchRespuestas() async throws -> [Respuesta] {
+    guard let url = URL(string: "https://papalote-dashboard.vercel.app/api/data?type=answers") else {
+        throw URLError(.badURL)
+    }
+    
+    do {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decodedResponse = try JSONDecoder().decode(RespuestaResponse.self, from: data)
+        return decodedResponse.answers
     } catch {
         throw error
     }

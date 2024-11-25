@@ -33,6 +33,7 @@
 		456680D42CC38DD200D88681 /* BadgeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456680D32CC38DD200D88681 /* BadgeScrollView.swift */; };
 		4578281B2CEC691800B24910 /* AddBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */; };
 		457ED74C2CF294E600C1C513 /* ScheduleVisitFeedbackNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */; };
+		45E2D2BD2CF47AB700C9E42F /* LinkToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2D2BC2CF47AB700C9E42F /* LinkToImage.swift */; };
 		45E6BB462CCB5E1B008F39A5 /* sortZonasByOrden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */; };
 		55056AB22CC4604200469742 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB12CC4604200469742 /* Foto.swift */; };
 		55056AB42CC4622F00469742 /* Exhibicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55056AB32CC4622F00469742 /* Exhibicion.swift */; };
@@ -81,6 +82,7 @@
 		456680D32CC38DD200D88681 /* BadgeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeScrollView.swift; sourceTree = "<group>"; };
 		4578281A2CEC690B00B24910 /* AddBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBackgroundImage.swift; sourceTree = "<group>"; };
 		457ED74B2CF294CC00C1C513 /* ScheduleVisitFeedbackNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVisitFeedbackNotification.swift; sourceTree = "<group>"; };
+		45E2D2BC2CF47AB700C9E42F /* LinkToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkToImage.swift; sourceTree = "<group>"; };
 		45E6BB452CCB5E1B008F39A5 /* sortZonasByOrden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortZonasByOrden.swift; sourceTree = "<group>"; };
 		55056AB12CC4604200469742 /* Foto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		55056AB32CC4622F00469742 /* Exhibicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibicion.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				912A8DBD2CEE69CA005455A2 /* NFCTagsList.swift */,
 				912A927B2CF15D1F005455A2 /* ZoneVisit.swift */,
 				910737782CF1A4F400BA5291 /* MuseumEntrance.swift */,
+				45E2D2BC2CF47AB700C9E42F /* LinkToImage.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				2CD8C1C82CC6CB580063E89D /* CircleButtonView.swift in Sources */,
 				2CD2B3532CBED0FC004BBE01 /* Evento.swift in Sources */,
 				919A4F382CC6F31700532171 /* VisitaButton.swift in Sources */,
+				45E2D2BD2CF47AB700C9E42F /* LinkToImage.swift in Sources */,
 				FB03C14B2CED4CB80099C45D /* LastUpdate.swift in Sources */,
 				2CD2B3552CBED232004BBE01 /* Card.swift in Sources */,
 				9112ED512CCDB57F004D0F33 /* ZonaResultadoQuiz.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  MapHeaderView.swift
+//  MapFooterView.swift
 //  Papalote_MTY
 //
 //  Created by Alejandra Coeto on 24/10/24.
@@ -11,47 +11,35 @@ struct MapHeaderView: View {
     @ObservedObject var mapViewModel: MapViewModel
     
     var body: some View {
-        VStack {
-            ZStack {
-                Rectangle()
-                    .fill(.black)
-                    .frame(height: 50)
-                    .opacity(0.4)
-                
-                HStack {
-                    Text("Piso \(mapViewModel.selectedFloor)")
-                        .font(Font.custom("VagRounded-Light", size: 22))
-                        .fontWeight(.semibold)
-                        .padding(.horizontal)
-                        .foregroundStyle(.white)
-                    
-                    Spacer()
-                    Button() {
-                        if mapViewModel.scale > 0.3 {
-                            mapViewModel.scale -= 0.1
-                        }
-                        
-                    } label: {
-                        Image(systemName: "minus.magnifyingglass")
-                            .font(.title)
-                    }
-                    Button() {
-                        if mapViewModel.scale < 1.5 {
-                            mapViewModel.scale += 0.1
-                        }
-                        
-                    } label: {
-                        Image(systemName: "plus.magnifyingglass")
-                            .font(.title)
-                    }
-                    
+        HStack {
+            Text("Piso:")
+                .font(Font.custom("VagRounded-Light", size: 18))
+                .padding(.trailing,10)
+            HStack {
+                Button() {
+                    mapViewModel.changeFloor(1)
+                } label: {
+                    CircleButtonView(color: .blue, label: "1", selected: mapViewModel.selectedFloor == 1)
+                }
+                .padding(.trailing, 5)
+                Button() {
+                    mapViewModel.changeFloor(2)
+                } label: {
+                    CircleButtonView(color: .green, label: "2", selected: mapViewModel.selectedFloor == 2)
                 }
             }
-            Spacer()
         }
+        .padding()
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 60))
+        .shadow(radius: 5)
+        
     }
 }
 
 #Preview {
-    MapHeaderView(mapViewModel: MapViewModel())
+    ZStack {
+        Color(.gray).opacity(0.5)
+        MapHeaderView(mapViewModel: MapViewModel())
+    }
 }

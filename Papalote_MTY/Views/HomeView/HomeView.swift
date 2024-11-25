@@ -106,7 +106,26 @@ struct HomeView: View {
                         )
                         
                         
-                        
+                        if (eventosEspeciales.isEmpty) {
+                            VStack {
+                                Text("Bienvenido a Museo Papalote")
+                                    .fontWeight(.bold)
+                                    .padding(.bottom, 10)
+                                    
+                                
+                                Text("Selecciona una zona para ver más información o navega con el mapa.")
+                                    
+                            }
+                            .padding(30)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.white)
+                                    .shadow(radius: 5)
+                            )
+                            .padding(.bottom, 20)
+                            
+                            
+                        }
                         
                         
                         VStack(spacing: 20) {

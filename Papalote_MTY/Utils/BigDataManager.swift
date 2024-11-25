@@ -79,7 +79,15 @@ struct BigDataManager {
                 print("Failed to fetch exhibiciones: \(error)")
             }
             
-            let pines = hardCodedPines()
+            let pines: [Pin]
+            
+            do {
+                pines = try await fetchPins()
+            } catch {
+                pines = []
+                succeeded = false
+                print("Failed to fetch pins: \(error)")
+            }
             
             // If any call fails do nothing: stay with previous correct values.
             // Prefer this option as it doesn´t corrupt entity relations
@@ -289,6 +297,11 @@ struct ExhibitionResponse: Codable {
     let exhibitions: [Exhibicion]
 }
 
+
+struct PinResponse: Codable {
+    let pins: [Pin]
+}
+
 struct PreguntaResponse: Codable {
     let questions: [Pregunta]
 }
@@ -382,6 +395,20 @@ func fetchRespuestas() async throws -> [Respuesta] {
         let (data, _) = try await URLSession.shared.data(from: url)
         let decodedResponse = try JSONDecoder().decode(RespuestaResponse.self, from: data)
         return decodedResponse.answers
+    } catch {
+        throw error
+    }
+}
+
+func fetchPins() async throws -> [Pin] {
+    guard let url = URL(string: "https://papalote-dashboard.vercel.app/api/data?type=pins") else {
+        throw URLError(.badURL)
+    }
+    
+    do {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decodedResponse = try JSONDecoder().decode(PinResponse.self, from: data)
+        return decodedResponse.pins
     } catch {
         throw error
     }

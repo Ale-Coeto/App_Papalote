@@ -528,7 +528,6 @@
 				INFOPLIST_KEY_NFCReaderUsageDescription = "This app uses NFC to read data from tags.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires access to your photo library to save and share photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -566,7 +565,6 @@
 				INFOPLIST_KEY_NFCReaderUsageDescription = "This app uses NFC to read data from tags.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Se necesita permiso ";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "La ubicación es necesaria para mostrarse en el mapa";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires access to your photo library to save and share photos.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

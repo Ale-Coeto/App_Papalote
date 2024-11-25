@@ -19,6 +19,6 @@ struct Papalote_MTYApp: App {
                     LandingView() // Replace LandingView() with any other view we need to
                 }
         }
-        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self, Pin.self, FetchedDate.self])
+        .modelContainer(for: [Zona.self, InsigniaObtenida.self, Insignia.self, Evento.self, Visita.self, Foto.self, Exhibicion.self, ExhibicionObtenida.self, Pin.self, FetchedDate.self, Pregunta.self, Respuesta.self])
     }
 }

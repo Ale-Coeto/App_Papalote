@@ -15,9 +15,10 @@ struct PhotoView: View {
     var zonaColor : Color
     let zonaName: String
     let foto: Foto
+    let index: Int
 
     private var fotoNumero: String {
-        switch foto.id % 3 {
+        switch index % 3 {
         case 1:
             return "Foto 1"
         case 2:
@@ -143,6 +144,6 @@ struct PhotoView: View {
         imagen: nil,
         completado: false
     )
-    PhotoView(zonaColor: Color.green, zonaName: "Pertenezco", foto: samplePhoto)
+    PhotoView(zonaColor: Color.green, zonaName: "Pertenezco", foto: samplePhoto, index: 1)
 }
 

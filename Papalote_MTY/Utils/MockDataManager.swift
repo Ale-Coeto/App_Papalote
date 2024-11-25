@@ -69,6 +69,8 @@ struct MockDataManager {
         let insignias = hardCodedInsignia()
         let exhibiciones = hardCodedExhibiciones()
         let pines = hardCodedPines()
+        let preguntas = hardCodedPreguntas()
+        let respuestas = hardCodedRespuestas()
         
         for zona in zonas {
             context.insert(zona)
@@ -90,6 +92,16 @@ struct MockDataManager {
             context.insert(pin)
         }
         
+        for pregunta in preguntas {
+            context.insert(pregunta)
+        }
+        
+        for respuesta in respuestas {
+            context.insert(respuesta)
+        }
+        
+        imageWorkAround(to: context, zonas: zonas)
+        
         do {
             try context.save()
         } catch {
@@ -98,6 +110,42 @@ struct MockDataManager {
         
     }
 
+}
+
+func imageWorkAround(to context: ModelContext, zonas:[Zona]){
+    
+    print("printing out zoneas")
+    
+    for zona in zonas{
+        print("this is zona: ", zona.id, "with name: ", zona.nombre)
+    }
+    // START OF IMAGE WORKAROUND
+    let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
+    let existingFotoIDs = existingFotos?.map { $0.id } ?? []
+    
+    //var fotoId = 1  // Initialize the fotoId counter
+    let fotosPorZona = 3  // Number of photos per zona
+   
+    var fotos: [Foto] = []
+    for idVisita in 1...50{
+        for zona in zonas{
+            for index in 0..<fotosPorZona{
+                let fotoId = idVisita * 100000000 +  zona.id * 10000 + index + 1
+                let foto = Foto(
+                    id: fotoId, idZona: zona.id, idVisita: idVisita,
+                    imagen: nil, completado: false)
+                fotos.append(foto)
+                //fotoId += 1
+            }
+        }
+    }
+    
+    // Add Fotos
+    for foto in fotos {
+        if !existingFotoIDs.contains(foto.id) {
+            context.insert(foto)
+        }
+    }
 }
 
 func hardCodedInsignia() -> [Insignia] {
@@ -562,5 +610,77 @@ func hardCodedExhibiciones() -> [Exhibicion] {
             completado: false,
             imagen: "https://i.ibb.co/T4WChBm/Sustainable-Energy.jpg",
             isOpen: true, location: "Sala de Energía Renovable"),
+    ]
+}
+
+func hardCodedPreguntas() -> [Pregunta] {
+    return [
+        Pregunta(id: 1, pregunta: "De estos colores, ¿cuál es el que más te gusta?"),
+        Pregunta(id: 2, pregunta: "¿Qué género de película disfrutas más?"),
+        Pregunta(id: 3, pregunta: "¿Qué le dirías a tu niño interior?"),
+        Pregunta(id: 4, pregunta: "¿Con qué frase te identificas más?"),
+        Pregunta(id: 5, pregunta: "¿Qué pasatiempo prefieres?"),
+        Pregunta(id: 6, pregunta: "¿Cuál es tu género musical favorito?"),
+        Pregunta(id: 7, pregunta: "¿Cuál tema te gusta más?")
+    ]
+}
+
+func hardCodedRespuestas() -> [Respuesta] {
+    return [
+        // Pregunta 1: "De estos colores, ¿cuál es el que más te gusta?"
+        Respuesta(id: 1, idZona: 1, idPregunta: 1, respuesta: "Verde"),
+        Respuesta(id: 2, idZona: 4, idPregunta: 1, respuesta: "Rojo"),
+        Respuesta(id: 3, idZona: 2, idPregunta: 1, respuesta: "Azul"),
+        Respuesta(id: 4, idZona: 5, idPregunta: 1, respuesta: "Naranja"),
+        Respuesta(id: 5, idZona: 3, idPregunta: 1, respuesta: "Morado"),
+        Respuesta(id: 6, idZona: 6, idPregunta: 1, respuesta: "Celeste"),
+        
+        // Pregunta 2: "¿Qué género de película disfrutas más?"
+        Respuesta(id: 7, idZona: 1, idPregunta: 2, respuesta: "Cualquier género está bien"),
+        Respuesta(id: 8, idZona: 4, idPregunta: 2, respuesta: "Acción"),
+        Respuesta(id: 9, idZona: 2, idPregunta: 2, respuesta: "Comedia"),
+        Respuesta(id: 10, idZona: 5, idPregunta: 2, respuesta: "Fantasía"),
+        Respuesta(id: 11, idZona: 3, idPregunta: 2, respuesta: "Ciencia ficción"),
+        Respuesta(id: 12, idZona: 6, idPregunta: 2, respuesta: "Animadas"),
+        
+        // Pregunta 3: "¿Qué le dirías a tu niño interior?"
+        Respuesta(id: 13, idZona: 1, idPregunta: 3, respuesta: "La flor que florece en la adversidad es la más rara y hermosa de todas."),
+        Respuesta(id: 14, idZona: 4, idPregunta: 3, respuesta: "No todas las decisiones tienen que ser perfectas, a veces lo que importa es intentarlo."),
+        Respuesta(id: 15, idZona: 2, idPregunta: 3, respuesta: "Tienes una voz única, y el mundo necesita escucharla."),
+        Respuesta(id: 16, idZona: 5, idPregunta: 3, respuesta: "Sabes que en caso de no tener música de fondo, tú puedes crear la tuya."),
+        Respuesta(id: 17, idZona: 3, idPregunta: 3, respuesta: "Comprenderte a ti mismo es el primer paso para comprender a los demás."),
+        Respuesta(id: 18, idZona: 6, idPregunta: 3, respuesta: "Gracias por esta aventura, ahora me toca vivir una nueva."),
+        
+        // Pregunta 4: "¿Con qué frase te identificas más?"
+        Respuesta(id: 19, idZona: 1, idPregunta: 4, respuesta: "“Mira profundamente en la naturaleza y entonces comprenderás todo mejor” (Albert Einstein)."),
+        Respuesta(id: 20, idZona: 4, idPregunta: 4, respuesta: "“Eres lo que haces, no lo que dices que harás.” (Carl Jung)."),
+        Respuesta(id: 21, idZona: 2, idPregunta: 4, respuesta: "“Cuando cambiamos la forma en que nos comunicamos, cambiamos la sociedad.” (Clay Shirky)."),
+        Respuesta(id: 22, idZona: 5, idPregunta: 4, respuesta: "“La vida es un lienzo en blanco, y debes lanzar sobre él toda la pintura que puedas.” (Danny Kaye)."),
+        Respuesta(id: 23, idZona: 3, idPregunta: 4, respuesta: "“Lo que conocemos es una gota, lo que no conocemos es un océano.” (Isaac Newton)."),
+        Respuesta(id: 24, idZona: 6, idPregunta: 4, respuesta: "“Todas las personas mayores fueron al principio niños, aunque pocas lo recuerdan.” (Antoine de Saint-Exupéry)."),
+        
+        // Pregunta 5: "¿Qué pasatiempo prefieres?"
+        Respuesta(id: 25, idZona: 1, idPregunta: 5, respuesta: "Disfrutar de la naturaleza."),
+        Respuesta(id: 26, idZona: 4, idPregunta: 5, respuesta: "Ir de compras."),
+        Respuesta(id: 27, idZona: 2, idPregunta: 5, respuesta: "Ver redes sociales."),
+        Respuesta(id: 28, idZona: 5, idPregunta: 5, respuesta: "Escuchar música."),
+        Respuesta(id: 29, idZona: 3, idPregunta: 5, respuesta: "Experimentar cosas nuevas."),
+        Respuesta(id: 30, idZona: 6, idPregunta: 5, respuesta: "Convivir en familia."),
+        
+        // Pregunta 6: "¿Cuál es tu género musical favorito?"
+        Respuesta(id: 31, idZona: 1, idPregunta: 6, respuesta: "Regional mexicano"),
+        Respuesta(id: 32, idZona: 4, idPregunta: 6, respuesta: "Rock"),
+        Respuesta(id: 33, idZona: 2, idPregunta: 6, respuesta: "Electrónica"),
+        Respuesta(id: 34, idZona: 5, idPregunta: 6, respuesta: "Disfruto todos los géneros"),
+        Respuesta(id: 35, idZona: 3, idPregunta: 6, respuesta: "Clásica"),
+        Respuesta(id: 36, idZona: 6, idPregunta: 6, respuesta: "Pop"),
+        
+        // Pregunta 7: "¿Cuál tema te gusta más?"
+        Respuesta(id: 37, idZona: 1, idPregunta: 7, respuesta: "Biología"),
+        Respuesta(id: 38, idZona: 4, idPregunta: 7, respuesta: "Matemáticas"),
+        Respuesta(id: 39, idZona: 2, idPregunta: 7, respuesta: "Tecnologías"),
+        Respuesta(id: 40, idZona: 5, idPregunta: 7, respuesta: "Arte"),
+        Respuesta(id: 41, idZona: 3, idPregunta: 7, respuesta: "Química"),
+        Respuesta(id: 42, idZona: 6, idPregunta: 7, respuesta: "Educación física")
     ]
 }

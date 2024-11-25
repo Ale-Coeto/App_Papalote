@@ -12,8 +12,8 @@ struct BadgeScrollView: View {
     
     @State private var selectedInsignia: Insignia? // State to track the selected insignia
     
-    @State public var zoneColor = Color.green
     var body: some View {
+        let zoneColor: Color = (zona !== nil ? Color(hex: zona!.color) : Color.green)
         // Filter insignias based on whether it's for a Zona or Evento
         let filteredInsignias = isEvento ?
             insignias.filter { $0.idEvento == evento?.id } :
@@ -71,13 +71,6 @@ struct BadgeScrollView: View {
         }
         .padding(.horizontal)
         .padding(.bottom, 10)
-        .onAppear{
-            if let hexColor = zona?.color {
-                            zoneColor = Color(hex: hexColor)
-                        } else {
-                            zoneColor = Color.green // Fallback color
-                        }
-        }
     }
     
     // Helper function to determine if insignias are completed

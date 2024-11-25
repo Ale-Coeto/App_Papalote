@@ -30,6 +30,7 @@ struct ZoneView: View {
         fotos.sorted(by: { $0.id < $1.id })
     }
     var body: some View {
+        //let firstId = sortedFotos.isEmpty ? 1 : sortedFotos[0].id
         NavigationStack {
             HomeLayoutView(title: zona.nombre, headerColor: Color(hex: zona.color))
                 .overlay(
@@ -128,9 +129,9 @@ struct ZoneView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 ScrollView(.horizontal, showsIndicators: true) {
                                     HStack(spacing: 40) {
-                                        ForEach(sortedFotos, id: \.self.id) { foto in
+                                        ForEach(Array(sortedFotos.enumerated()), id: \.1.id) { index, foto in
                                             NavigationLink {
-                                                PhotoView(zonaColor: Color(hex: zona.color), zonaName: zona.nombre, foto: foto)
+                                                PhotoView(zonaColor: Color(hex: zona.color), zonaName: zona.nombre, foto: foto, index: index + 1)
                                             } label: {
                                                 if let imageData = foto.imagen, let image = UIImage(data: imageData) {
                                                     Image(uiImage: image)

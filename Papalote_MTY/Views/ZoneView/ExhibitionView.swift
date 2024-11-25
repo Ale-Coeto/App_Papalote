@@ -16,6 +16,7 @@ struct ExhibitionView: View {
     var zonaColor : Color 
     @State var exhibicion: Exhibicion
     let visita: Visita
+    @Query private var linkToImages: [LinkToImage]
     @Query private var exhibicionesObtenidas: [ExhibicionObtenida]
     var body: some View {
         VStack(spacing: 20) {
@@ -29,17 +30,26 @@ struct ExhibitionView: View {
                 .frame(minHeight: 5)
                 .background(zonaColor)
             
-            AsyncImage(url: URL(string: exhibicion.imagen)) { image in
-                image
+            if let imageData = linkToImages.first(where: { $0.link == exhibicion.imagen })?.imagen,
+               let uiImage = UIImage(data: imageData) {
+                // Use the locally stored image from Core Data
+                Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 280, height: 280)
                     .padding()
-            } placeholder: {
-                ProgressView()
-                    .frame(width: 280, height: 280)
+            } else  {
+                AsyncImage(url: URL(string: exhibicion.imagen)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 280, height: 280)
+                        .padding()
+                } placeholder: {
+                    ProgressView()
+                        .frame(width: 280, height: 280)
+                }
             }
-            
             Text(exhibicion.descripcion)
                 .font(Font.custom("VagRounded-Light", size: 20))
                 .multilineTextAlignment(.center)

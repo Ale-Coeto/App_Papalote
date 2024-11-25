@@ -127,70 +127,74 @@ struct HomeView: View {
                             
                         }
                         
-                        
-                        VStack(spacing: 20) {
-                            ForEach(sortedZonas, id: \.self.id) { zona in
-                                let filteredExhibicion = exhibiciones.filter { $0.idZona == zona.id }
-                                let filteredInsignias = insignias.filter { $0.idZona == zona.id }
-                                let filteredFotos = fotos.filter { $0.idVisita == visita.id && $0.idZona == zona.id }
-                                
-                                NavigationLink {
-                                    ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos, visita: visita)
-                                } label: {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color(hex: zona.color))
-                                            .shadow(radius: 5)
-                                            .frame(minHeight: 50)
-                                        HStack {
-                                            Text(zona.nombre)
-                                                .font(Font.custom("VagRoundedBold", size: 22))
-                                                .foregroundStyle(.white)
-                                                .padding(.leading)
-                                            Spacer()
-                                            ZStack(alignment: .trailing) {
-                                                HStack(spacing: 0) {
-                                                    RightTriangle(width: 25, color: .white)
-                                                    ZStack {
-                                                        CustomRoundedRectangle(topLeftRadius: 0, topRightRadius: 10, bottomLeftRadius: 0, bottomRightRadius: 10)
-                                                            .fill(.white)
-                                                            .frame(width: 80)
-                                                        Group {
-                                                            if let localImage = UIImage(named: zona.logo) {
-                                                                        // Use the local image
-                                                                        Image(uiImage: localImage)
-                                                                            .resizable()
-                                                                            .aspectRatio(contentMode: .fit)
-                                                                            .padding(10)
-                                                            } else if let url = URL(string: zona.logo) {
-                                                                        // Use the remote image with AsyncImage
-                                                                        AsyncImage(url: url) { phase in
-                                                                            switch phase {
-                                                                            case .empty:
-                                                                                ProgressView() // Show a loading indicator
-                                                                            case .success(let image):
-                                                                                image
-                                                                                    .resizable()
-                                                                                    .aspectRatio(contentMode: .fit)
-                                                                                    .padding(10)
-                                                                            case .failure:
-                                                                                Image(systemName: "photo") // Fallback image
-                                                                                    .resizable()
-                                                                                    .aspectRatio(contentMode: .fit)
-                                                                                    .padding(10)
-                                                                            @unknown default:
-                                                                                EmptyView()
-                                                                            }
+                        ScrollView{
+                            VStack(spacing: 20) {
+                                ForEach(sortedZonas, id: \.self.id) { zona in
+                                    let filteredExhibicion = exhibiciones.filter { $0.idZona == zona.id }
+                                    let filteredInsignias = insignias.filter { $0.idZona == zona.id }
+                                    let filteredFotos = fotos.filter { $0.idVisita == visita.id && $0.idZona == zona.id }
+                                    
+                                    NavigationLink {
+                                        ZoneView(zona: zona, exhibiciones: filteredExhibicion, insignias: filteredInsignias, fotos: filteredFotos, visita: visita)
+                                    } label: {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color(hex: zona.color))
+                                                .shadow(radius: 5)
+                                                .frame(minHeight: 46, maxHeight: 46)
+                                            HStack {
+                                                Text(zona.nombre)
+                                                    .font(Font.custom("VagRoundedBold", size: 22))
+                                                    .foregroundStyle(.white)
+                                                    .padding(.leading)
+                                                Spacer()
+                                                ZStack(alignment: .trailing) {
+                                                    HStack(spacing: 0) {
+                                                        RightTriangle(width: 25, color: .white)
+                                                        ZStack {
+                                                            CustomRoundedRectangle(topLeftRadius: 0, topRightRadius: 10, bottomLeftRadius: 0, bottomRightRadius: 10)
+                                                                .fill(.white)
+                                                                .frame(width: 80)
+                                                            Group {
+                                                                if let localImage = UIImage(named: zona.logo) {
+                                                                    // Use the local image
+                                                                    Image(uiImage: localImage)
+                                                                        .resizable()
+                                                                        .aspectRatio(contentMode: .fit)
+                                                                        .padding(10)
+                                                                        .frame(width: 50)
+                                                                } else if let url = URL(string: zona.logo) {
+                                                                    // Use the remote image with AsyncImage
+                                                                    AsyncImage(url: url) { phase in
+                                                                        switch phase {
+                                                                        case .empty:
+                                                                            ProgressView() // Show a loading indicator
+                                                                        case .success(let image):
+                                                                            image
+                                                                                .resizable()
+                                                                                .aspectRatio(contentMode: .fit)
+                                                                                .padding(10)
+                                                                                .frame(width: 50)
+                                                                        case .failure:
+                                                                            Image(systemName: "photo") // Fallback image
+                                                                                .resizable()
+                                                                                .aspectRatio(contentMode: .fit)
+                                                                                .padding(10)
+                                                                                .frame(width: 50)
+                                                                        @unknown default:
+                                                                            EmptyView()
                                                                         }
-                                                                    } else {
-                                                                        // Fallback for invalid paths
-                                                                        Image(systemName: "photo")
-                                                                            .resizable()
-                                                                            .aspectRatio(contentMode: .fit)
-                                                                            .padding(10)
                                                                     }
+                                                                } else {
+                                                                    // Fallback for invalid paths
+                                                                    Image(systemName: "photo")
+                                                                        .resizable()
+                                                                        .aspectRatio(contentMode: .fit)
+                                                                        .padding(10)
                                                                 }
-
+                                                            }
+                                                            
+                                                        }
                                                     }
                                                 }
                                             }
@@ -198,10 +202,11 @@ struct HomeView: View {
                                     }
                                 }
                             }
+                            .padding(.top, 0)
+                            .padding()
                         }
-                        .padding()
                     }
-                        .padding(.top, Constants.HEADER_HEIGHT)
+                        .padding(.top, Constants.HEADER_HEIGHT - 40)
                         .padding()
                 )
         }

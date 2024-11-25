@@ -19,7 +19,7 @@ struct CircleButtonView: View {
                 .stroke(Color.white, lineWidth: 3)
                 .opacity(selected ? 1 : 0.5)
                 .shadow(radius: 3)
-                .frame(width: 50, height: 50)
+                .frame(width: 40, height: 40)
 
             
             Text(label)

@@ -42,7 +42,7 @@ struct MapContainerView: View {
                                             print("Scale: \(mapViewModel.scale)")
                                         }
                                 )
-                                .background(.blue) // For debugging purposes
+//                                .background(.blue) // For debugging purposes
                         }
                         
                         

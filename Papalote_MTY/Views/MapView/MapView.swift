@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject var mapViewModel = MapViewModel()
-    @StateObject var locationManager = LocationManager()
+//    @StateObject var locationManager = LocationManager()
     let visita: Visita
     
     var body: some View {
@@ -26,8 +26,6 @@ struct MapView: View {
                     
                     // Footer
                     MapFooterView(mapViewModel: mapViewModel)
-                    
-//                    Text("Latitude: \(String(describing: locationManager.latitude)),  \(String(describing: locationManager.longitude))")
                     
                 }
                     .padding(.top, 34)

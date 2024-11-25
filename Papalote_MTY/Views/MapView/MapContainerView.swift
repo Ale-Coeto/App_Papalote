@@ -27,32 +27,7 @@ struct MapContainerView: View {
                 
                 ScrollView([.horizontal, .vertical], showsIndicators: false) {
                     ZStack {
-//                       GeometryReader { geometry in
-//                        let containerWidth = geometry.size.width
-//                        let containerHeight = geometry.size.height
-//                        
-//                        // Calculate the dynamic size of the image
-//                        let imageWidth = containerWidth * mapViewModel.scale
-//                        let imageHeight = containerHeight * mapViewModel.scale
 
-//                        let uiImage = UIImage(named: "MapaA")!
-//                        let naturalWidth = uiImage.size.width
-//                        let naturalHeight = uiImage.size.height
-//                        let aspectRatio = naturalWidth / naturalHeight
-////                        print(naturalWidth)
-//
-//                        Image("MapaA")
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                            .frame(width: naturalWidth * mapViewModel.scale, height: naturalHeight * mapViewModel.scale)
-//                        Text("\(naturalHeight)")
-//                            .gesture(
-//                                MagnificationGesture()
-//                                    .onChanged { value in
-//                                        mapViewModel.scale = max(0.5, min(3.0, mapViewModel.scale * value))
-//                                    }
-//                            )
-//                            .background(Color.blue)
                         
                         if let w = mapViewModel.dimensions[mapViewModel.selectedFloor - 1]?.width,
                            let h = mapViewModel.dimensions[mapViewModel.selectedFloor - 1]?.height {

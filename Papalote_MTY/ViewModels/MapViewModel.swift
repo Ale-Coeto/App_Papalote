@@ -10,7 +10,7 @@ import SwiftUI
 
 class MapViewModel: ObservableObject {
     @Published var selectedFloor: Int = 1
-    @Published var scale: CGFloat = 1
+    @Published var scale: CGFloat = 0.7
     var zonas: [Zona] = []
     var exhibiciones: [Exhibicion] = []
     var fotos: [Foto] = []
@@ -18,9 +18,9 @@ class MapViewModel: ObservableObject {
     var visita: Visita = Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño")
     
     
-    var mapImages = [Image("MapaA"), Image("Map")]
+    var mapImages = [Image("MapaB"), Image("MapaA")]
     var map1Dimensions: (width: CGFloat, height: CGFloat)? {
-        if let uiImage = UIImage(named: "MapaA") {
+        if let uiImage = UIImage(named: "MapaB") {
             let naturalWidth = uiImage.size.width
             let naturalHeight = uiImage.size.height
             return (width: naturalWidth, height: naturalHeight)
@@ -29,7 +29,7 @@ class MapViewModel: ObservableObject {
     }
     
     var map2Dimensions: (width: CGFloat, height: CGFloat)? {
-        if let uiImage = UIImage(named: "MapaB") {
+        if let uiImage = UIImage(named: "MapaA") {
             let naturalWidth = uiImage.size.width
             let naturalHeight = uiImage.size.height
             return (width: naturalWidth, height: naturalHeight)
@@ -46,13 +46,6 @@ class MapViewModel: ObservableObject {
         selectedFloor = floor
     }
     
-//    func updateDataAsync(zonas: [Zona], exhibiciones: [Exhibicion], fotos: [Foto], visita: Visita?) async {
-//            try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds delay
-//            self.zonas = zonas
-//            self.exhibiciones = exhibiciones
-//            self.fotos = fotos
-//            t
-//        }
 
     
 }

@@ -35,14 +35,8 @@ struct MapContainerView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: w * mapViewModel.scale, height: h * mapViewModel.scale) // Explicitly set size
-                                .gesture(
-                                    MagnificationGesture()
-                                        .onChanged { value in
-                                            mapViewModel.scale = mapViewModel.scale * value // Clamp scale between 0.5 and 3.0
-                                            print("Scale: \(mapViewModel.scale)")
-                                        }
-                                )
-                                .background(.blue) // For debugging purposes
+                                
+//                                .background(.blue) // For debugging purposes
                         }
                         
                         
@@ -71,9 +65,20 @@ struct MapContainerView: View {
                             Text("Loading dimensions...")
                         }
                     }
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged { value in
+                                
+                                mapViewModel.scale = max(0.4, min(10, mapViewModel.scale * value)) // Clamp scale between 0.5 and 3.0
+                                
+//                                print("Scale: \(mapViewModel.scale)")
+                            }
+                    )
+                    
                 
             }
                 .background(Color.gray.opacity(0.3))
+                
         }
         .onAppear {
             Task {

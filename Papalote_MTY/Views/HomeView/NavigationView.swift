@@ -13,35 +13,51 @@ struct NavigationView: View {
     var body: some View {
         HomeLayoutView(title: "Nav")
             .overlay(
+                
                 TabView {
-                    HomeView(visita: visita)
-                        .tabItem {
-                            Label("Zonas", systemImage: "house")
-                               
-                        }
-                    
-                    PhotosView(visita: visita)
-                        .tabItem {
-                            Label("Fotos", systemImage: "camera")
+                    Group {
+                        HomeView(visita: visita)
+                            .tabItem {
+                                Label("Zonas", systemImage: "house")
+                                    .padding()
                                 
-                        }
-                    
-                    MapView(visita: visita)
-                        .tabItem {
-                            Label("Mapa", systemImage: "map")
                                 
-                        }
+                            }
+                        
+                        
+                        PhotosView(visita: visita)
+                            .tabItem {
+                                Label("Fotos", systemImage: "camera")
+                                
+                            }
+                        
+                        MapView(visita: visita)
+                            .tabItem {
+                                Label("Mapa", systemImage: "map")
+                                
+                            }
+                        
+                        BadgesView(visita: visita)
+                            .tabItem {
+                                Label("Insignias", systemImage: "trophy")
+                            }
+                    }
                     
-                    BadgesView(visita: visita)
-                        .tabItem {
-                            Label("Insignias", systemImage: "trophy")
-                        }
+                    
+                    .toolbarBackground(.white, for: .tabBar)
+                    .toolbarBackground(.visible, for: .tabBar)
+                    
+                    
                 }
                     .accentColor(Color.AppColors.VerdePapalote)
+                
+                
             )
     }
 }
 
 #Preview {
+    
     NavigationView(visita: Visita(id: 1, date: Date(), orden: "Pertenezco Comunico Comprendo Soy Expreso Pequeño"))
+    
 }

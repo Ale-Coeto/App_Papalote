@@ -19,16 +19,25 @@ struct MapView: View {
                     ZStack {
                         MapContainerView(visita: visita, mapViewModel: mapViewModel)
                         
-                        //Header
-                        MapHeaderView(mapViewModel: mapViewModel)
-                                                
+                        VStack {
+                            MapHeaderView(mapViewModel: mapViewModel)
+                                
+                            
+                            Spacer()
+                            //Header
+                            ZoomButtonsView(mapViewModel: mapViewModel)
+                                
+                            
+                            // Footer
+                            
+                        }
+                        .padding()
                     }
                     
-                    // Footer
-                    MapFooterView(mapViewModel: mapViewModel)
+                    
                     
                 }
-                    .padding(.top, 34)
+                    .padding(.top, 38)
                     
             )
     }

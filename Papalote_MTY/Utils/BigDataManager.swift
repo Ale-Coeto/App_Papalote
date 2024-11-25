@@ -59,6 +59,7 @@ struct BigDataManager {
                 print("Failed to fetch respuestas: \(error)")
             }
             
+            
             let insignias: [Insignia]
             do {
                 insignias = try await fetchInsignias()

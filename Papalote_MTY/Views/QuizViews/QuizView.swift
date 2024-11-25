@@ -82,7 +82,7 @@ struct QuizView: View {
         
         currentQuestion = preguntas[index]
         
-        let zoneOrder = [2, 6, 3, 5, 4, 1]
+        let zoneOrder = [1, 2, 3, 4, 5, 6]
         
         currentAnswers = respuestas
             .filter { $0.idPregunta == currentQuestion?.id ?? 0 }
@@ -93,13 +93,21 @@ struct QuizView: View {
     @ViewBuilder
     private func responseButton(responseIndex: Int) -> some View {
         Button {
+            // Get the zone ID for the current answer
+            let zoneId = currentAnswers[responseIndex].zoneId
+            
+            // Manual mapping to correct zone based on the description you provided
+            let correctZoneId = mapZoneId(originalZoneId: zoneId)
+            
             if index < preguntas.count - 1 {
-                answers[responseIndex, default: 0] += 1
+                // Increment the answer count for the specific zone
+                answers[correctZoneId - 1, default: 0] += 1
                 index += 1
                 loadNextQuestion()
             }
             else {
-                answers[responseIndex, default: 0] += 1
+                // For the last question, increment and mark quiz as completed
+                answers[correctZoneId - 1, default: 0] += 1
                 isQuizCompleted = true
                 print(answers)
             }
@@ -128,15 +136,28 @@ struct QuizView: View {
         )
         .clipped()
     }
+
+    // Add this helper function to map the zones
+    private func mapZoneId(originalZoneId: Int) -> Int {
+        switch originalZoneId {
+        case 1: return 1
+        case 2: return 3
+        case 3: return 5
+        case 4: return 2
+        case 5: return 4
+        case 6: return 6  
+        default: return originalZoneId
+        }
+    }
     
     private func getBackgroundColor(for index: Int) -> Color {
         switch index {
-        case 0: return Color.AppColors.comunico       // Azul
-        case 1: return Color.AppColors.pequeños       // Celeste
-        case 2: return Color.AppColors.comprendo      // Morado
-        case 3: return Color.AppColors.expreso        // Naranja
-        case 4: return Color.AppColors.soy            // Rojo
-        case 5: return Color.AppColors.pertenezco     // Verde
+        case 0: return Color.AppColors.pertenezco
+        case 1: return Color.AppColors.comunico
+        case 2: return Color.AppColors.comprendo
+        case 3: return Color.AppColors.soy
+        case 4: return Color.AppColors.expreso
+        case 5: return Color.AppColors.pequeños
         default: return Color.gray
         }
     }

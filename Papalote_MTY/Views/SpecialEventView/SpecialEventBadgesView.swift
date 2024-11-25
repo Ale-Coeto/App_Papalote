@@ -13,6 +13,7 @@ struct SpecialEventBadgesView: View {
     
     @Query var insignias: [Insignia]
     @Query var insigniasObtenidas: [InsigniaObtenida]
+    @Query private var linkToImages: [LinkToImage]
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -33,8 +34,9 @@ struct SpecialEventBadgesView: View {
                         ForEach(insignias.filter { $0.idEvento == evento.id }.sorted(by: { $0.id < $1.id }), id: \.self.id) { insignia in
                             NavigationLink(destination: BadgeView(insignia: insignia, visita: visita, zonaColor: Color.green)) {
                                 VStack {
-                                    AsyncImage(url: URL(string: insignia.imagen)) { image in
-                                        image
+                                    if let imageData = linkToImages.first(where: { $0.link == insignia.imagen })?.imagen,
+                                       let uiImage = UIImage(data: imageData) {
+                                        Image(uiImage: uiImage)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: 80, height: 80) // Fixed image size
@@ -46,10 +48,26 @@ struct SpecialEventBadgesView: View {
                                                 Circle()
                                                     .stroke(isCompleted ? Color.green : Color.gray, lineWidth: 5)
                                             }
-                                    } placeholder: {
-                                        ProgressView()
-                                            .frame(width: 80, height: 80) // xFixed placeholder size
+                                    } else {
+                                        AsyncImage(url: URL(string: insignia.imagen)) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 80, height: 80) // Fixed image size
+                                                .clipShape(Circle())
+                                                .overlay {
+                                                    let isCompleted = insigniasObtenidas.contains {
+                                                        $0.id == insignia.id && $0.visitaId == visita.id
+                                                    }
+                                                    Circle()
+                                                        .stroke(isCompleted ? Color.green : Color.gray, lineWidth: 5)
+                                                }
+                                        } placeholder: {
+                                            ProgressView()
+                                                .frame(width: 80, height: 80) // Fixed placeholder size
+                                        }
                                     }
+
                                     
                                     // Fixed height for the text area to align it consistently
                                     Text(insignia.nombre)

@@ -6,23 +6,33 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct InfographicView: View {
     let evento: Evento
     let visita: Visita
+    @Query private var linkToImages: [LinkToImage]
     
     var body: some View {
         ScrollView {
-            AsyncImage(url: URL(string: evento.imagen)) { image in
-                image
+            if let imageData = linkToImages.first(where: { $0.link == evento.imagen })?.imagen,
+               let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: .infinity)
-            } placeholder: {
-                ProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding()
+            } else{
+                AsyncImage(url: URL(string: evento.imagen)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity)
+                } placeholder: {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .padding()
             }
-            .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
     }

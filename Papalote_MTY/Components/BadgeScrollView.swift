@@ -9,7 +9,7 @@ struct BadgeScrollView: View {
     @Environment(\.modelContext) private var context
     @Query private var insignias: [Insignia]
     @Query private var insigniasObtenidas: [InsigniaObtenida]
-    
+    @Query private var linkToImages: [LinkToImage]
     @State private var selectedInsignia: Insignia? // State to track the selected insignia
     
     var body: some View {
@@ -35,7 +35,43 @@ struct BadgeScrollView: View {
                                 selectedInsignia = insignia // Set the clicked insignia
                             }) {
                                 // Async image for insignia image URL
-                                AsyncImage(url: URL(string: insignia.imagen)) { phase in
+                                if let imageData = linkToImages.first(where: { $0.link == insignia.imagen })?.imagen,
+                                   let uiImage = UIImage(data: imageData) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 50, height: 50)
+                                        .background(Color.white)
+                                        .clipShape(Circle())
+                                        .overlay(
+                                            Circle().stroke(isCompleted[index] ? zoneColor : Color.gray, lineWidth: 3.5)
+                                        )
+                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .padding(8)
+                                } else {
+                                    AsyncImage(url: URL(string: insignia.imagen)) { phase in
+                                        if let image = phase.image {
+                                            image
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 50, height: 50)
+                                                .background(Color.white)
+                                                .clipShape(Circle())
+                                                .overlay(
+                                                    // Overlay with conditional border based on isCompleted
+                                                    Circle().stroke(isCompleted[index] ? zoneColor : Color.gray, lineWidth: 3.5)
+                                                )
+                                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                                .padding(8)
+                                        } else {
+                                            Circle()
+                                                .fill(Color.gray.opacity(0.5))
+                                                .frame(width: 50, height: 50)
+                                        }
+                                    }
+                                }
+                                
+                                /*AsyncImage(url: URL(string: insignia.imagen)) { phase in
                                     if let image = phase.image {
                                         image
                                             .resizable()
@@ -54,7 +90,7 @@ struct BadgeScrollView: View {
                                             .fill(Color.gray.opacity(0.5))
                                             .frame(width: 50, height: 50)
                                     }
-                                }
+                                }*/
                             }
                             .sheet(item: $selectedInsignia) { insignia in
                                 BadgeView(insignia: insignia, visita: visita, zonaColor: zoneColor)

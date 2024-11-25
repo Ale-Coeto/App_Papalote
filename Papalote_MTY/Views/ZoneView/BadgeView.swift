@@ -23,7 +23,7 @@ struct BadgeView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     @Query private var insigniasObtenidas: [InsigniaObtenida]
-    
+    @Query private var linkToImages: [LinkToImage]
     @State var showToast: Bool = false
    @State private var toastMessage = ""
    @State private var isCorrect = false
@@ -45,15 +45,24 @@ struct BadgeView: View {
                 .frame(minHeight: 5)
                 .background(zonaColor)
             
-            AsyncImage(url: URL(string: insignia.imagen)) { image in
-                image
+            if let imageData = linkToImages.first(where: { $0.link == insignia.imagen })?.imagen,
+               let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 280, height: 280)
                     .padding()
-            } placeholder: {
-                ProgressView()
-                    .frame(width: 280, height: 280)
+            } else {
+                AsyncImage(url: URL(string: insignia.imagen)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 280, height: 280)
+                        .padding()
+                } placeholder: {
+                    ProgressView()
+                        .frame(width: 280, height: 280)
+                }
             }
             
             Text(insignia.descripcion)

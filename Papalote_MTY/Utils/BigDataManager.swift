@@ -485,8 +485,18 @@ func fetchPreguntas() async throws -> [Pregunta] {
     do {
         let (data, _) = try await URLSession.shared.data(from: url)
         let decodedResponse = try JSONDecoder().decode(PreguntaResponse.self, from: data)
+        
+        // Add print statements
+        print("🔍 Fetched Questions:")
+        for pregunta in decodedResponse.questions {
+            print("Question ID: \(pregunta.id)")
+            print("Question Text: \(pregunta.pregunta)")
+        }
+        print("Total Questions Fetched: \(decodedResponse.questions.count)")
+        
         return decodedResponse.questions
     } catch {
+        print("❌ Error fetching questions: \(error)")
         throw error
     }
 }
@@ -499,8 +509,20 @@ func fetchRespuestas() async throws -> [Respuesta] {
     do {
         let (data, _) = try await URLSession.shared.data(from: url)
         let decodedResponse = try JSONDecoder().decode(RespuestaResponse.self, from: data)
+        
+        // Add print statements
+        print("🔍 Fetched Answers:")
+        for respuesta in decodedResponse.answers {
+            print("Answer ID: \(respuesta.id)")
+            print("Question ID: \(respuesta.idPregunta)")
+            print("Answer Text: \(respuesta.respuesta)")
+            print("Zone ID: \(respuesta.idZona)")
+        }
+        print("Total Answers Fetched: \(decodedResponse.answers.count)")
+        
         return decodedResponse.answers
     } catch {
+        print("❌ Error fetching answers: \(error)")
         throw error
     }
 }

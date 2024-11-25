@@ -19,17 +19,15 @@ struct QuizView: View {
         4: 0,
         5: 0
     ]
-    @State private var mostAnswers: Int = 0
     @State private var isQuizCompleted: Bool = false
     
     let visita: Visita
     
-    // Use Query to fetch the questions and responses from the context
     @Query private var preguntas: [Pregunta]
     @Query private var respuestas: [Respuesta]
     
     @State private var currentQuestion: Pregunta? = nil
-    @State private var currentAnswers: [String] = []
+    @State private var currentAnswers: [(answer: String, zoneId: Int)] = []
     
     var body: some View {
         NavigationStack {
@@ -38,9 +36,7 @@ struct QuizView: View {
                     .ignoresSafeArea()
                     .navigationBarBackButtonHidden(true)
                 
-                // Main container with fixed size
                 VStack(spacing: 10) {
-                    // Question container with fixed size
                     ZStack {
                         RoundedRectangle(cornerRadius: 12)
                             .frame(width: 350, height: 150)
@@ -49,20 +45,16 @@ struct QuizView: View {
                         Text(currentQuestion?.pregunta ?? "Loading question...")
                             .padding(.horizontal, 25)
                             .font(Font.custom("VagRounded-Light", size: 20))
-                        
-                        
                             .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity) // This ensures the text takes full width
-                            .padding(.top, 5) // Start from the top with padding
-                            .minimumScaleFactor(0.3) // Scale down text if needed
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 5)
+                            .minimumScaleFactor(0.3)
                             .lineLimit(6)
                     }
-                    .frame(height: 150) // Fixed height for question container
+                    .frame(height: 150)
                     .padding(.top, 40)
                     
-                    // Responses grid container with fixed size
                     VStack(spacing: 8) {
-                        // Response buttons for each question (use dynamic responses here)
                         ForEach(0..<currentAnswers.count / 2, id: \.self) { rowIndex in
                             HStack(spacing: 10) {
                                 responseButton(responseIndex: rowIndex * 2)
@@ -70,7 +62,7 @@ struct QuizView: View {
                             }
                         }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Take remaining space
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .padding(.vertical)
                 .navigationDestination(isPresented: $isQuizCompleted) {
@@ -80,22 +72,22 @@ struct QuizView: View {
                 }
             }
             .onAppear {
-                // Load the first question when the view appears
                 loadNextQuestion()
             }
         }
     }
     
     private func loadNextQuestion() {
-        // Ensure we have loaded all the questions
         guard !preguntas.isEmpty else { return }
         
-        // Set the current question
         currentQuestion = preguntas[index]
         
-        // Get the responses for the current question
-        currentAnswers = respuestas.filter { $0.idPregunta == currentQuestion?.id ?? 0 }
-                                    .map { $0.respuesta }
+        let zoneOrder = [2, 6, 3, 5, 4, 1]
+        
+        currentAnswers = respuestas
+            .filter { $0.idPregunta == currentQuestion?.id ?? 0 }
+            .map { (answer: $0.respuesta, zoneId: $0.idZona) }
+            .sorted { zoneOrder.firstIndex(of: $0.zoneId) ?? Int.max < zoneOrder.firstIndex(of: $1.zoneId) ?? Int.max }
     }
     
     @ViewBuilder
@@ -118,14 +110,14 @@ struct QuizView: View {
                     .foregroundStyle(getBackgroundColor(for: responseIndex))
                 
                 VStack {
-                    Text(currentAnswers[responseIndex])
+                    Text(currentAnswers[responseIndex].answer)
                         .foregroundStyle(Color.white)
                         .multilineTextAlignment(.center)
                         .font(Font.custom("VagRounded-Light", size: 20))
-                        .frame(maxWidth: .infinity) // This ensures the text takes full width
-                        .padding(.top, 5) // Start from the top with padding
-                        .minimumScaleFactor(0.3) // Scale down text if needed
-                        .lineLimit(6) // Limit the number of lines to avoid overflow
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 5)
+                        .minimumScaleFactor(0.3)
+                        .lineLimit(6)
                 }
                 .padding()
             }
@@ -134,17 +126,17 @@ struct QuizView: View {
             width: UIScreen.main.bounds.width >= 402 ? 170 : 150,
             height: UIScreen.main.bounds.width >= 402 ? 170 : 130
         )
-        .clipped() // Prevents content from overflowing
+        .clipped()
     }
     
     private func getBackgroundColor(for index: Int) -> Color {
         switch index {
-        case 0: return Color.AppColors.pertenezco
-        case 1: return Color.AppColors.soy
-        case 2: return Color.AppColors.comunico
-        case 3: return Color.AppColors.expreso
-        case 4: return Color.AppColors.comprendo
-        case 5: return Color.AppColors.pequeños
+        case 0: return Color.AppColors.comunico       // Azul
+        case 1: return Color.AppColors.pequeños       // Celeste
+        case 2: return Color.AppColors.comprendo      // Morado
+        case 3: return Color.AppColors.expreso        // Naranja
+        case 4: return Color.AppColors.soy            // Rojo
+        case 5: return Color.AppColors.pertenezco     // Verde
         default: return Color.gray
         }
     }

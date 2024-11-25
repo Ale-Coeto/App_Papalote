@@ -11,38 +11,6 @@ import SwiftData
 struct MockDataManager {
     static func addMockData(to context: ModelContext) {
 
-        // START OF IMAGE WORKAROUND
-        let existingFotos = try? context.fetch(FetchDescriptor<Foto>())
-        let existingFotoIDs = existingFotos?.map { $0.id } ?? []
-
-
-        var fotos: [Foto] = []
-
-        let totalZonas = 6  // Total number of zonas
-        let fotosPorZona = 3  // Number of photos per zona
-        var fotoId = 1  // Initialize the fotoId counter
-
-        // Populate fotos with 20 visits
-        for idVisita in 1...20 {
-            for idZona in 1...totalZonas {
-                for _ in 0..<fotosPorZona {
-                    let foto = Foto(
-                        id: fotoId, idZona: idZona, idVisita: idVisita,
-                        imagen: nil, completado: false)
-                    fotos.append(foto)
-                    fotoId += 1  // Increment the fotoId for the next photo
-                }
-            }
-        }
-
-        // Add Fotos
-        for foto in fotos {
-            if !existingFotoIDs.contains(foto.id) {
-                context.insert(foto)
-            }
-        }
-        // END OF IMAGE WORKAROUND
-
         // Check if there is data available
         let existingZonas = try? context.fetch(FetchDescriptor<Zona>())
 

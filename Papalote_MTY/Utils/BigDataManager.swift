@@ -10,7 +10,6 @@ import Foundation
 import Foundation
 import SwiftData
 
-
 struct BigDataManager {
     @MainActor
     static func addBigData(to context: ModelContext) async {
@@ -88,6 +87,112 @@ struct BigDataManager {
                 succeeded = false
                 print("Failed to fetch pins: \(error)")
             }
+            
+            
+            // Converting Image Urls to images
+            
+            await withTaskGroup(of: Void.self) { group in
+                // insignias
+                for insignia in insignias {
+                    let imageUrl = insignia.imagen
+                    group.addTask {
+                        do {
+                            let imageData = try await fetchImageData(from: imageUrl)
+                            // Perform Core Data operations on main thread
+                            await MainActor.run {
+                                let linkToImage = LinkToImage(link: imageUrl, imagen: imageData)
+                                context.insert(linkToImage)
+                            }
+                        } catch {
+                            print("Failed to fetch image for insignia at \(imageUrl): \(error)")
+                            // Consider throwing or handling errors more gracefully
+                        }
+                    }
+                }
+                // zonas
+                for zona in zonas {
+                    let imageUrl = zona.logo
+                    group.addTask {
+                        do {
+                            let imageData = try await fetchImageData(from: imageUrl)
+                            // Perform Core Data operations on main thread
+                            await MainActor.run {
+                                let linkToImage = LinkToImage(link: imageUrl, imagen: imageData)
+                                context.insert(linkToImage)
+                            }
+                        } catch {
+                            print("Failed to fetch image for zona at \(imageUrl): \(error)")
+                            // Consider throwing or handling errors more gracefully
+                        }
+                    }
+                }
+                
+                // eventos
+                for evento in eventos {
+                    let imageUrl = evento.imagen
+                    group.addTask {
+                        do {
+                            let imageData = try await fetchImageData(from: imageUrl)
+                            // Perform Core Data operations on main thread
+                            await MainActor.run {
+                                let linkToImage = LinkToImage(link: imageUrl, imagen: imageData)
+                                context.insert(linkToImage)
+                            }
+                        } catch {
+                            print("Failed to fetch image for evento at \(imageUrl): \(error)")
+                            // Consider throwing or handling errors more gracefully
+                        }
+                    }
+                }
+                
+                // exhibiciones
+                for exhibicion in exhibiciones {
+                    let imageUrl = exhibicion.imagen
+                    group.addTask {
+                        do {
+                            let imageData = try await fetchImageData(from: imageUrl)
+                            // Perform Core Data operations on main thread
+                            await MainActor.run {
+                                let linkToImage = LinkToImage(link: imageUrl, imagen: imageData)
+                                context.insert(linkToImage)
+                            }
+                        } catch {
+                            print("Failed to fetch image for evento at \(imageUrl): \(error)")
+                            // Consider throwing or handling errors more gracefully
+                        }
+                    }
+                }
+                
+                /*
+                // pines
+                for pin in pines {
+                    let imageUrl = pin.icon
+                    group.addTask {
+                        do {
+                            let imageData = try await fetchImageData(from: imageUrl)
+                            // Perform Core Data operations on main thread
+                            await MainActor.run {
+                                let linkToImage = LinkToImage(link: imageUrl, imagen: imageData)
+                                context.insert(linkToImage)
+                            }
+                        } catch {
+                            print("Failed to fetch image for evento at \(imageUrl): \(error)")
+                            // Consider throwing or handling errors more gracefully
+                        }
+                    }
+                }*/
+                
+            }
+
+                
+            
+            // Eventos
+            
+            // Zonas
+            
+            // Pines
+            
+            
             
             // If any call fails do nothing: stay with previous correct values.
             // Prefer this option as it doesn´t corrupt entity relations
@@ -411,5 +516,46 @@ func fetchPins() async throws -> [Pin] {
         return decodedResponse.pins
     } catch {
         throw error
+    }
+}
+
+
+
+enum ImageFetchError: Error {
+    case invalidURL
+    case invalidResponse
+    case notImage
+    case networkError(Error)
+}
+
+func fetchImageData(from urlString: String) async throws -> Data {
+    // Ensure the URL is valid
+    print("Tried fetching Image Data")
+    guard let url = URL(string: urlString) else {
+        print("failed fetching Image Data")
+        throw ImageFetchError.invalidURL
+    }
+
+    do {
+        // Perform the network request
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        // Ensure it's a valid HTTP response with status code 200
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            print("failed fetching Image Data another way")
+            throw ImageFetchError.invalidResponse
+        }
+
+        // Optionally: You could check for content-type as well
+        if let contentType = (response as? HTTPURLResponse)?.allHeaderFields["Content-Type"] as? String,
+           !contentType.contains("image") {
+            print("failed fetching Image Data another another way")
+            throw ImageFetchError.notImage
+        }
+        print("was successfull feching the image data")
+        return data
+    } catch {
+        print("an error happened, with this link: ", urlString)
+        throw ImageFetchError.networkError(error)
     }
 }

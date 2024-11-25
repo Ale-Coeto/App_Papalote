@@ -14,6 +14,7 @@ struct HomeView: View {
     @Query private var insignias: [Insignia]
     @Query private var fotos: [Foto]
     @Query private var eventosEspeciales: [Evento]
+    @Query private var linkToImages: [LinkToImage]
     @State private var shouldNavigateArray: [Bool] = Array(repeating: false, count: 100)
     let visita: Visita
     @StateObject var viewModel = HomeViewModel()
@@ -156,8 +157,16 @@ struct HomeView: View {
                                                                 .fill(.white)
                                                                 .frame(width: 80)
                                                             Group {
-                                                                if let localImage = UIImage(named: zona.logo) {
-                                                                    // Use the local image
+                                                                if let imageData = linkToImages.first(where: { $0.link == zona.logo })?.imagen,
+                                                                   let uiImage = UIImage(data: imageData) {
+                                                                    // Use the locally stored image from Core Data
+                                                                    Image(uiImage: uiImage)
+                                                                        .resizable()
+                                                                        .aspectRatio(contentMode: .fit)
+                                                                        .padding(10)
+                                                                        .frame(width: 50)
+                                                                } else if let localImage = UIImage(named: zona.logo) {
+                                                                    // Use the local image from assets
                                                                     Image(uiImage: localImage)
                                                                         .resizable()
                                                                         .aspectRatio(contentMode: .fit)
@@ -193,7 +202,8 @@ struct HomeView: View {
                                                                         .padding(10)
                                                                 }
                                                             }
-                                                            
+
+                                                            // IT ENDED HERE
                                                         }
                                                     }
                                                 }

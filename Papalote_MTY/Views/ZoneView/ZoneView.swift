@@ -18,7 +18,8 @@ struct ZoneView: View {
 
     @Query private var insigniasObtenidas: [InsigniaObtenida]
     @Query private var exhibicionesObtenidas: [ExhibicionObtenida]
-
+    @Query private var linkToImages: [LinkToImage]
+    
     var sortedExhibiciones: [Exhibicion] {
             exhibiciones.sorted(by: { $0.id < $1.id })
         }
@@ -51,8 +52,9 @@ struct ZoneView: View {
                                             NavigationLink {
                                                 ExhibitionView(zonaColor: Color(hex: zona.color), exhibicion: exhibicion, visita: visita)
                                             } label: {
-                                                AsyncImage(url: URL(string: exhibicion.imagen)) { image in
-                                                    image
+                                                if let imageData = linkToImages.first(where: { $0.link == exhibicion.imagen })?.imagen,
+                                                   let uiImage = UIImage(data: imageData) {
+                                                    Image(uiImage: uiImage)
                                                         .resizable()
                                                         .frame(width: 80, height: 80)
                                                         .clipShape(Circle())
@@ -60,13 +62,26 @@ struct ZoneView: View {
                                                             let isCompleted = exhibicionesObtenidas.contains {
                                                                 $0.id == exhibicion.id && $0.visitaId == visita.id
                                                             }
-                                                            
                                                             Circle()
                                                                 .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
                                                         }
-                                                } placeholder: {
-                                                    ProgressView()
-                                                        .frame(width: 80, height: 80)
+                                                } else {
+                                                    AsyncImage(url: URL(string: exhibicion.imagen)) { image in
+                                                        image
+                                                            .resizable()
+                                                            .frame(width: 80, height: 80)
+                                                            .clipShape(Circle())
+                                                            .overlay {
+                                                                let isCompleted = exhibicionesObtenidas.contains {
+                                                                    $0.id == exhibicion.id && $0.visitaId == visita.id
+                                                                }
+                                                                Circle()
+                                                                    .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
+                                                            }
+                                                    } placeholder: {
+                                                        ProgressView()
+                                                            .frame(width: 80, height: 80)
+                                                    }
                                                 }
                                             }
                                         }
@@ -92,22 +107,38 @@ struct ZoneView: View {
                                             NavigationLink {
                                                 BadgeView(insignia: insignia, visita: visita, zonaColor: Color(hex: zona.color))
                                             } label: {
-                                                AsyncImage(url: URL(string: insignia.imagen)) { image in
-                                                    image
+                                                if let imageData = linkToImages.first(where: { $0.link == insignia.imagen })?.imagen,
+                                                   let uiImage = UIImage(data: imageData) {
+                                                    Image(uiImage: uiImage)
                                                         .resizable()
                                                         .frame(width: 80, height: 80)
                                                         .clipShape(Circle())
                                                         .overlay {
                                                             // Check if insignia is in `insigniasObtenidas` for this `visita`
-                                                           let isCompleted = insigniasObtenidas.contains {
+                                                            let isCompleted = insigniasObtenidas.contains {
                                                                 $0.id == insignia.id && $0.visitaId == visita.id
                                                             }
                                                             Circle()
                                                                 .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
                                                         }
-                                                } placeholder: {
-                                                    ProgressView()
-                                                        .frame(width: 80, height: 80)
+                                                } else  {
+                                                    AsyncImage(url: URL(string: insignia.imagen)) { image in
+                                                        image
+                                                            .resizable()
+                                                            .frame(width: 80, height: 80)
+                                                            .clipShape(Circle())
+                                                            .overlay {
+                                                                // Check if insignia is in `insigniasObtenidas` for this `visita`
+                                                                let isCompleted = insigniasObtenidas.contains {
+                                                                    $0.id == insignia.id && $0.visitaId == visita.id
+                                                                }
+                                                                Circle()
+                                                                    .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
+                                                            }
+                                                    } placeholder: {
+                                                        ProgressView()
+                                                            .frame(width: 80, height: 80)
+                                                    }
                                                 }
                                             }
                                         }

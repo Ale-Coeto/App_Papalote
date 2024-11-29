@@ -40,8 +40,8 @@ struct PhotoView: View {
                 .frame(minHeight: 5)
                 .background(zonaColor)
             
-            if let image = selectedImage {
-                Image(uiImage: image)
+            if let image = foto.imagen, let imageui = UIImage(data: image) {
+                Image(uiImage: imageui)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250, height: 250)
@@ -82,6 +82,9 @@ struct PhotoView: View {
         }
         .padding()
         .padding(.horizontal)
+//        .onAppear {
+//            if let im = UIImage(data: foto.)
+//        }
     }
     private func checkImageSelection() {
         if let selectedImage = selectedImage {

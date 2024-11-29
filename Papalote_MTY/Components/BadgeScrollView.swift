@@ -44,6 +44,12 @@ struct BadgeScrollView: View {
                                         .background(Color.white)
                                         .clipShape(Circle())
                                         .overlay(
+                                                // Conditional grayish overlay
+                                                !isCompleted[index]
+                                                    ? Circle().fill(Color.gray.opacity(0.8))
+                                                    : Circle().fill(Color.clear)
+                                            )
+                                        .overlay(
                                             Circle().stroke(isCompleted[index] ? zoneColor : Color.gray, lineWidth: 3.5)
                                         )
                                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
@@ -58,11 +64,18 @@ struct BadgeScrollView: View {
                                                 .background(Color.white)
                                                 .clipShape(Circle())
                                                 .overlay(
+                                                        // Conditional grayish overlay
+                                                        !isCompleted[index]
+                                                            ? Circle().fill(Color.gray.opacity(0.8))
+                                                            : Circle().fill(Color.clear)
+                                                    )
+                                                .overlay(
                                                     // Overlay with conditional border based on isCompleted
                                                     Circle().stroke(isCompleted[index] ? zoneColor : Color.gray, lineWidth: 3.5)
                                                 )
                                                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                                 .padding(8)
+                                                
                                         } else {
                                             Circle()
                                                 .fill(Color.gray.opacity(0.5))

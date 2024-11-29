@@ -118,6 +118,9 @@ struct ZoneView: View {
                                                             let isCompleted = insigniasObtenidas.contains {
                                                                 $0.id == insignia.id && $0.visitaId == visita.id
                                                             }
+                                                            !isCompleted
+                                                                ? Circle().fill(Color.black.opacity(0.3))
+                                                                : Circle().fill(Color.clear)
                                                             Circle()
                                                                 .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
                                                         }
@@ -127,11 +130,18 @@ struct ZoneView: View {
                                                             .resizable()
                                                             .frame(width: 80, height: 80)
                                                             .clipShape(Circle())
+                                                            
                                                             .overlay {
                                                                 // Check if insignia is in `insigniasObtenidas` for this `visita`
                                                                 let isCompleted = insigniasObtenidas.contains {
                                                                     $0.id == insignia.id && $0.visitaId == visita.id
                                                                 }
+//                                                                .overlay(
+                                                                        // Conditional grayish overlay
+                                                                !isCompleted
+                                                                    ? Circle().fill(Color.black.opacity(0.3))
+                                                                    : Circle().fill(Color.clear)
+//                                                                    )
                                                                 Circle()
                                                                     .stroke(isCompleted ? Color(hex: zona.color) : Color.gray, lineWidth: 5)
                                                             }
@@ -162,7 +172,11 @@ struct ZoneView: View {
                                     HStack(spacing: 40) {
                                         ForEach(Array(sortedFotos.enumerated()), id: \.1.id) { index, foto in
                                             NavigationLink {
-                                                PhotoView(zonaColor: Color(hex: zona.color), zonaName: zona.nombre, foto: foto, index: index + 1)
+//                                                if let imageData = foto.imagen, let image = UIImage(data: imageData) {
+//                                                    PhotoView(zonaColor: Color(hex: zona.color), zonaName: zona.nombre, foto: foto, index: index + 1, selectedImage: image)
+//                                                } else {
+                                                    PhotoView(zonaColor: Color(hex: zona.color), zonaName: zona.nombre, foto: foto, index: index + 1)
+//                                                }
                                             } label: {
                                                 if let imageData = foto.imagen, let image = UIImage(data: imageData) {
                                                     Image(uiImage: image)

@@ -151,10 +151,10 @@ struct UserWithVisits: View {
                 Alert(
                     title: Text("Crear visita"),
                     message: Text("¿Quieres crear una nueva visita?"),
-                    primaryButton: .default(Text("Crear visita"), action: {
+                    primaryButton: .destructive(Text("Cancelar")),
+                    secondaryButton: .default(Text("Crear visita"), action: {
                         addNewVisit()
-                    }),
-                    secondaryButton: .destructive(Text("Cancelar"))
+                    })
                 )
             }
             .navigationDestination(isPresented: $shouldNavigate) {

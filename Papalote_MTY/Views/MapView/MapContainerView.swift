@@ -68,7 +68,8 @@ struct MapContainerView: View {
                     .gesture(
                         MagnificationGesture()
                             .onChanged { value in
-                                
+                                let sensitivity: CGFloat = 0.5 // Adjust this value to change sensitivity
+                                let adjustedValue = 1 + (value - 1) * sensitivity
                                 mapViewModel.scale = max(0.4, min(10, mapViewModel.scale * value)) // Clamp scale between 0.5 and 3.0
                                 
 //                                print("Scale: \(mapViewModel.scale)")
